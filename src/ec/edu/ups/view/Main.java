@@ -6,6 +6,7 @@
 package ec.edu.ups.view;
 
 import ec.edu.ups.controller.OfficeController;
+import ec.edu.ups.model.Province;
 import java.util.Scanner;
 
 
@@ -17,6 +18,26 @@ import java.util.Scanner;
 public class Main {
     
     public static void main(String [] args){
+        
+        RentalUI renUi = new RentalUI();
+        //renUi.setVisible(true);
+        OfficeController of = new OfficeController();
+        
+        of.loadOffices();
+        
+        of.insertProvince(new Province(1, "Azuay"));
+        of.insertProvince(new Province(2, "Pichincha"));
+        of.insertProvince(new Province(3, "Guayas"));
+        of.insertProvince(new Province(4, "Ambato"));
+        
+        of.loadOffices();
+        
+        System.out.println("\n\n" + of);
+        
+        
+    }
+    
+    public void prueba(){
         Scanner sc = new Scanner(System.in);
         
         System.out.println("\t ** Prueba de Proyecto");
@@ -60,7 +81,6 @@ public class Main {
         
         System.out.println("\n\n");
         System.out.println(office.toString());
-        
     }
     
 }

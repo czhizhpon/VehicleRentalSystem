@@ -80,7 +80,7 @@ public class Province {
     @Override
     public String toString() {
         return "Province{" + "proId=" + proId + ", proName=" + proName + 
-                ", proCities=" + proCities.toString() + '}';
+                ", proCities=" + proCities + '}';
     }
     
     
