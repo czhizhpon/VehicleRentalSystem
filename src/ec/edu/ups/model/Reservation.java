@@ -18,10 +18,12 @@ public class Reservation {
     
     private int resId;
     private Date resDate;
+    private Vehicle resVehicle;
 
-    public Reservation(int resId, Date resDate) {
+    public Reservation(int resId, Date resDate, Vehicle resVehicle) {
         this.resId = resId;
         this.resDate = resDate;
+        this.resVehicle = resVehicle;
     }
 
     public int getResId() {
@@ -39,10 +41,19 @@ public class Reservation {
     public void setResDate(Date resDate) {
         this.resDate = resDate;
     }
-    
+
+    public Vehicle getResVehicle() {
+        return resVehicle;
+    }
+
+    public void setResVehicle(Vehicle resVehicle) {
+        this.resVehicle = resVehicle;
+    }
+
     @Override
     public String toString() {
-        return "Reservation{" + "resId=" + resId + ", resDate=" + resDate + '}';
+        return "Reservation{" + "resId=" + resId + ", resDate=" + resDate 
+                + ", resVehicle=" + resVehicle.toString() + '}';
     }
     
     

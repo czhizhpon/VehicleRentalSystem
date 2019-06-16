@@ -23,17 +23,19 @@ public class BillHead {
     private double heaVat;
     private double heaTotal;
     private Date heaDate;
+    private Customer customer;
     private List<Rental> heaRentals;
 
     public BillHead(int heaId, double heaSubtotal, double heaVat, 
-            double heaTotal, Date heaDate) {
+            double heaTotal, Date heaDate, Customer customer) {
         this.heaId = heaId;
         this.heaSubtotal = heaSubtotal;
         this.heaVat = heaVat;
         this.heaTotal = heaTotal;
         this.heaDate = heaDate;
+        this.customer = customer;
     }
-    
+
     public int getHeaId() {
         return heaId;
     }
@@ -74,6 +76,15 @@ public class BillHead {
         this.heaDate = heaDate;
     }
 
+    
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+    
     public List<Rental> getHeaRentals() {
         return heaRentals;
     }
@@ -89,23 +100,23 @@ public class BillHead {
         return true;
     }
     
-    public Rental readRental(int heaId){
+    public Rental readRental(int renIndex){
         if (this.heaRentals == null) 
             throw new NullPointerException("There is not rentals yet");
-        return this.heaRentals.get(heaId);
+        return this.heaRentals.get(renIndex);
     }
     
-    public boolean updateRental(int heaId, Rental rental){
+    public boolean updateRental(int renIndex, Rental rental){
         if (this.heaRentals == null) 
             throw new NullPointerException("There is not rentals yet");
-        this.heaRentals.set(heaId, rental);
+        this.heaRentals.set(renIndex, rental);
         return true;
     }
     
-    public boolean deleteRental (int heaId){
+    public boolean deleteRental (int renIndex){
         if (this.heaRentals == null) 
             throw new NullPointerException("There is not rentals yet");
-        this.heaRentals.remove(heaId);
+        this.heaRentals.remove(renIndex);
         return true;
     }
     
@@ -113,7 +124,8 @@ public class BillHead {
     public String toString() {
         return "BillHead{" + "heaId=" + heaId + ", heaSubtotal=" + heaSubtotal 
                 + ", heaVat=" + heaVat + ", heaTotal=" + heaTotal + ", heaDate=" 
-                + heaDate + ", heaRentals=" + heaRentals + '}';
+                + heaDate + customer.toString() + ", heaRentals=" 
+                + heaRentals + '}';
     }
     
 }

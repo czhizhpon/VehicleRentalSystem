@@ -57,30 +57,30 @@ public class Brand {
         return true;
     }
     
-    public Model readModel(int braId){
+    public Model readModel(int modIndex){
         if (this.braModels == null)
             throw new NullPointerException();
-        return this.braModels.get(braId);
+        return this.braModels.get(modIndex);
     }
     
-    public boolean updateModel(int braId, Model model){
+    public boolean updateModel(int modIndex, Model model){
         if (this.braModels == null)
             throw new NullPointerException();
-        this.braModels.set(braId, model);
+        this.braModels.set(modIndex, model);
         return true;
     }
     
-    public boolean deleteModel(int braId){
+    public boolean deleteModel(int modIndex){
         if (this.braModels == null)
             throw new NullPointerException();
-        this.braModels.remove(braId);
+        this.braModels.remove(modIndex);
         return true;
     }
     
     @Override
     public String toString() {
         return "Brand{" + "braId=" + braId + ", braName=" + braName 
-                + ", braModels=" + braModels + '}';
+                + ", braModels=" + braModels.toString() + '}';
     }
     
 }

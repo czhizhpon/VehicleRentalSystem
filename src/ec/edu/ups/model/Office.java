@@ -22,8 +22,9 @@ public class Office {
     private String offSideSt;
     private int offNumber;
     private String offCodPostal;
+    private List<Phone> offPhones;
     private List<Vehicle> offVehicles;
-    private List<User> offUsers;
+    private List<Employee> offEmployees;
 
     public Office(int offId, String offMainSt, String offSideSt, int offNumber, 
             String offCodPostal) {
@@ -74,6 +75,14 @@ public class Office {
         this.offCodPostal = offCodPostal;
     }
 
+    public List<Phone> getOffPhones() {
+        return offPhones;
+    }
+
+    public void setOffPhones(List<Phone> offPhones) {
+        this.offPhones = offPhones;
+    }
+
     public List<Vehicle> getOffVehicles() {
         return offVehicles;
     }
@@ -82,14 +91,41 @@ public class Office {
         this.offVehicles = offVehicles;
     }
 
-    public List<User> getOffUsers() {
-        return offUsers;
+    public List<Employee> getoffEmployees() {
+        return offEmployees;
     }
 
-    public void setOffUsers(List<User> offUsers) {
-        this.offUsers = offUsers;
+    public void setOffEmployees(List<Employee> offEmployees) {
+        this.offEmployees = offEmployees;
     }
 
+    public boolean createPhone(Phone Phone){
+        if (this.offPhones == null)
+            this.offEmployees = new ArrayList<>();
+        this.offPhones.add(Phone);
+        return true;
+    }
+    
+    public Phone readPhone(int phoIndex){
+        if(this.offPhones == null)
+            throw new NullPointerException();
+        return this.offPhones.get(phoIndex);
+    }
+    
+    public boolean updatePhone(int phoIndex, Phone phone){
+        if(this.offPhones == null)
+            throw new NullPointerException();
+        this.offPhones.set(phoIndex, phone);
+        return true;
+    }
+    
+    public boolean deletePhone(int phoIndex){
+        if(this.offPhones == null)
+            throw new NullPointerException();
+        this.offPhones.remove(phoIndex);
+        return true;
+    }
+    
     public boolean createVehicle(Vehicle vehicle){
         if (this.offVehicles == null)
             this.offVehicles = new ArrayList<>();
@@ -97,59 +133,61 @@ public class Office {
         return true;
     }
     
-    public Vehicle readVehicle(int vehId){
+    public Vehicle readVehicle(int vehIndex){
         if(this.offVehicles == null)
             throw new NullPointerException();
-        return this.offVehicles.get(vehId);
+        return this.offVehicles.get(vehIndex);
     }
     
-    public boolean updateVehicle(int vehId, Vehicle vehicle){
+    public boolean updateVehicle(int vehIndex, Vehicle vehicle){
         if(this.offVehicles == null)
             throw new NullPointerException();
-        this.offVehicles.set(vehId, vehicle);
+        this.offVehicles.set(vehIndex, vehicle);
         return true;
     }
     
-    public boolean deleteVehicle(int vehId){
+    public boolean deleteVehicle(int vehIndex){
         if(this.offVehicles == null)
             throw new NullPointerException();
-        this.offVehicles.remove(vehId);
+        this.offVehicles.remove(vehIndex);
         return true;
     }
     
-    public boolean createUser(User user){
-        if (this.offUsers == null)
-            this.offUsers = new ArrayList<>();
-        this.offUsers.add(user);
+    public boolean createEmployee(Employee employee){
+        if (this.offEmployees == null)
+            this.offEmployees = new ArrayList<>();
+        this.offEmployees.add(employee);
         return true;
     }
     
-    public User readUser(int userIndex){
-        if(this.offUsers == null)
+    public User readEmployee(int empIndex){
+        if(this.offEmployees == null)
             throw new NullPointerException();
-        return this.offUsers.get(userIndex);
+        return this.offEmployees.get(empIndex);
     }
     
-    public boolean updateUser(int userIndex, User user){
-        if(this.offUsers == null)
+    public boolean updateEmployee(int empIndex, Employee employee){
+        if(this.offEmployees == null)
             throw new NullPointerException();
-        this.offUsers.set(userIndex, user);
+        this.offEmployees.set(empIndex, employee);
         return true;
     }
     
-    public boolean deleteUser(int userIndex){
-        if(this.offUsers == null)
+    public boolean deleteEmployee(int empIndex){
+        if(this.offEmployees == null)
             throw new NullPointerException();
-        this.offUsers.remove(userIndex);
+        this.offEmployees.remove(empIndex);
         return true;
     }
-    
+
     @Override
     public String toString() {
         return "Office{" + "offId=" + offId + ", offMainSt=" + offMainSt 
                 + ", offSideSt=" + offSideSt + ", offNumber=" + offNumber 
-                + ", offCodPostal=" + offCodPostal + ", offVehicles=" 
-                + offVehicles + '}';
+                + ", offCodPostal=" + offCodPostal + ", offPhones=" + offPhones
+                + ", offVehicles=" + offVehicles + ", offEmployees=" 
+                + offEmployees+ '}';
     }
+    
     
 }

@@ -57,30 +57,30 @@ public class City {
         return true;
     }
     
-    public Office readOffice(int offId){
+    public Office readOffice(int offIndex){
         if (this.citOffices == null)
             throw new NullPointerException();
-        return this.citOffices.get(offId);
+        return this.citOffices.get(offIndex);
     }
     
-    public boolean updateOffice(int offId, Office office){
+    public boolean updateOffice(int offIndex, Office office){
         if (this.citOffices == null)
             throw new NullPointerException();
-        this.citOffices.set(offId, office);
+        this.citOffices.set(offIndex, office);
         return true;
     }
     
-    public boolean deleteOffice(int offId){
+    public boolean deleteOffice(int offIndex){
         if (this.citOffices == null)
             throw new NullPointerException();
-        this.citOffices.remove(offId);
+        this.citOffices.remove(offIndex);
         return true;
     }
 
     @Override
     public String toString() {
         return "City{" + "citId=" + citId + ", citName=" + citName 
-                + ", citOffices=" + citOffices + '}';
+                + ", citOffices=" + citOffices +'}';
     }
     
     

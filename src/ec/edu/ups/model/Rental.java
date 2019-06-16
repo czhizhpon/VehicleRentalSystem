@@ -23,11 +23,12 @@ public class Rental {
     private Date renDateFin;
     private double renAmount;
     private double renSubtotal;
+    private Vehicle renVehicle;
     private Reservation renReservation;
 
     public Rental(int renId, double renKilometrajeIni, double renKilometrajeFin, 
             Date renDateIni, Date renDateFin, double renAmount, 
-            double renSubtotal, Reservation renReservation) {
+            double renSubtotal, Vehicle renVehicle,Reservation renReservation) {
         this.renId = renId;
         this.renKilometrajeIni = renKilometrajeIni;
         this.renKilometrajeFin = renKilometrajeFin;
@@ -35,6 +36,7 @@ public class Rental {
         this.renDateFin = renDateFin;
         this.renAmount = renAmount;
         this.renSubtotal = renSubtotal;
+        this.renVehicle = renVehicle;
         this.renReservation = renReservation;
     }
 
@@ -94,6 +96,14 @@ public class Rental {
         this.renSubtotal = renSubtotal;
     }
 
+    public Vehicle getRenVehicle() {
+        return renVehicle;
+    }
+
+    public void setRenVehicle(Vehicle renVehicle) {
+        this.renVehicle = renVehicle;
+    }
+
     public Reservation getRenReservation() {
         return renReservation;
     }
@@ -101,15 +111,18 @@ public class Rental {
     public void setRenReservation(Reservation renReservation) {
         this.renReservation = renReservation;
     }
-    
+
     @Override
     public String toString() {
-        return "Rental{" + "renId=" + renId + ", renKilometrajeIni=" + 
-                renKilometrajeIni + ", renKilometrajeFin=" + 
-                renKilometrajeFin + ", renDateIni=" + renDateIni + 
-                ", renDateFin=" + renDateFin + ", renAmount=" + renAmount + 
-                ", renSubtotal=" + renSubtotal + '}';
+        return "Rental{" + "renId=" + renId + ", renKilometrajeIni=" 
+                + renKilometrajeIni + ", renKilometrajeFin=" + renKilometrajeFin 
+                + ", renDateIni=" + renDateIni + ", renDateFin=" + renDateFin 
+                + ", renAmount=" + renAmount + ", renSubtotal=" + renSubtotal 
+                + ", renVehicle=" + renVehicle.toString() + ", renReservation=" 
+                + renReservation.toString() + '}';
     }
+    
+    
     
     
     

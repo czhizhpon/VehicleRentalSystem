@@ -57,30 +57,31 @@ public class Model {
         return true;
     }
     
-    public Vehicle readVehicle(int vehId){
+    public Vehicle readVehicle(int vehIndex){
         if(this.modVehicles == null)
             throw new NullPointerException();
-        return this.modVehicles.get(vehId);
+        return this.modVehicles.get(vehIndex);
     }
     
-    public boolean updateVehicle(int vehId, Vehicle vehicle){
+    public boolean updateVehicle(int vehIndex, Vehicle vehicle){
         if(this.modVehicles == null)
             throw new NullPointerException();
-        this.modVehicles.set(vehId, vehicle);
+        this.modVehicles.set(vehIndex, vehicle);
         return true;
     }
     
-    public boolean deleteVehicle(int vehId){
+    public boolean deleteVehicle(int vehIndex){
         if(this.modVehicles == null)
             throw new NullPointerException();
-        this.modVehicles.remove(vehId);
+        this.modVehicles.remove(vehIndex);
         return true;
     }
-    
+
     @Override
     public String toString() {
         return "Model{" + "modId=" + modId + ", modName=" + modName 
-                + ", modVehicles=" + modVehicles + '}';
+                + ", modVehicles=" + modVehicles.toString() + '}';
     }
+    
     
 }

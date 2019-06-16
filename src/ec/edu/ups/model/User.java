@@ -24,22 +24,21 @@ public class User {
     private String useLastNamel;
     private Date useBirthDay;
     private String useAddress;
-    private String useWorkAdd;
     private char useType;
     private String useEmail;
     private String usePassword;
     private List<Phone> usePhones;
 
     public User(int useId, String useDNI, String useName, String useLastNamel, 
-            Date useBirthDay, String useAddress, String useWorkAdd, 
-            char useType, String useEmail,String usePassword) {
+            Date useBirthDay, String useAddress, char useType, String useEmail,
+            String usePassword) {
         this.useId = useId;
         this.useDNI = useDNI;
         this.useName = useName;
         this.useLastNamel = useLastNamel;
         this.useBirthDay = useBirthDay;
         this.useAddress = useAddress;
-        this.useWorkAdd = useWorkAdd;
+//        this.useWorkAdd = useWorkAdd;
         this.useType = useType;
         this.useEmail = useEmail;
         this.usePassword = usePassword;
@@ -92,14 +91,14 @@ public class User {
     public void setUseAddress(String useAddress) {
         this.useAddress = useAddress;
     }
-
-    public String getUseWorkAdd() {
-        return useWorkAdd;
-    }
-
-    public void setUseWorkAdd(String useWorkAdd) {
-        this.useWorkAdd = useWorkAdd;
-    }
+//
+//    public String getUseWorkAdd() {
+//        return useWorkAdd;
+//    }
+//
+//    public void setUseWorkAdd(String useWorkAdd) {
+//        this.useWorkAdd = useWorkAdd;
+//    }
 
     public char getUseType() {
         return useType;
@@ -140,23 +139,23 @@ public class User {
         return true;
     }
     
-    public Phone readPhone(int phoId){
+    public Phone readPhone(int phoIndex){
         if (this.usePhones == null)
             throw new NullPointerException();
-        return this.usePhones.get(phoId);
+        return this.usePhones.get(phoIndex);
     }
     
-    public boolean updatePhone(int phoId, Phone phone){
+    public boolean updatePhone(int phoIndex, Phone phone){
         if (this.usePhones == null)
             throw new NullPointerException();
-        this.usePhones.set(phoId, phone);
+        this.usePhones.set(phoIndex, phone);
         return true;
     }
     
-    public boolean deletePhone(int phoId){
+    public boolean deletePhone(int phoIndex){
         if (this.usePhones == null)
             throw new NullPointerException();
-        this.usePhones.remove(phoId);
+        this.usePhones.remove(phoIndex);
         return true;
     }
     
@@ -186,13 +185,15 @@ public class User {
 //        this.cusBillHeads.remove(bilHeaIndex);
 //        return true;
 //    }
+
     @Override
     public String toString() {
-        return "User{" + "useId=" + useId + ", useDNI=" + useDNI + 
-                ", useName=" + useName + ", useLastNamel=" + useLastNamel + 
-                ", useBirthDay=" + useBirthDay + ", useAddress=" + useAddress + 
-                ", useWorkAdd=" + useWorkAdd + ", useType=" + useType + 
-                ", useBillHeads=" + /*useBillHeads +*/ ", usePhones=" + usePhones + '}';
+        return "User{" + "useId=" + useId + ", useDNI=" + useDNI + ", useName=" 
+                + useName + ", useLastNamel=" + useLastNamel + ", useBirthDay=" 
+                + useBirthDay + ", useAddress=" + useAddress + ", useType=" 
+                + useType + ", useEmail=" + useEmail + ", usePassword=" 
+                + usePassword + ", usePhones=" + usePhones.toString() + '}';
     }
+    
     
 }

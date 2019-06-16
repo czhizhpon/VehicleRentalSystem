@@ -57,30 +57,30 @@ public class Province {
         return true;
     }
     
-    public City readCity(int citId){
+    public City readCity(int citIndex){
         if(this.proCities == null)
             throw new NullPointerException();
-        return this.proCities.get(citId);
+        return this.proCities.get(citIndex);
     }
     
-    public boolean updateCity(int citId, City city){
+    public boolean updateCity(int citIndex, City city){
         if(this.proCities == null)
             throw new NullPointerException();
-        this.proCities.set(citId, city);
+        this.proCities.set(citIndex, city);
         return true;
     }
     
-    public boolean deleteCity(int citId){
+    public boolean deleteCity(int citIndex){
         if(this.proCities == null)
             throw new NullPointerException();
-        this.proCities.remove(citId);
+        this.proCities.remove(citIndex);
         return true;
     }
     
     @Override
     public String toString() {
         return "Province{" + "proId=" + proId + ", proName=" + proName + 
-                ", proCities=" + proCities + '}';
+                ", proCities=" + proCities.toString() + '}';
     }
     
     

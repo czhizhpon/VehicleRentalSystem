@@ -22,16 +22,15 @@ public class Vehicle {
     private String vehColor;
     private char vehStatus;
     private double vehKilometraje;
-    private List<Reservation> vehReservations;
-    private List<Rental> vehRentals;
+    private VehRate vehRate;
 
-    public Vehicle(int vehId, String vehPlate, String vehColor, char vehStatus, 
-            double vehKilometraje) {
+    public Vehicle(int vehId, String vehPlate, String vehColor, char vehStatus, double vehKilometraje, VehRate vehRate) {
         this.vehId = vehId;
         this.vehPlate = vehPlate;
         this.vehColor = vehColor;
         this.vehStatus = vehStatus;
         this.vehKilometraje = vehKilometraje;
+        this.vehRate = vehRate;
     }
 
     public int getVehId() {
@@ -74,84 +73,21 @@ public class Vehicle {
         this.vehKilometraje = vehKilometraje;
     }
 
-    public List<Reservation> getVehReservations() {
-        return vehReservations;
+    public VehRate getVehRate() {
+        return vehRate;
     }
 
-    public void setVehReservations(List<Reservation> vehReservations) {
-        this.vehReservations = vehReservations;
+    public void setVehRate(VehRate vehRate) {
+        this.vehRate = vehRate;
     }
 
-    public List<Rental> getVehRentals() {
-        return vehRentals;
-    }
-
-    public void setVehRentals(List<Rental> vehRentals) {
-        this.vehRentals = vehRentals;
-    }
-
-    public boolean createReservation(Reservation reservation){
-        if (this.vehReservations == null)
-            this.vehReservations = new ArrayList<>();
-        this.vehReservations.add(reservation);
-        return true;
-    }
-    
-    public Reservation readReservation(int resId){
-        if (this.vehReservations == null)
-            throw new NullPointerException();
-        return this.vehReservations.get(resId);
-    }
-    
-    public boolean updateReservation(int resId, Reservation reservation){
-        if (this.vehReservations == null)
-            throw new NullPointerException();
-        this.vehReservations.set(resId, reservation);
-        return true;
-    }
-    
-    public boolean deleteReservation(int resId){
-        if (this.vehReservations == null)
-            throw new NullPointerException();
-        this.vehReservations.remove(resId);
-        return true;
-    }
-    
-    public boolean createRental(Rental rental){
-        if (this.vehRentals == null)
-            this.vehRentals = new ArrayList<>();
-        this.vehRentals.add(rental);
-        return true;
-    }
-    
-    public Rental readRental(int renId){
-        if (this.vehRentals == null)
-            throw new NullPointerException();
-        return this.vehRentals.get(renId);
-    }
-    
-    public boolean updateRental(int renId, Rental rental){
-        if (this.vehRentals == null)
-            throw new NullPointerException();
-        this.vehRentals.set(renId, rental);
-        return true;
-    }
-    
-    public boolean deleteRental(int renId){
-        if (this.vehRentals == null)
-            throw new NullPointerException();
-        this.vehRentals.remove(renId);
-        return true;
-    }
-    
     @Override
     public String toString() {
         return "Vehicle{" + "vehId=" + vehId + ", vehPlate=" + vehPlate 
                 + ", vehColor=" + vehColor + ", vehStatus=" + vehStatus 
-                + ", vehKilometraje=" + vehKilometraje + ", vehReservations=" 
-                + vehReservations + ", vehRentals=" + vehRentals + '}';
+                + ", vehKilometraje=" + vehKilometraje + ", vehRate=" 
+                + vehRate.toString() + '}';
     }
-    
-    
+
     
 }

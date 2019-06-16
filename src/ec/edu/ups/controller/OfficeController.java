@@ -7,6 +7,7 @@
  */
 package ec.edu.ups.controller;
 
+import ec.edu.ups.model.City;
 import ec.edu.ups.model.Office;
 import ec.edu.ups.model.Province;
 import ec.edu.ups.model.User;
@@ -22,28 +23,51 @@ import java.util.List;
  */
 public class OfficeController {
     
-    private VehicleRentalSystem vrs;
+    private List<Province> conProvinces;
 
-    public OfficeController(VehicleRentalSystem vrs) {
-        this.vrs = vrs;
+    public OfficeController() {
     }
 
-    public VehicleRentalSystem getVrs() {
-        return vrs;
-    }
-
-    public void setVrs(VehicleRentalSystem vrs) {
-        this.vrs = vrs;
+    public OfficeController(List<Province> conProvinces) {
+        this.conProvinces = conProvinces;
     }
     
-    public boolean createOffice(int provinceIndex, int cityIndex,int offId, 
-            String offMainSt, String offSideSt, int offNumber, String offCodPostal){
-        
-        Office office = new Office(offId, offMainSt, offSideSt, offNumber, 
-                offCodPostal);
-        this.vrs.getVrsProvinces().get(provinceIndex).getProCities().
-                get(cityIndex).createOffice(office);
+    public List<Province> getConProvinces() {
+        return conProvinces;
+    }
+
+    public void setConProvinces(List<Province> conProvinces) {
+        this.conProvinces = conProvinces;
+    }
+    
+    public boolean createProvince(int proId, String proName){
+        if (this.conProvinces == null)
+            this.conProvinces = new ArrayList<>();
+        Province province = new Province(proId, proName);
+        this.conProvinces.add(province);
         return true;
     }
+    
+    public boolean createCity(int proIndex,int citId, String citName){
+        City city = new City(citId, citName);
+        this.conProvinces.get(proIndex).createCity(city);
+        return true;
+    }
+    
+    public boolean createOffice(int proIndex, int citIndex, int offId, 
+            String offMainSt, String offSideSt, int offNumber, 
+            String offCodPostal){
+        Office office = new Office(offId, offMainSt, offSideSt, offNumber, 
+                offCodPostal);
+        this.conProvinces.get(proIndex).getProCities().get(citIndex)
+                .createOffice(office);
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "OfficeController{" + "conProvinces=" + conProvinces.toString() + '}';
+    }
+    
     
 }
