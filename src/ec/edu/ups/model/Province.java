@@ -1,5 +1,5 @@
 /**
- * @(#)Province.java	0.0.1, 11-Jun-2019 
+ * @(#)Province.java	0.0.1, 16-Jun-2019 
  * 
  * Universidad Politécnica Salesiana
  * Carrera de Computación
@@ -19,7 +19,6 @@ public class Province {
     
     private int proId;
     private String proName;
-    private List<City> proCities;
 
     public Province(int proId, String proName) {
         this.proId = proId;
@@ -41,46 +40,10 @@ public class Province {
     public void setProName(String proName) {
         this.proName = proName;
     }
-
-    public List<City> getProCities() {
-        return proCities;
-    }
-
-    public void setProCities(List<City> proCities) {
-        this.proCities = proCities;
-    }
-
-    public boolean createCity(City city){
-        if(this.proCities == null)
-            this.proCities = new ArrayList<>();
-        this.proCities.add(city);
-        return true;
-    }
-    
-    public City readCity(int citIndex){
-        if(this.proCities == null)
-            throw new NullPointerException();
-        return this.proCities.get(citIndex);
-    }
-    
-    public boolean updateCity(int citIndex, City city){
-        if(this.proCities == null)
-            throw new NullPointerException();
-        this.proCities.set(citIndex, city);
-        return true;
-    }
-    
-    public boolean deleteCity(int citIndex){
-        if(this.proCities == null)
-            throw new NullPointerException();
-        this.proCities.remove(citIndex);
-        return true;
-    }
     
     @Override
     public String toString() {
-        return "Province{" + "proId=" + proId + ", proName=" + proName + 
-                ", proCities=" + proCities + '}';
+        return "Province{" + "proId=" + proId + ", proName=" + proName + '}';
     }
     
     

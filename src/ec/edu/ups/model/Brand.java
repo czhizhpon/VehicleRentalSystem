@@ -1,5 +1,5 @@
 /**
- * @(#)Brand.java	0.0.1, 11-Jun-2019 
+ * @(#)Brand.java	0.0.1, 16-Jun-2019 
  * 
  * Universidad Politécnica Salesiana
  * Carrera de Computación
@@ -7,8 +7,6 @@
  */
 package ec.edu.ups.model;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @since 11-Jun-2019
@@ -19,7 +17,6 @@ public class Brand {
     
     private int braId;
     private String braName;
-    private List<Model> braModels;
 
     public Brand(int braId, String braName) {
         this.braId = braId;
@@ -41,46 +38,10 @@ public class Brand {
     public void setBraName(String braName) {
         this.braName = braName;
     }
-
-    public List<Model> getBraModels() {
-        return braModels;
-    }
-
-    public void setBraModels(List<Model> braModels) {
-        this.braModels = braModels;
-    }
-
-    public boolean createModel(Model model){
-        if (this.braModels == null)
-            this.braModels = new ArrayList<>();
-        this.braModels.add(model);
-        return true;
-    }
-    
-    public Model readModel(int modIndex){
-        if (this.braModels == null)
-            throw new NullPointerException();
-        return this.braModels.get(modIndex);
-    }
-    
-    public boolean updateModel(int modIndex, Model model){
-        if (this.braModels == null)
-            throw new NullPointerException();
-        this.braModels.set(modIndex, model);
-        return true;
-    }
-    
-    public boolean deleteModel(int modIndex){
-        if (this.braModels == null)
-            throw new NullPointerException();
-        this.braModels.remove(modIndex);
-        return true;
-    }
     
     @Override
     public String toString() {
-        return "Brand{" + "braId=" + braId + ", braName=" + braName 
-                + ", braModels=" + braModels.toString() + '}';
+        return "Brand{" + "braId=" + braId + ", braName=" + braName + '}';
     }
     
 }

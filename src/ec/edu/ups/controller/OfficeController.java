@@ -10,14 +10,12 @@ package ec.edu.ups.controller;
 import ec.edu.ups.model.City;
 import ec.edu.ups.model.Office;
 import ec.edu.ups.model.Province;
-import ec.edu.ups.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -30,7 +28,7 @@ import java.util.logging.Logger;
  */
 public class OfficeController {
     
-    private List<Province> conProvinces;
+    private Office conOffice;
     
     private Connection conn;
     private PreparedStatement pstat;
@@ -40,39 +38,33 @@ public class OfficeController {
     public OfficeController() {
     }
 
-    public OfficeController(List<Province> conProvinces) {
-        this.conProvinces = conProvinces;
-    }
-    
-    public List<Province> getConProvinces() {
-        return conProvinces;
+    public Office getConOffice() {
+        return conOffice;
     }
 
-    public void setConProvinces(List<Province> conProvinces) {
-        this.conProvinces = conProvinces;
+    public void setConOffice(Office conOffice) {
+        this.conOffice = conOffice;
     }
     
-    public boolean createProvince(int proId, String proName){
-        if (this.conProvinces == null)
-            this.conProvinces = new ArrayList<>();
-        Province province = new Province(proId, proName);
-        this.conProvinces.add(province);
-        return true;
-    }
-    
-    public boolean createCity(int proIndex,int citId, String citName){
-        City city = new City(citId, citName);
-        this.conProvinces.get(proIndex).createCity(city);
-        return true;
-    }
-    
-    public boolean createOffice(int proIndex, int citIndex, int offId, 
-            String offMainSt, String offSideSt, int offNumber, 
-            String offCodPostal){
-        Office office = new Office(offId, offMainSt, offSideSt, offNumber, 
+    public boolean createOffice(int offId, String offMainSt, String offSideSt, 
+            String offNumber, String offCodPostal){
+//        if (this.conOffices == null)
+//            this.conOffices = new ArrayList<>();
+         conOffice = new Office(offId, offMainSt, offSideSt, offNumber, 
                 offCodPostal);
-        this.conProvinces.get(proIndex).getProCities().get(citIndex)
-                .createOffice(office);
+        //this.conOffices.add(office);
+        return true;
+    }
+    
+    public boolean setCity(int citId, String citName){
+        City city = new City(citId, citName);
+        this.conOffice.setOffCity(city);
+        return true;
+    }
+    
+    public boolean setProvince(int proId, String proName){
+        Province province = new Province(proId, proName);
+        this.conOffice.getOffCity().setCitProvince(province);
         return true;
     }
     
@@ -124,7 +116,7 @@ public class OfficeController {
         }
     }
     
-    public void loadOffices(){
+    public void loadOffice(int proId, int citId, int offId){
         conn = new SQLConection().conectarMySQL();
         int proIndex = 0;
         int citIndex = 0;
@@ -133,13 +125,23 @@ public class OfficeController {
         
         try {
             
-            query = "SELECT pro_id, pro_name "
-                    + "FROM vrs_provinces;";
+            query = "SELECT p.pro_id, p.pro_name, c.cit_id, c.cit_name, o.off_id, \n" 
+                    + "o.off_main_st, o.off_side_st, o.off_number, o.off_cod_postal\n" 
+                    + "FROM vrs_provinces p, vrs_cities c, vrs_offices o \n" 
+                    + "WHERE p.pro_id = " + proId + " AND c.cit_id = " + citId + "\n"
+                    + "AND o.off_id = " + offId + " ;";
             runLoadStatement(query);
             while(rstat.next()){
+                Province province = new Province(rstat.getInt(1), rstat.getString(2));
+                City city = new City(rstat.getInt(3), rstat.getString(4));
+                Office office = new Office(rstat.getInt(5), rstat.getString(6), 
+                        rstat.getString(7), rstat.getString(8), rstat.getString(9));
                 
-                createProvince(rstat.getInt(1), rstat.getString(2));
-                
+                createOffice(office.getOffId(), office.getOffMainSt(), office.getOffSideSt(), 
+                        office.getOffNumber(), office.getOffCodPostal());
+                setCity(city.getCitId(), city.getCitName());
+                setProvince(province.getProId(), province.getProName());
+                proIndex += 1;
             }
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -150,6 +152,68 @@ public class OfficeController {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+    }
+    
+    public List<Province> getProvinces(){
+        List<Province> provinces =  new ArrayList<>();
+        conn = new SQLConection().conectarMySQL();
+        
+        String query = "SELECT *\n" +
+                        "FROM vrs_provinces;";
+        
+        runLoadStatement(query);
+        try {
+            while(rstat.next()){
+                Province province = new Province(rstat.getInt(1), 
+                        rstat.getString(2));
+                provinces.add(province);
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return provinces;
+    }
+    
+    public List<City> getCities(int proId){
+        List<City> cities = new ArrayList<>();
+        conn = new SQLConection().conectarMySQL();
+        String query = "SELECT cit_id, cit_name\n" +        
+                        "FROM vrs_cities \n" +
+                        "WHERE pro_id = " + proId + ";";
+        runLoadStatement(query);
+        try {
+            while (rstat.next()) {                
+                City city = new City(rstat.getInt(1), rstat.getString(2));
+                cities.add(city);
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return cities;
+    }
+    
+    public List<Office> getOffices(int citId){
+        List<Office> offices = new ArrayList<>();
+        conn = new SQLConection().conectarMySQL();
+        String query = "SELECT o.off_id, o.off_main_st, o.off_side_st, o.off_number, o.off_cod_postal\n" +
+                        "FROM vrs_offices o\n" +
+                        "WHERE o.cit_id = " + citId + ";";
+        runLoadStatement(query);
+        try {
+            while (rstat.next()) {                
+                Office office = new Office(rstat.getInt(1), rstat.getString(2), 
+                        rstat.getString(3), rstat.getString(4), rstat.getString(5));
+                offices.add(office);
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return offices;
+        
     }
     
     public boolean runInsertStatement(String query){
@@ -174,8 +238,9 @@ public class OfficeController {
 
     @Override
     public String toString() {
-        return "OfficeController{" + "conProvinces=" + conProvinces + '}';
+        return "OfficeController{" + "conOffices=" + conOffice + '}';
     }
+
     
     
 }

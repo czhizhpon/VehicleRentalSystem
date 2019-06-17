@@ -20,6 +20,7 @@ public class Privilege {
     private int priId;
     private String priName;
     private double priDiscountPct;
+    
     public Privilege(int priId, String priName, double priDiscountPot) {
         this.priId = priId;
         this.priName = priName;

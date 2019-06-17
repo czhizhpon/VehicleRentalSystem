@@ -20,13 +20,14 @@ public class Office {
     private int offId;
     private String offMainSt;
     private String offSideSt;
-    private int offNumber;
+    private String offNumber;
     private String offCodPostal;
+    private City offCity;
     private List<Phone> offPhones;
     private List<Vehicle> offVehicles;
     private List<Employee> offEmployees;
 
-    public Office(int offId, String offMainSt, String offSideSt, int offNumber, 
+    public Office(int offId, String offMainSt, String offSideSt, String offNumber, 
             String offCodPostal) {
         this.offId = offId;
         this.offMainSt = offMainSt;
@@ -59,11 +60,11 @@ public class Office {
         this.offSideSt = offSideSt;
     }
 
-    public int getOffNumber() {
+    public String getOffNumber() {
         return offNumber;
     }
 
-    public void setOffNumber(int offNumber) {
+    public void setOffNumber(String offNumber) {
         this.offNumber = offNumber;
     }
 
@@ -73,6 +74,14 @@ public class Office {
 
     public void setOffCodPostal(String offCodPostal) {
         this.offCodPostal = offCodPostal;
+    }
+
+    public City getOffCity() {
+        return offCity;
+    }
+
+    public void setOffCity(City offCity) {
+        this.offCity = offCity;
     }
 
     public List<Phone> getOffPhones() {

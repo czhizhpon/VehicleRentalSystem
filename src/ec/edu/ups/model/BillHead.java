@@ -1,5 +1,5 @@
 /**
- * @(#)BillHead.java	0.0.1, 11-Jun-2019 
+ * @(#)BillHead.java	0.0.1, 16-Jun-2019 
  * 
  * Universidad Politécnica Salesiana
  * Carrera de Computación
@@ -102,20 +102,20 @@ public class BillHead {
     
     public Rental readRental(int renIndex){
         if (this.heaRentals == null) 
-            throw new NullPointerException("There is not rentals yet");
+            throw new NullPointerException();
         return this.heaRentals.get(renIndex);
     }
     
     public boolean updateRental(int renIndex, Rental rental){
         if (this.heaRentals == null) 
-            throw new NullPointerException("There is not rentals yet");
+            throw new NullPointerException();
         this.heaRentals.set(renIndex, rental);
         return true;
     }
     
     public boolean deleteRental (int renIndex){
         if (this.heaRentals == null) 
-            throw new NullPointerException("There is not rentals yet");
+            throw new NullPointerException();
         this.heaRentals.remove(renIndex);
         return true;
     }

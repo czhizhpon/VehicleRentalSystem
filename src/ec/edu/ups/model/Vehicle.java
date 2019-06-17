@@ -22,15 +22,16 @@ public class Vehicle {
     private String vehColor;
     private char vehStatus;
     private double vehKilometraje;
-    private VehRate vehRate;
+    private VehCategory vehCategory;
 
-    public Vehicle(int vehId, String vehPlate, String vehColor, char vehStatus, double vehKilometraje, VehRate vehRate) {
+    public Vehicle(int vehId, String vehPlate, String vehColor, char vehStatus, 
+            double vehKilometraje, VehCategory vehCategory) {
         this.vehId = vehId;
         this.vehPlate = vehPlate;
         this.vehColor = vehColor;
         this.vehStatus = vehStatus;
         this.vehKilometraje = vehKilometraje;
-        this.vehRate = vehRate;
+        this.vehCategory = vehCategory;
     }
 
     public int getVehId() {
@@ -73,20 +74,19 @@ public class Vehicle {
         this.vehKilometraje = vehKilometraje;
     }
 
-    public VehRate getVehRate() {
-        return vehRate;
+    public VehCategory getVehCategory() {
+        return vehCategory;
     }
 
-    public void setVehRate(VehRate vehRate) {
-        this.vehRate = vehRate;
+    public void setVehCategory(VehCategory vehCategory) {
+        this.vehCategory = vehCategory;
     }
-
+    
     @Override
     public String toString() {
         return "Vehicle{" + "vehId=" + vehId + ", vehPlate=" + vehPlate 
                 + ", vehColor=" + vehColor + ", vehStatus=" + vehStatus 
-                + ", vehKilometraje=" + vehKilometraje + ", vehRate=" 
-                + vehRate.toString() + '}';
+                + ", vehKilometraje=" + vehKilometraje + '}';
     }
 
     

@@ -6,7 +6,9 @@
 package ec.edu.ups.view;
 
 import ec.edu.ups.controller.OfficeController;
+import ec.edu.ups.model.City;
 import ec.edu.ups.model.Province;
+import ec.edu.ups.model.Office;
 import java.util.Scanner;
 
 
@@ -21,16 +23,46 @@ public class Main {
         
         RentalUI renUi = new RentalUI();
         //renUi.setVisible(true);
+        Scanner sc = new Scanner(System.in);
+        
         OfficeController of = new OfficeController();
         
-        of.loadOffices();
+        System.out.println("\n\t ** Lista Provincias:\n");
         
-        of.insertProvince(new Province(1, "Azuay"));
-        of.insertProvince(new Province(2, "Pichincha"));
-        of.insertProvince(new Province(3, "Guayas"));
-        of.insertProvince(new Province(4, "Ambato"));
+        for (Province pro: of.getProvinces()) {
+            System.out.println("Id: " + pro.getProId() + "\tName: " + pro.getProName());
+        }
         
-        of.loadOffices();
+        System.out.print("\tIngrese Id de una provincia: ");
+        int proId = Integer.parseInt(sc.nextLine());
+        
+        System.out.println("\n\t ** Lista Ciudades:\n");
+        
+        for (City cit: of.getCities(proId)) {
+            System.out.println("Id: " + cit.getCitId() + "\tName: " + cit.getCitName());
+        }
+        
+        System.out.print("\tIngrese Id de una ciudad: ");
+        int citId = Integer.parseInt(sc.nextLine());
+        
+        System.out.println("\n\t ** Lista Oficinas\n");
+        for (Office off: of.getOffices(citId)) {
+            System.out.println("Id: " + off.getOffId() + "\tMainSt: " + off.getOffMainSt());
+        }
+        
+        System.out.print("\tIngrese Id de una oficina: ");
+        int offId = Integer.parseInt(sc.nextLine());
+        
+        
+        
+        of.loadOffice(proId, citId, offId);
+        
+//        of.insertProvince(new Province(1, "Azuay"));
+//        of.insertProvince(new Province(2, "Pichincha"));
+//        of.insertProvince(new Province(3, "Guayas"));
+//        of.insertProvince(new Province(4, "Ambato"));
+        
+        //of.loadOffices();
         
         System.out.println("\n\n" + of);
         
@@ -49,7 +81,7 @@ public class Main {
         int proId = Integer.parseInt(sc.nextLine());
         System.out.print("ProNombre:");
         String proName = sc.nextLine();
-        office.createProvince(proId, proName);
+       // office.createProvince(proId, proName);
         
         System.out.print("ProIndex:");
         int index = Integer.parseInt(sc.nextLine());
@@ -57,7 +89,7 @@ public class Main {
         int cityId = Integer.parseInt(sc.nextLine());
         System.out.print("cityName:");
         String cityName = sc.nextLine();
-        office.createCity(index, cityId, cityName);
+       // office.createCity(index, cityId, cityName);
         
         System.out.println(office.toString());
         
@@ -77,7 +109,7 @@ public class Main {
         System.out.print("offCodPostal:");
         String offCodPostal = sc.nextLine();
         
-        office.createOffice(proIndex, cityIndex, offId, offMainSt, null, offNumber, offCodPostal);
+       // office.createOffice(proIndex, cityIndex, offId, offMainSt, null, offNumber, offCodPostal);
         
         System.out.println("\n\n");
         System.out.println(office.toString());

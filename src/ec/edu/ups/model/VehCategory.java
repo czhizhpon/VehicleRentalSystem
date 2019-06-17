@@ -22,7 +22,6 @@ public class VehCategory {
     private String catDescription;
     private double catDayCost;
     private double catDamageCost;
-    private List<Vehicle> catVehicles;
 
     public VehCategory(int catId, String catName, String catDescription, 
             double catDayCost, double catDamageCost) {
@@ -73,47 +72,11 @@ public class VehCategory {
         this.catDamageCost = catDamageCost;
     }
 
-    public List<Vehicle> getCatVehicles() {
-        return catVehicles;
-    }
-
-    public void setCatVehicles(List<Vehicle> catVehicles) {
-        this.catVehicles = catVehicles;
-    }
-
-    public boolean createVehicle(Vehicle vehicle){
-        if (this.catVehicles == null)
-            this.catVehicles = new ArrayList<>();
-        this.catVehicles.add(vehicle);
-        return true;
-    }
-    
-    public Vehicle read(int vehId){
-        if (this.catVehicles == null)
-            throw new NullPointerException();
-        return this.catVehicles.get(vehId);
-    }
-    
-    public boolean updateVehicle(int vehId, Vehicle vehicle){
-        if (this.catVehicles == null)
-            throw new NullPointerException();
-        this.catVehicles.set(vehId, vehicle);
-        return true;
-    }
-    
-    public boolean deleteVehicle(int vehId){
-        if (this.catVehicles == null)
-            throw new NullPointerException();
-        this.catVehicles.remove(vehId);
-        return true;
-    }
-    
     @Override
     public String toString() {
         return "VehCategory{" + "catId=" + catId + ", catName=" + catName 
                 + ", catDescription=" + catDescription + ", catDayCost=" 
-                + catDayCost + ", catDamageCost=" + catDamageCost 
-                + ", catVehicles=" + catVehicles + '}';
+                + catDayCost + ", catDamageCost=" + catDamageCost + '}';
     }
     
     
