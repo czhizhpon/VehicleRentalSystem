@@ -101,6 +101,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void myDataJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myDataJMIActionPerformed
         // TODO add your handling code here:
+        
         if (data == null)
             data = new MyDataGUI(getWidth(), getHeight());
         if (data.isVisible()){
