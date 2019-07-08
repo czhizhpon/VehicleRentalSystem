@@ -5,6 +5,10 @@
  */
 package ec.edu.ups.view;
 
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author edd
@@ -16,7 +20,9 @@ public class MainGUI extends javax.swing.JFrame {
      */
     public MainGUI() {
         initComponents();
+        setSize(800,800);
         setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -95,8 +101,18 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void myDataJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myDataJMIActionPerformed
         // TODO add your handling code here:
-        MyDataGUI data = new MyDataGUI();
-        data.setVisible(true);
+        if (data == null)
+            data = new MyDataGUI(getWidth(), getHeight());
+        if (data.isVisible()){
+            try {
+                data.setSelected(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            this.desktopMain.add(data);
+            data.setVisible(true);
+        }
     }//GEN-LAST:event_myDataJMIActionPerformed
 
     private void addOfficeJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOfficeJMIActionPerformed
@@ -107,7 +123,7 @@ public class MainGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_creUserJMIActionPerformed
 
-
+    private MyDataGUI data;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu addJM;
     private javax.swing.JMenuItem addOfficeJMI;

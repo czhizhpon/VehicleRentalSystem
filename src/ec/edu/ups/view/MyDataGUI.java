@@ -13,9 +13,12 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form MyDataGUI
+     * @param w
+     * @param h
      */
-    public MyDataGUI() {
+    public MyDataGUI(int w, int h) {
         initComponents();
+        super.setLocation(w/2 - getWidth()/2, h/2 - getHeight()/2);
     }
 
     /**
@@ -26,6 +29,11 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
