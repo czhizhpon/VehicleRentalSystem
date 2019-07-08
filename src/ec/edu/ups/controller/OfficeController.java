@@ -198,9 +198,10 @@ public class OfficeController {
     public List<Office> getOffices(int citId){
         List<Office> offices = new ArrayList<>();
         conn = new SQLConection().conectarMySQL();
-        String query = "SELECT o.off_id, o.off_main_st, o.off_side_st, o.off_number, o.off_cod_postal\n" +
-                        "FROM vrs_offices o\n" +
-                        "WHERE o.cit_id = " + citId + ";";
+        String query = "SELECT o.off_id, o.off_main_st, o.off_side_st, "
+                + "o.off_number, o.off_cod_postal\n" 
+                +"FROM vrs_offices o\n" 
+                + "WHERE o.cit_id = " + citId + ";";
         runLoadStatement(query);
         try {
             while (rstat.next()) {                
