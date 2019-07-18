@@ -38,6 +38,7 @@ public class LoginGUI extends javax.swing.JFrame {
         image = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         setSize(new java.awt.Dimension(940, 560));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -51,7 +52,6 @@ public class LoginGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        inputPanel.setBackground(new java.awt.Color(255, 255, 255));
         inputPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Contraseña:");
@@ -60,15 +60,17 @@ public class LoginGUI extends javax.swing.JFrame {
         jLabel2.setText("Usuario:");
         inputPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 70, 40));
 
+        jTextField1.setOpaque(false);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        inputPanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 340, 30));
+        inputPanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 340, 40));
 
         jPasswordField1.setText("jPasswordField1");
-        inputPanel.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 340, 30));
+        jPasswordField1.setOpaque(false);
+        inputPanel.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 340, 40));
 
         loginBt.setText("Ingresar");
         loginBt.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +80,7 @@ public class LoginGUI extends javax.swing.JFrame {
         });
         inputPanel.add(loginBt, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, -1, 30));
 
-        image.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        image.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         image.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,7 +120,7 @@ public class LoginGUI extends javax.swing.JFrame {
     private void loginBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtActionPerformed
         // TODO add your handling code here:
         
-        MainGUI main = new MainGUI();
+        MainGUI main = new MainGUI('A');
         main.setVisible(true);
         
         dispose();

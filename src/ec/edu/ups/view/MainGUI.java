@@ -6,8 +6,11 @@
 package ec.edu.ups.view;
 
 import java.beans.PropertyVetoException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 /**
  *
@@ -15,16 +18,44 @@ import java.util.logging.Logger;
  */
 public class MainGUI extends javax.swing.JFrame {
 
+    
+    
     /**
      * Creates new form MainGUI
+     * @param useType
      */
-    public MainGUI() {
+    public MainGUI(char useType) {
         initComponents();
-        setSize(800,800);
+        setSize(1100,900);
         setLocationRelativeTo(null);
         
+        this.userType = useType;
     }
 
+    public char getUserType() {
+        return userType;
+    }
+
+    public void setUserType(char userType) {
+        this.userType = userType;
+    }
+
+    public MyDataGUI getData() {
+        return data;
+    }
+
+    public void setData(MyDataGUI data) {
+        this.data = data;
+    }
+
+    public JMenu getHelpJM() {
+        return helpJM;
+    }
+
+    public void setHelpJM(JMenu helpJM) {
+        this.helpJM = helpJM;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,8 +65,6 @@ public class MainGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         desktopMain = new javax.swing.JDesktopPane();
         mainBar = new javax.swing.JMenuBar();
         myDataJm = new javax.swing.JMenu();
@@ -43,16 +72,20 @@ public class MainGUI extends javax.swing.JFrame {
         logoutJMI = new javax.swing.JMenuItem();
         addJM = new javax.swing.JMenu();
         addOfficeJMI = new javax.swing.JMenuItem();
+        addVehicleJMI = new javax.swing.JMenuItem();
+        addCompanyJMI = new javax.swing.JMenuItem();
         createJM = new javax.swing.JMenu();
         creUserJMI = new javax.swing.JMenuItem();
+        creVehicleJMI = new javax.swing.JMenuItem();
+        creRentalJMI = new javax.swing.JMenuItem();
+        creBillJMI = new javax.swing.JMenuItem();
         helpJM = new javax.swing.JMenu();
-
-        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(desktopMain, java.awt.BorderLayout.CENTER);
 
         myDataJm.setText("Mi Perfil");
+        myDataJm.setName(""); // NOI18N
 
         myDataJMI.setText("Mis Datos");
         myDataJMI.addActionListener(new java.awt.event.ActionListener() {
@@ -69,13 +102,19 @@ public class MainGUI extends javax.swing.JFrame {
 
         addJM.setText("Agregar");
 
-        addOfficeJMI.setText("Oficina");
+        addOfficeJMI.setText("Gestionar Oficina");
         addOfficeJMI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addOfficeJMIActionPerformed(evt);
             }
         });
         addJM.add(addOfficeJMI);
+
+        addVehicleJMI.setText("Gestionar Vehículos");
+        addJM.add(addVehicleJMI);
+
+        addCompanyJMI.setText("Empresa");
+        addJM.add(addCompanyJMI);
 
         mainBar.add(addJM);
 
@@ -88,6 +127,15 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
         createJM.add(creUserJMI);
+
+        creVehicleJMI.setText("Vehículo");
+        createJM.add(creVehicleJMI);
+
+        creRentalJMI.setText("Alquiler");
+        createJM.add(creRentalJMI);
+
+        creBillJMI.setText("Factura");
+        createJM.add(creBillJMI);
 
         mainBar.add(createJM);
 
@@ -116,6 +164,34 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_myDataJMIActionPerformed
 
+    private boolean loadMenus(){
+        
+        switch(getUserType()){
+            case 'C':
+                
+                break;
+            case 'A':
+                
+                break;
+            case 'E':
+                
+                break;
+            default:
+                System.out.println("fail load Menus");
+                return false;
+            
+            
+        }
+        return true;
+    }
+    
+    private boolean customerMenus(){
+        
+        
+        
+        return true;
+    }
+    
     private void addOfficeJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOfficeJMIActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addOfficeJMIActionPerformed
@@ -125,15 +201,21 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_creUserJMIActionPerformed
 
     private MyDataGUI data;
+    private List<JMenu> menus;
+    private char userType;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem addCompanyJMI;
     private javax.swing.JMenu addJM;
     private javax.swing.JMenuItem addOfficeJMI;
+    private javax.swing.JMenuItem addVehicleJMI;
+    private javax.swing.JMenuItem creBillJMI;
+    private javax.swing.JMenuItem creRentalJMI;
     private javax.swing.JMenuItem creUserJMI;
+    private javax.swing.JMenuItem creVehicleJMI;
     private javax.swing.JMenu createJM;
     private javax.swing.JDesktopPane desktopMain;
     private javax.swing.JMenu helpJM;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JMenuItem logoutJMI;
     private javax.swing.JMenuBar mainBar;
     private javax.swing.JMenuItem myDataJMI;
