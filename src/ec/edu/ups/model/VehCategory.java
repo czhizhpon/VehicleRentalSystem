@@ -7,8 +7,6 @@
  */
 package ec.edu.ups.model;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @since 11-Jun-2019
@@ -22,16 +20,17 @@ public class VehCategory {
     private String catDescription;
     private double catDayCost;
     private double catDamageCost;
+    private int catWarrantyPct;
 
-    public VehCategory(int catId, String catName, String catDescription, 
-            double catDayCost, double catDamageCost) {
+    public VehCategory(int catId, String catName, String catDescription, double catDayCost, double catDamageCost, int catWarrantyPct) {
         this.catId = catId;
         this.catName = catName;
         this.catDescription = catDescription;
         this.catDayCost = catDayCost;
         this.catDamageCost = catDamageCost;
+        this.catWarrantyPct = catWarrantyPct;
     }
-
+    
     public int getCatId() {
         return catId;
     }
@@ -72,12 +71,22 @@ public class VehCategory {
         this.catDamageCost = catDamageCost;
     }
 
+    public int getCatWarrantyPct() {
+        return catWarrantyPct;
+    }
+
+    public void setCatWarrantyPct(int catWarrantyPct) {
+        this.catWarrantyPct = catWarrantyPct;
+    }
+
     @Override
     public String toString() {
         return "VehCategory{" + "catId=" + catId + ", catName=" + catName 
                 + ", catDescription=" + catDescription + ", catDayCost=" 
-                + catDayCost + ", catDamageCost=" + catDamageCost + '}';
+                + catDayCost + ", catDamageCost=" + catDamageCost 
+                + ", catWarrantyPct=" + catWarrantyPct + '}';
     }
+
     
     
     

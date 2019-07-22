@@ -16,6 +16,7 @@ public class Model {
     
     private int modId;
     private String modName;
+    private double modCost;
     private Brand modBrand;
 
     public Model(int modId, String modName, Brand modBrand) {
@@ -38,6 +39,14 @@ public class Model {
 
     public void setModName(String modName) {
         this.modName = modName;
+    }
+
+    public double getModCost() {
+        return modCost;
+    }
+
+    public void setModCost(double modCost) {
+        this.modCost = modCost;
     }
 
     public Brand getModBrand() {

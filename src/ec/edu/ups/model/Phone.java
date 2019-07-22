@@ -16,9 +16,9 @@ public class Phone {
     
     private int phoId;
     private String phoNumber;
-    private char phoType;
+    private String phoType;
 
-    public Phone(int phoId, String phoNumber, char phoType) {
+    public Phone(int phoId, String phoNumber, String phoType) {
         this.phoId = phoId;
         this.phoNumber = phoNumber;
         this.phoType = phoType;
@@ -40,11 +40,11 @@ public class Phone {
         this.phoNumber = phoNumber;
     }
 
-    public char getPhoType() {
+    public String getPhoType() {
         return phoType;
     }
 
-    public void setPhoType(char phoType) {
+    public void setPhoType(String phoType) {
         this.phoType = phoType;
     }
 

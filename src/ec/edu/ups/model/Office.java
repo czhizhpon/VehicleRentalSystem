@@ -25,7 +25,6 @@ public class Office {
     private City offCity;
     private List<Phone> offPhones;
     private List<Vehicle> offVehicles;
-    private List<Employee> offEmployees;
 
     public Office(int offId, String offMainSt, String offSideSt, String offNumber, 
             String offCodPostal) {
@@ -100,17 +99,9 @@ public class Office {
         this.offVehicles = offVehicles;
     }
 
-    public List<Employee> getoffEmployees() {
-        return offEmployees;
-    }
-
-    public void setOffEmployees(List<Employee> offEmployees) {
-        this.offEmployees = offEmployees;
-    }
-
     public boolean createPhone(Phone Phone){
         if (this.offPhones == null)
-            this.offEmployees = new ArrayList<>();
+            this.offPhones = new ArrayList<>();
         this.offPhones.add(Phone);
         return true;
     }
@@ -162,40 +153,13 @@ public class Office {
         return true;
     }
     
-    public boolean createEmployee(Employee employee){
-        if (this.offEmployees == null)
-            this.offEmployees = new ArrayList<>();
-        this.offEmployees.add(employee);
-        return true;
-    }
-    
-    public User readEmployee(int empIndex){
-        if(this.offEmployees == null)
-            throw new NullPointerException();
-        return this.offEmployees.get(empIndex);
-    }
-    
-    public boolean updateEmployee(int empIndex, Employee employee){
-        if(this.offEmployees == null)
-            throw new NullPointerException();
-        this.offEmployees.set(empIndex, employee);
-        return true;
-    }
-    
-    public boolean deleteEmployee(int empIndex){
-        if(this.offEmployees == null)
-            throw new NullPointerException();
-        this.offEmployees.remove(empIndex);
-        return true;
-    }
-
     @Override
     public String toString() {
         return "Office{" + "offId=" + offId + ", offMainSt=" + offMainSt 
                 + ", offSideSt=" + offSideSt + ", offNumber=" + offNumber 
                 + ", offCodPostal=" + offCodPostal + ", offPhones=" + offPhones
                 + ", offVehicles=" + offVehicles + ", offEmployees=" 
-                + offEmployees+ '}';
+                + '}';
     }
     
     

@@ -91,14 +91,6 @@ public class User {
     public void setUseAddress(String useAddress) {
         this.useAddress = useAddress;
     }
-//
-//    public String getUseWorkAdd() {
-//        return useWorkAdd;
-//    }
-//
-//    public void setUseWorkAdd(String useWorkAdd) {
-//        this.useWorkAdd = useWorkAdd;
-//    }
 
     public char getUseType() {
         return useType;
@@ -158,33 +150,6 @@ public class User {
         this.usePhones.remove(phoIndex);
         return true;
     }
-    
-//public boolean createBillHead(BillHead billHead){
-//        if (this.cusBillHeads == null)
-//            this.cusBillHeads = new ArrayList<>();
-//        this.cusBillHeads.add(billHead);
-//        return true;
-//    }
-//    
-//    public BillHead readBillHead(int bilHeaIndex){
-//        if (this.cusBillHeads == null)
-//            throw new NullPointerException();
-//        return this.cusBillHeads.get(bilHeaIndex);
-//    }
-//    
-//    public boolean updateBillHead(int bilHeaIndex, BillHead billHead){
-//        if (this.cusBillHeads == null)
-//            throw new NullPointerException();
-//        this.cusBillHeads.set(bilHeaIndex, billHead);
-//        return true;
-//    }
-//    
-//    public boolean deleteBillHead(int bilHeaIndex){
-//        if (this.cusBillHeads == null)
-//            throw new NullPointerException();
-//        this.cusBillHeads.remove(bilHeaIndex);
-//        return true;
-//    }
 
     @Override
     public String toString() {

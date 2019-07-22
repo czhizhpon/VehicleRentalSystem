@@ -21,21 +21,17 @@ public class Rental {
     private double renKilometrajeFin;
     private Date renDateIni;
     private Date renDateFin;
-    private double renAmount;
-    private double renSubtotal;
     private Vehicle renVehicle;
     private Reservation renReservation;
 
     public Rental(int renId, double renKilometrajeIni, double renKilometrajeFin, 
-            Date renDateIni, Date renDateFin, double renAmount, 
-            double renSubtotal, Vehicle renVehicle,Reservation renReservation) {
+            Date renDateIni, Date renDateFin, Vehicle renVehicle,
+            Reservation renReservation) {
         this.renId = renId;
         this.renKilometrajeIni = renKilometrajeIni;
         this.renKilometrajeFin = renKilometrajeFin;
         this.renDateIni = renDateIni;
         this.renDateFin = renDateFin;
-        this.renAmount = renAmount;
-        this.renSubtotal = renSubtotal;
         this.renVehicle = renVehicle;
         this.renReservation = renReservation;
     }
@@ -79,23 +75,7 @@ public class Rental {
     public void setRenDateFin(Date renDateFin) {
         this.renDateFin = renDateFin;
     }
-
-    public double getRenAmount() {
-        return renAmount;
-    }
-
-    public void setRenAmount(double renAmount) {
-        this.renAmount = renAmount;
-    }
-
-    public double getRenSubtotal() {
-        return renSubtotal;
-    }
-
-    public void setRenSubtotal(double renSubtotal) {
-        this.renSubtotal = renSubtotal;
-    }
-
+    
     public Vehicle getRenVehicle() {
         return renVehicle;
     }
@@ -117,7 +97,6 @@ public class Rental {
         return "Rental{" + "renId=" + renId + ", renKilometrajeIni=" 
                 + renKilometrajeIni + ", renKilometrajeFin=" + renKilometrajeFin 
                 + ", renDateIni=" + renDateIni + ", renDateFin=" + renDateFin 
-                + ", renAmount=" + renAmount + ", renSubtotal=" + renSubtotal 
                 + ", renVehicle=" + renVehicle.toString() + ", renReservation=" 
                 + renReservation.toString() + '}';
     }

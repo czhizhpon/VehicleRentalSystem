@@ -8,6 +8,7 @@
 package ec.edu.ups.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,15 +23,20 @@ public class Vehicle {
     private String vehColor;
     private char vehStatus;
     private double vehKilometraje;
+    private String vehInsurranceNumber;
+    private Date vehInsurranceDate;
+    private Date vehInsurranceExpires;
     private VehCategory vehCategory;
 
-    public Vehicle(int vehId, String vehPlate, String vehColor, char vehStatus, 
-            double vehKilometraje, VehCategory vehCategory) {
+    public Vehicle(int vehId, String vehPlate, String vehColor, char vehStatus, double vehKilometraje, String vehInsurranceNumber, Date vehInsurranceDate, Date vehInsurranceExpires, VehCategory vehCategory) {
         this.vehId = vehId;
         this.vehPlate = vehPlate;
         this.vehColor = vehColor;
         this.vehStatus = vehStatus;
         this.vehKilometraje = vehKilometraje;
+        this.vehInsurranceNumber = vehInsurranceNumber;
+        this.vehInsurranceDate = vehInsurranceDate;
+        this.vehInsurranceExpires = vehInsurranceExpires;
         this.vehCategory = vehCategory;
     }
 
@@ -81,13 +87,42 @@ public class Vehicle {
     public void setVehCategory(VehCategory vehCategory) {
         this.vehCategory = vehCategory;
     }
-    
+
+    public String getVehInsurranceNumber() {
+        return vehInsurranceNumber;
+    }
+
+    public void setVehInsurranceNumber(String vehInsurranceNumber) {
+        this.vehInsurranceNumber = vehInsurranceNumber;
+    }
+
+    public Date getVehInsurranceDate() {
+        return vehInsurranceDate;
+    }
+
+    public void setVehInsurranceDate(Date vehInsurranceDate) {
+        this.vehInsurranceDate = vehInsurranceDate;
+    }
+
+    public Date getVehInsurranceExpires() {
+        return vehInsurranceExpires;
+    }
+
+    public void setVehInsurranceExpires(Date vehInsurranceExpires) {
+        this.vehInsurranceExpires = vehInsurranceExpires;
+    }
+
     @Override
     public String toString() {
         return "Vehicle{" + "vehId=" + vehId + ", vehPlate=" + vehPlate 
                 + ", vehColor=" + vehColor + ", vehStatus=" + vehStatus 
-                + ", vehKilometraje=" + vehKilometraje + '}';
+                + ", vehKilometraje=" + vehKilometraje + ", vehInsurranceNumber=" 
+                + vehInsurranceNumber + ", vehInsurranceDate=" + vehInsurranceDate 
+                + ", vehInsurranceExpires=" + vehInsurranceExpires 
+                + ", vehCategory=" + vehCategory + '}';
     }
+    
+    
 
     
 }

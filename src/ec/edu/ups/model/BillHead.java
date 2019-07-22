@@ -112,7 +112,6 @@ public class BillHead {
         this.heaDetails = heaDetails;
     }
     
-        
     public boolean createBillDetail(BillDetail billDetail){
         if (this.heaDetails == null)
             this.heaDetails = new ArrayList<>();
@@ -139,13 +138,15 @@ public class BillHead {
         this.heaDetails.remove(renIndex);
         return true;
     }
-    
+
     @Override
     public String toString() {
         return "BillHead{" + "heaId=" + heaId + ", heaSubtotal=" + heaSubtotal 
-                + ", heaVat=" + heaVat + ", heaTotal=" + heaTotal + ", heaDate=" 
-                + heaDate + customer.toString() + ", heaRentals=" 
-                + heaDetails + '}';
+                + ", heaVat=" + heaVat + ", heaDisc=" + heaDisc + ", heaTotal=" 
+                + heaTotal + ", heaDate=" + heaDate + ", heaStatus=" + heaStatus 
+                + ", customer=" + customer + ", heaDetails=" + heaDetails + '}';
     }
+    
+    
     
 }

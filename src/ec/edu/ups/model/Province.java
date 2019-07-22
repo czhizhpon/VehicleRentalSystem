@@ -7,8 +7,6 @@
  */
 package ec.edu.ups.model;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @since 11-Jun-2019
