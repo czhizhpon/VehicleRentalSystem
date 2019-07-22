@@ -21,21 +21,25 @@ public class BillHead {
     private int heaId;
     private double heaSubtotal;
     private double heaVat;
+    private double heaDisc;
     private double heaTotal;
     private Date heaDate;
+    private char heaStatus;
     private Customer customer;
-    private List<Rental> heaRentals;
+    private List<BillDetail> heaDetails;
 
-    public BillHead(int heaId, double heaSubtotal, double heaVat, 
-            double heaTotal, Date heaDate, Customer customer) {
+    public BillHead(int heaId, double heaSubtotal, double heaVat, double heaDisc, 
+            double heaTotal, Date heaDate, char heaStatus, Customer customer) {
         this.heaId = heaId;
         this.heaSubtotal = heaSubtotal;
         this.heaVat = heaVat;
+        this.heaDisc = heaDisc;
         this.heaTotal = heaTotal;
         this.heaDate = heaDate;
+        this.heaStatus = heaStatus;
         this.customer = customer;
     }
-
+    
     public int getHeaId() {
         return heaId;
     }
@@ -60,6 +64,14 @@ public class BillHead {
         this.heaVat = heaVat;
     }
 
+    public double getHeaDisc() {
+        return heaDisc;
+    }
+
+    public void setHeaDisc(double heaDisc) {
+        this.heaDisc = heaDisc;
+    }
+
     public double getHeaTotal() {
         return heaTotal;
     }
@@ -76,7 +88,14 @@ public class BillHead {
         this.heaDate = heaDate;
     }
 
-    
+    public char getHeaStatus() {
+        return heaStatus;
+    }
+
+    public void setHeaStatus(char heaStatus) {
+        this.heaStatus = heaStatus;
+    }
+
     public Customer getCustomer() {
         return customer;
     }
@@ -84,39 +103,40 @@ public class BillHead {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    public List<BillDetail> getHeaDetails() {
+        return heaDetails;
+    }
+
+    public void setHeaDetails(List<BillDetail> heaDetails) {
+        this.heaDetails = heaDetails;
+    }
     
-    public List<Rental> getHeaRentals() {
-        return heaRentals;
-    }
-
-    public void setHeaRentals(List<Rental> heaRentals) {
-        this.heaRentals = heaRentals;
-    }
-
-    public boolean createRental(Rental rental){
-        if (this.heaRentals == null)
-            this.heaRentals = new ArrayList<>();
-        this.heaRentals.add(rental);
+        
+    public boolean createBillDetail(BillDetail billDetail){
+        if (this.heaDetails == null)
+            this.heaDetails = new ArrayList<>();
+        this.heaDetails.add(billDetail);
         return true;
     }
     
-    public Rental readRental(int renIndex){
-        if (this.heaRentals == null) 
+    public BillDetail readDetail(int renIndex){
+        if (this.heaDetails == null) 
             throw new NullPointerException();
-        return this.heaRentals.get(renIndex);
+        return this.heaDetails.get(renIndex);
     }
     
-    public boolean updateRental(int renIndex, Rental rental){
-        if (this.heaRentals == null) 
+    public boolean updateDetail(int renIndex, BillDetail billDetail){
+        if (this.heaDetails == null) 
             throw new NullPointerException();
-        this.heaRentals.set(renIndex, rental);
+        this.heaDetails.set(renIndex, billDetail);
         return true;
     }
     
-    public boolean deleteRental (int renIndex){
-        if (this.heaRentals == null) 
+    public boolean deleteDetail (int renIndex){
+        if (this.heaDetails == null) 
             throw new NullPointerException();
-        this.heaRentals.remove(renIndex);
+        this.heaDetails.remove(renIndex);
         return true;
     }
     
@@ -125,7 +145,7 @@ public class BillHead {
         return "BillHead{" + "heaId=" + heaId + ", heaSubtotal=" + heaSubtotal 
                 + ", heaVat=" + heaVat + ", heaTotal=" + heaTotal + ", heaDate=" 
                 + heaDate + customer.toString() + ", heaRentals=" 
-                + heaRentals + '}';
+                + heaDetails + '}';
     }
     
 }
