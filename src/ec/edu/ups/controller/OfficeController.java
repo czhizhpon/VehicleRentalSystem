@@ -28,7 +28,10 @@ import java.util.logging.Logger;
  */
 public class OfficeController {
     
-    private Office conOffice;
+    //private Office conOffice;
+    
+    private CityController offCity;
+    private ProvinceController offProvince;
     
     private Connection conn;
     private PreparedStatement pstat;
@@ -38,33 +41,30 @@ public class OfficeController {
     public OfficeController() {
     }
 
-    public Office getConOffice() {
-        return conOffice;
-    }
-
-    public void setConOffice(Office conOffice) {
-        this.conOffice = conOffice;
-    }
+//    public Office getConOffice() {
+//        return conOffice;
+//    }
+//
+//    public void setConOffice(Office conOffice) {
+//        this.conOffice = conOffice;
+//    }
     
     public boolean createOffice(int offId, String offMainSt, String offSideSt, 
             String offNumber, String offCodPostal){
-//        if (this.conOffices == null)
-//            this.conOffices = new ArrayList<>();
-         conOffice = new Office(offId, offMainSt, offSideSt, offNumber, 
+        Office conOffice = new Office(offId, offMainSt, offSideSt, offNumber, 
                 offCodPostal);
-        //this.conOffices.add(office);
         return true;
     }
     
-    public boolean setCity(int citId, String citName){
+    public boolean setCity(Office conOffice, int citId, String citName){
         City city = new City(citId, citName);
-        this.conOffice.setOffCity(city);
+        conOffice.setOffCity(city);
         return true;
     }
     
-    public boolean setProvince(int proId, String proName){
+    public boolean setProvince(Office conOffice, int proId, String proName){
         Province province = new Province(proId, proName);
-        this.conOffice.getOffCity().setCitProvince(province);
+        conOffice.getOffCity().setCitProvince(province);
         return true;
     }
     
@@ -116,10 +116,8 @@ public class OfficeController {
         }
     }
     
-    public void loadOffice(int proId, int citId, int offId){
+    public Office loadOffice(int proId, int citId, int offId){
         conn = new SQLConection().conectarMySQL();
-        int proIndex = 0;
-        int citIndex = 0;
         
         String query;
         
@@ -131,17 +129,23 @@ public class OfficeController {
                     + "WHERE p.pro_id = " + proId + " AND c.cit_id = " + citId + "\n"
                     + "AND o.off_id = " + offId + " ;";
             runLoadStatement(query);
+            
             while(rstat.next()){
+                
                 Province province = new Province(rstat.getInt(1), rstat.getString(2));
                 City city = new City(rstat.getInt(3), rstat.getString(4));
                 Office office = new Office(rstat.getInt(5), rstat.getString(6), 
                         rstat.getString(7), rstat.getString(8), rstat.getString(9));
                 
-                createOffice(office.getOffId(), office.getOffMainSt(), office.getOffSideSt(), 
+                
+                Office conOffice = new Office(office.getOffId(), office.getOffMainSt(), office.getOffSideSt(), 
                         office.getOffNumber(), office.getOffCodPostal());
-                setCity(city.getCitId(), city.getCitName());
-                setProvince(province.getProId(), province.getProName());
-                proIndex += 1;
+                
+                setCity(conOffice, city.getCitId(), city.getCitName());
+                
+                setProvince(conOffice, province.getProId(), province.getProName());
+                
+                return conOffice;
             }
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -151,7 +155,9 @@ public class OfficeController {
             conn.close();
         } catch (SQLException ex) {
             System.out.println(ex);
+            
         }
+        return null;
     }
     
     public List<Province> getProvinces(){
@@ -239,7 +245,7 @@ public class OfficeController {
 
     @Override
     public String toString() {
-        return "OfficeController{" + "conOffices=" + conOffice + '}';
+        return "OfficeController{" + "conOffices=" + /*conOffice*/ + '}';
     }
 
     

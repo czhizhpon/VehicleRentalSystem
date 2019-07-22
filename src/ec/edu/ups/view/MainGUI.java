@@ -30,6 +30,7 @@ public class MainGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         this.userType = useType;
+        loadMenus();
     }
 
     public char getUserType() {
@@ -65,6 +66,186 @@ public class MainGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        desktopMain = new javax.swing.JDesktopPane();
+        mainBar = new javax.swing.JMenuBar();
+        myDataJm = new javax.swing.JMenu();
+        myDataJMI = new javax.swing.JMenuItem();
+        logoutJMI = new javax.swing.JMenuItem();
+        addJM = new javax.swing.JMenu();
+        addOfficeJMI = new javax.swing.JMenuItem();
+        addVehicleJMI = new javax.swing.JMenuItem();
+        addCompanyJMI = new javax.swing.JMenuItem();
+        createJM = new javax.swing.JMenu();
+        creUserJMI = new javax.swing.JMenuItem();
+        creVehicleJMI = new javax.swing.JMenuItem();
+        creRentalJMI = new javax.swing.JMenuItem();
+        creBillJMI = new javax.swing.JMenuItem();
+        billJM = new javax.swing.JMenu();
+        reservateJM = new javax.swing.JMenu();
+        helpJM = new javax.swing.JMenu();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().add(desktopMain, java.awt.BorderLayout.CENTER);
+
+        myDataJm.setText("Mi Perfil");
+        myDataJm.setName(""); // NOI18N
+
+        myDataJMI.setText("Mis Datos");
+        myDataJMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myDataJMIActionPerformed(evt);
+            }
+        });
+        myDataJm.add(myDataJMI);
+
+        logoutJMI.setText("Cerrar Sesión");
+        logoutJMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutJMIActionPerformed(evt);
+            }
+        });
+        myDataJm.add(logoutJMI);
+
+        mainBar.add(myDataJm);
+
+        addJM.setText("Agregar");
+
+        addOfficeJMI.setText("Gestionar Oficina");
+        addOfficeJMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addOfficeJMIActionPerformed(evt);
+            }
+        });
+        addJM.add(addOfficeJMI);
+
+        addVehicleJMI.setText("Gestionar Vehículos");
+        addJM.add(addVehicleJMI);
+
+        addCompanyJMI.setText("Empresa");
+        addJM.add(addCompanyJMI);
+
+        mainBar.add(addJM);
+
+        createJM.setText("Crear");
+
+        creUserJMI.setText("Usuario");
+        creUserJMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creUserJMIActionPerformed(evt);
+            }
+        });
+        createJM.add(creUserJMI);
+
+        creVehicleJMI.setText("Vehículo");
+        createJM.add(creVehicleJMI);
+
+        creRentalJMI.setText("Alquiler");
+        createJM.add(creRentalJMI);
+
+        creBillJMI.setText("Factura");
+        createJM.add(creBillJMI);
+
+        mainBar.add(createJM);
+
+        billJM.setText("Mis Facturas");
+        mainBar.add(billJM);
+
+        reservateJM.setText("Reservar");
+        mainBar.add(reservateJM);
+
+        helpJM.setText("Ayuda");
+        mainBar.add(helpJM);
+
+        setJMenuBar(mainBar);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void creUserJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creUserJMIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_creUserJMIActionPerformed
+
+    private void addOfficeJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOfficeJMIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addOfficeJMIActionPerformed
+
+    private void myDataJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myDataJMIActionPerformed
+        // TODO add your handling code here:
+
+        if (data == null)
+        data = new MyDataGUI(getWidth(), getHeight());
+        if (data.isVisible()){
+            try {
+                data.setSelected(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            this.desktopMain.add(data);
+            data.setVisible(true);
+        }
+    }//GEN-LAST:event_myDataJMIActionPerformed
+    /**
+     * This method returns back to login and saves all the changes.
+     * @param evt 
+     */
+    private void logoutJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutJMIActionPerformed
+        
+        LoginGUI login = new LoginGUI();
+        login.setVisible(true);
+        
+        dispose();
+    }//GEN-LAST:event_logoutJMIActionPerformed
+
+    private boolean loadMenus(){
+        
+        switch(getUserType()){
+            case 'C':
+                customerMenu();
+                break;
+            case 'A':
+                adminMenu();
+                break;
+            case 'E':
+                employeeMenu();
+                break;
+            default:
+                System.out.println(new NullPointerException("No menus found."));
+                return false;
+            
+            
+        }
+        return true;
+    }
+    
+    private boolean customerMenu(){
+        
+        this.addJM.setVisible(false);
+        this.createJM.setVisible(false);
+        
+        
+        return true;
+    }
+    
+    private boolean employeeMenu(){
+        
+        this.addJM.setVisible(false);
+        this.creVehicleJMI.setVisible(false);
+        this.billJM.setVisible(false);
+        this.reservateJM.setVisible(false);
+        //this.
+        
+        return true;
+    }
+    
+    private boolean adminMenu(){
+        this.billJM.setVisible(false);
+        this.reservateJM.setVisible(false);
+        
+        return true;
+    }
+    
+    public void aux(){
         desktopMain = new javax.swing.JDesktopPane();
         mainBar = new javax.swing.JMenuBar();
         myDataJm = new javax.swing.JMenu();
@@ -143,72 +324,20 @@ public class MainGUI extends javax.swing.JFrame {
         mainBar.add(helpJM);
 
         setJMenuBar(mainBar);
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void myDataJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myDataJMIActionPerformed
-        // TODO add your handling code here:
-        
-        if (data == null)
-            data = new MyDataGUI(getWidth(), getHeight());
-        if (data.isVisible()){
-            try {
-                data.setSelected(true);
-            } catch (PropertyVetoException ex) {
-                Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
-            this.desktopMain.add(data);
-            data.setVisible(true);
-        }
-    }//GEN-LAST:event_myDataJMIActionPerformed
-
-    private boolean loadMenus(){
-        
-        switch(getUserType()){
-            case 'C':
-                
-                break;
-            case 'A':
-                
-                break;
-            case 'E':
-                
-                break;
-            default:
-                System.out.println("fail load Menus");
-                return false;
-            
-            
-        }
-        return true;
     }
     
-    private boolean customerMenus(){
-        
-        
-        
-        return true;
-    }
-    
-    private void addOfficeJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOfficeJMIActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addOfficeJMIActionPerformed
-
-    private void creUserJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creUserJMIActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_creUserJMIActionPerformed
-
     private MyDataGUI data;
     private List<JMenu> menus;
     private char userType;
+    
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addCompanyJMI;
     private javax.swing.JMenu addJM;
     private javax.swing.JMenuItem addOfficeJMI;
     private javax.swing.JMenuItem addVehicleJMI;
+    private javax.swing.JMenu billJM;
     private javax.swing.JMenuItem creBillJMI;
     private javax.swing.JMenuItem creRentalJMI;
     private javax.swing.JMenuItem creUserJMI;
@@ -220,6 +349,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar mainBar;
     private javax.swing.JMenuItem myDataJMI;
     private javax.swing.JMenu myDataJm;
+    private javax.swing.JMenu reservateJM;
     // End of variables declaration//GEN-END:variables
     
 }

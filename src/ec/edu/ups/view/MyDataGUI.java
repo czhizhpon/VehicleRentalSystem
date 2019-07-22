@@ -30,70 +30,496 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        impDataPanel = new javax.swing.JPanel();
+        userLb = new javax.swing.JLabel();
+        userTxt = new javax.swing.JTextField();
+        dniLb = new javax.swing.JLabel();
+        dniTxt = new javax.swing.JTextField();
+        passLb = new javax.swing.JLabel();
+        passTxt = new javax.swing.JTextField();
+        passConfirmLb = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        passConfrimTxt1 = new javax.swing.JTextField();
+        dataPanel = new javax.swing.JPanel();
+        lastnameTxt = new javax.swing.JTextField();
+        lastnameLb = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        addressLb = new javax.swing.JLabel();
+        addressTxt = new javax.swing.JTextField();
+        workAddresLb = new javax.swing.JLabel();
+        workAddressTxt = new javax.swing.JTextField();
+        workAddresLb1 = new javax.swing.JLabel();
+        dayCmbBox = new javax.swing.JComboBox();
+        monthCmbBox = new javax.swing.JComboBox();
+        yearCmbBox = new javax.swing.JComboBox();
+        phonePanel = new javax.swing.JPanel();
+        phoneLb = new javax.swing.JLabel();
+        phoneTxt = new javax.swing.JTextField();
+        typePhoneCmbBoc = new javax.swing.JComboBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        phonesTable = new javax.swing.JTable();
+        createPhoneBtn = new javax.swing.JButton();
+        deletePhoneBtn = new javax.swing.JButton();
+        updatePhoneBtn = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        impDataPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        impDataPanel.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 138, Short.MAX_VALUE)
-        );
+        userLb.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        userLb.setText("Usuario:");
+        userLb.setAutoscrolls(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(24, 67, 0, 0);
+        impDataPanel.add(userLb, gridBagConstraints);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        userTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userTxtActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 242;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(16, 12, 0, 0);
+        impDataPanel.add(userTxt, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 783, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 331, Short.MAX_VALUE)
-        );
+        dniLb.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        dniLb.setText("Cédula:");
+        dniLb.setAutoscrolls(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(26, 67, 0, 0);
+        impDataPanel.add(dniLb, gridBagConstraints);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 4, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        dniTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dniTxtActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 242;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 12, 14, 0);
+        impDataPanel.add(dniTxt, gridBagConstraints);
+
+        passLb.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        passLb.setText("Contraseña:");
+        passLb.setAutoscrolls(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(24, 43, 0, 0);
+        impDataPanel.add(passLb, gridBagConstraints);
+
+        passTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passTxtActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 242;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(16, 18, 0, 0);
+        impDataPanel.add(passTxt, gridBagConstraints);
+
+        passConfirmLb.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        passConfirmLb.setText("Confirmar Contraseña:");
+        passConfirmLb.setAutoscrolls(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(26, 43, 0, 0);
+        impDataPanel.add(passConfirmLb, gridBagConstraints);
+
+        jButton1.setText("Aceptar Cambios");
+        jButton1.setAutoscrolls(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 77;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 56, 0, 49);
+        impDataPanel.add(jButton1, gridBagConstraints);
+
+        passConfrimTxt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passConfrimTxt1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 242;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 18, 14, 0);
+        impDataPanel.add(passConfrimTxt1, gridBagConstraints);
+
+        getContentPane().add(impDataPanel, java.awt.BorderLayout.NORTH);
+
+        dataPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        dataPanel.setLayout(new java.awt.GridBagLayout());
+
+        lastnameTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lastnameTxtActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 242;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 0);
+        dataPanel.add(lastnameTxt, gridBagConstraints);
+
+        lastnameLb.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lastnameLb.setText("Apellido:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 35;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(26, 16, 0, 0);
+        dataPanel.add(lastnameLb, gridBagConstraints);
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel7.setText("Nombre:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 34;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 16, 0, 0);
+        dataPanel.add(jLabel7, gridBagConstraints);
+
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 242;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 12, 0, 0);
+        dataPanel.add(jTextField7, gridBagConstraints);
+
+        addressLb.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        addressLb.setText("Dirección:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 27;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(28, 16, 0, 0);
+        dataPanel.add(addressLb, gridBagConstraints);
+
+        addressTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addressTxtActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 242;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 12, 0, 0);
+        dataPanel.add(addressTxt, gridBagConstraints);
+
+        workAddresLb.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        workAddresLb.setText("D. Trabajo:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 22;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(26, 16, 0, 0);
+        dataPanel.add(workAddresLb, gridBagConstraints);
+
+        workAddressTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                workAddressTxtActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 242;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 0);
+        dataPanel.add(workAddressTxt, gridBagConstraints);
+
+        workAddresLb1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        workAddresLb1.setText("Fecha de Nacimiento:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 16, 0, 0);
+        dataPanel.add(workAddresLb1, gridBagConstraints);
+
+        dayCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dayCmbBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dayCmbBoxActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 55, 14, 0);
+        dataPanel.add(dayCmbBox, gridBagConstraints);
+
+        monthCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 18, 14, 0);
+        dataPanel.add(monthCmbBox, gridBagConstraints);
+
+        yearCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 18, 14, 0);
+        dataPanel.add(yearCmbBox, gridBagConstraints);
+
+        phonePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        phoneLb.setText("Número:");
+
+        phoneTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phoneTxtActionPerformed(evt);
+            }
+        });
+
+        typePhoneCmbBoc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        phonesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Número", "Tipo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(phonesTable);
+
+        createPhoneBtn.setText("Crear");
+
+        deletePhoneBtn.setText("Eliminar");
+        deletePhoneBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletePhoneBtnActionPerformed(evt);
+            }
+        });
+
+        updatePhoneBtn.setText("Editar");
+        updatePhoneBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatePhoneBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout phonePanelLayout = new javax.swing.GroupLayout(phonePanel);
+        phonePanel.setLayout(phonePanelLayout);
+        phonePanelLayout.setHorizontalGroup(
+            phonePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(phonePanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(phonePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(phonePanelLayout.createSequentialGroup()
+                        .addComponent(createPhoneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(updatePhoneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(deletePhoneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(phonePanelLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(phonePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(phonePanelLayout.createSequentialGroup()
+                                .addComponent(phoneLb)
+                                .addGap(18, 18, 18)
+                                .addComponent(phoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(typePhoneCmbBoc, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+        phonePanelLayout.setVerticalGroup(
+            phonePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(phonePanelLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(phonePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(phonePanelLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(phoneLb))
+                    .addComponent(phoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(typePhoneCmbBoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addGroup(phonePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(createPhoneBtn)
+                    .addComponent(updatePhoneBtn)
+                    .addComponent(deletePhoneBtn))
+                .addGap(100, 137, Short.MAX_VALUE))
+            .addGroup(phonePanelLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 10;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 37;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(12, 18, 14, 14);
+        dataPanel.add(phonePanel, gridBagConstraints);
+
+        getContentPane().add(dataPanel, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void userTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userTxtActionPerformed
+
+    private void dniTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dniTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dniTxtActionPerformed
+
+    private void passTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passTxtActionPerformed
+
+    private void phoneTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phoneTxtActionPerformed
+
+    private void lastnameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastnameTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lastnameTxtActionPerformed
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void addressTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addressTxtActionPerformed
+
+    private void workAddressTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workAddressTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_workAddressTxtActionPerformed
+
+    private void dayCmbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayCmbBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dayCmbBoxActionPerformed
+
+    private void passConfrimTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passConfrimTxt1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passConfrimTxt1ActionPerformed
+
+    private void updatePhoneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePhoneBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updatePhoneBtnActionPerformed
+
+    private void deletePhoneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePhoneBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deletePhoneBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel addressLb;
+    private javax.swing.JTextField addressTxt;
+    private javax.swing.JButton createPhoneBtn;
+    private javax.swing.JPanel dataPanel;
+    private javax.swing.JComboBox dayCmbBox;
+    private javax.swing.JButton deletePhoneBtn;
+    private javax.swing.JLabel dniLb;
+    private javax.swing.JTextField dniTxt;
+    private javax.swing.JPanel impDataPanel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JLabel lastnameLb;
+    private javax.swing.JTextField lastnameTxt;
+    private javax.swing.JComboBox monthCmbBox;
+    private javax.swing.JLabel passConfirmLb;
+    private javax.swing.JTextField passConfrimTxt1;
+    private javax.swing.JLabel passLb;
+    private javax.swing.JTextField passTxt;
+    private javax.swing.JLabel phoneLb;
+    private javax.swing.JPanel phonePanel;
+    private javax.swing.JTextField phoneTxt;
+    private javax.swing.JTable phonesTable;
+    private javax.swing.JComboBox typePhoneCmbBoc;
+    private javax.swing.JButton updatePhoneBtn;
+    private javax.swing.JLabel userLb;
+    private javax.swing.JTextField userTxt;
+    private javax.swing.JLabel workAddresLb;
+    private javax.swing.JLabel workAddresLb1;
+    private javax.swing.JTextField workAddressTxt;
+    private javax.swing.JComboBox yearCmbBox;
     // End of variables declaration//GEN-END:variables
 }

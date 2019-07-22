@@ -43,6 +43,18 @@ public class Main {
         
         LoginGUI login = new LoginGUI();
         login.setVisible(true);
+        
+        
+        OfficeController o = new OfficeController();
+        
+        Office of = o.loadOffice(1, 1, 2);
+        
+        System.out.println("Calle principal:" + of.getOffMainSt());
+        System.out.println("Calle Secundaria:" + of.getOffSideSt());
+        System.out.println("Postal:" + of.getOffCodPostal());
+        System.out.println("Ciudad:" + of.getOffCity().getCitName());
+        System.out.println("Provincia:" + of.getOffCity().getCitProvince().getProName());
+        
     }
     
 }

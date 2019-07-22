@@ -22,6 +22,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cerrar Sesi&#xf3;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutJMIActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -79,6 +82,16 @@
               </Properties>
             </MenuItem>
           </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="billJM">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Mis Facturas"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="reservateJM">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Reservar"/>
+          </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="helpJM">
           <Properties>

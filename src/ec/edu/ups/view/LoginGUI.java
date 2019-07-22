@@ -5,6 +5,8 @@
  */
 package ec.edu.ups.view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author edd
@@ -30,10 +32,10 @@ public class LoginGUI extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         inputPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        passwordLb = new javax.swing.JLabel();
+        userLb = new javax.swing.JLabel();
+        usernameTxt = new javax.swing.JTextField();
+        passwordTxt = new javax.swing.JPasswordField();
         loginBt = new javax.swing.JButton();
         image = new javax.swing.JPanel();
 
@@ -54,23 +56,27 @@ public class LoginGUI extends javax.swing.JFrame {
 
         inputPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Contraseña:");
-        inputPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 70, 40));
+        passwordLb.setText("Contraseña:");
+        inputPanel.add(passwordLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 70, 40));
 
-        jLabel2.setText("Usuario:");
-        inputPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 70, 40));
+        userLb.setText("Usuario:");
+        inputPanel.add(userLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 70, 40));
 
-        jTextField1.setOpaque(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        usernameTxt.setOpaque(false);
+        usernameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                usernameTxtActionPerformed(evt);
             }
         });
-        inputPanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 340, 40));
+        inputPanel.add(usernameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 340, 40));
 
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.setOpaque(false);
-        inputPanel.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 340, 40));
+        passwordTxt.setOpaque(false);
+        passwordTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordTxtActionPerformed(evt);
+            }
+        });
+        inputPanel.add(passwordTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 340, 40));
 
         loginBt.setText("Ingresar");
         loginBt.addActionListener(new java.awt.event.ActionListener() {
@@ -113,30 +119,36 @@ public class LoginGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void usernameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_usernameTxtActionPerformed
 
     private void loginBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtActionPerformed
         // TODO add your handling code here:
-        
-        MainGUI main = new MainGUI('A');
-        main.setVisible(true);
-        
-        dispose();
-        
+        try{
+            MainGUI main = new MainGUI(this.usernameTxt.getText().charAt(0));
+            main.setVisible(true);
+
+            dispose();
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al Iniciar Sesion");
+        }
     }//GEN-LAST:event_loginBtActionPerformed
+
+    private void passwordTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordTxtActionPerformed
 
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel image;
     private javax.swing.JPanel inputPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton loginBt;
+    private javax.swing.JLabel passwordLb;
+    private javax.swing.JPasswordField passwordTxt;
+    private javax.swing.JLabel userLb;
+    private javax.swing.JTextField usernameTxt;
     // End of variables declaration//GEN-END:variables
 }
