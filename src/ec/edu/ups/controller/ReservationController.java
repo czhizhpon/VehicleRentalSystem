@@ -1,5 +1,5 @@
 /**
- * @(#)BillController.java	0.0.1, 22-Jul-2019 
+ * @(#)ReservationController.java	0.0.1, 22-Jul-2019 
  * 
  * Universidad Politécnica Salesiana
  * Carrera de Computación
@@ -12,6 +12,6 @@ package ec.edu.ups.controller;
  * @version 0.0.1
  * @author Sarmiento Bryan, Serpa Roberto, Zhizhpon Eduardo
  */
-public class BillController {
+public class ReservationController {
     
 }

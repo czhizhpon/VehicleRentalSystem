@@ -1,9 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @(#)CityController.java	0.0.1, 22-Jul-2019 
+ * 
+ * Universidad Politécnica Salesiana
+ * Carrera de Computación
+ * Cuenca - Ecuador	
  */
+
 package ec.edu.ups.controller;
+
 
 import ec.edu.ups.model.City;
 import java.sql.Connection;
@@ -15,9 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author edd
+ * @since 22-Jul-2019
+ * @version 0.0.1
+ * @author Sarmiento Bryan, Serpa Roberto, Zhizhpon Eduardo
  */
+
 public class CityController {
     private Connection conn;
     private PreparedStatement pstat;

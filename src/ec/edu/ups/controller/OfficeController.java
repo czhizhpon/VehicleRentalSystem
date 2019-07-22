@@ -1,5 +1,5 @@
 /**
- * @(#)UserController.java	0.0.1, 12-Jun-2019 
+ * @(#)OfficeController.java	0.0.1, 12-Jun-2019 
  * 
  * Universidad Politécnica Salesiana
  * Carrera de Computación
@@ -18,8 +18,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @since 12-Jun-2019

@@ -1,13 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @(#)BillDetail.java	0.0.1, 22-Jul-2019 
+ * 
+ * Universidad Politécnica Salesiana
+ * Carrera de Computación
+ * Cuenca - Ecuador	
  */
 package ec.edu.ups.model;
 
 /**
- *
- * @author edd
+ * @since 22-Jul-2019
+ * @version 0.0.1
+ * @author Sarmiento Bryan, Serpa Roberto, Zhizhpon Eduardo
  */
 public class BillDetail {
     private int detId;
