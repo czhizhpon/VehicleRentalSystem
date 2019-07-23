@@ -9,7 +9,7 @@ package ec.edu.ups.view;
  *
  * @author edd
  */
-public class VehicleGUI extends javax.swing.JFrame {
+public class VehicleGUI extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form VehicleGUI
@@ -27,21 +27,340 @@ public class VehicleGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        vehiclePanel = new javax.swing.JPanel();
+        detailVehiclePanel = new javax.swing.JPanel();
+        plateLB = new javax.swing.JLabel();
+        colourLB = new javax.swing.JLabel();
+        statusLB = new javax.swing.JLabel();
+        kilometrageLB = new javax.swing.JLabel();
+        KilometrageTxt = new javax.swing.JTextField();
+        statusTxt = new javax.swing.JTextField();
+        colourTxt = new javax.swing.JTextField();
+        plateTxt = new javax.swing.JTextField();
+        categoryLB = new javax.swing.JLabel();
+        insuranceNumberTxt = new javax.swing.JTextField();
+        createVehicleBtn = new javax.swing.JButton();
+        searchVehicleBtn = new javax.swing.JButton();
+        editVehicleBtn = new javax.swing.JButton();
+        deleteVehicleBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        vehicleTable = new javax.swing.JTable();
+        insuranceNumberLB = new javax.swing.JLabel();
+        categoryCBox = new javax.swing.JComboBox<>();
+        insuranceDateLB = new javax.swing.JLabel();
+        originLB = new javax.swing.JLabel();
+        dayCB = new javax.swing.JComboBox<>();
+        slashLB1 = new javax.swing.JLabel();
+        monthCB = new javax.swing.JComboBox<>();
+        slashLB2 = new javax.swing.JLabel();
+        yearCB = new javax.swing.JComboBox<>();
+        originCBox = new javax.swing.JComboBox<>();
+        locationPanel = new javax.swing.JPanel();
+        brandCBox = new javax.swing.JComboBox<>();
+        modelCBox = new javax.swing.JComboBox<>();
+        provinceCBox = new javax.swing.JComboBox<>();
+        cityCBox = new javax.swing.JComboBox<>();
+        oficeCBox = new javax.swing.JComboBox<>();
+
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
+
+        vehiclePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Vehículo"));
+
+        detailVehiclePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        plateLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        plateLB.setText("Placa:");
+        plateLB.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+
+        colourLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        colourLB.setText("Color:");
+        colourLB.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+
+        statusLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        statusLB.setText("Estado:");
+
+        kilometrageLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        kilometrageLB.setText("Kilometraje:");
+
+        categoryLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        categoryLB.setText("Categoría:");
+
+        createVehicleBtn.setText("Crear");
+
+        searchVehicleBtn.setText("Buscar");
+
+        editVehicleBtn.setText("Editar");
+
+        deleteVehicleBtn.setText("Eliminar");
+
+        vehicleTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(vehicleTable);
+
+        insuranceNumberLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        insuranceNumberLB.setText("Código Seguro:");
+
+        categoryCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        insuranceDateLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        insuranceDateLB.setText("Fecha Seguro:");
+
+        originLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        originLB.setText("Origen Vehículo:");
+
+        dayCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dayCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dayCBActionPerformed(evt);
+            }
+        });
+
+        slashLB1.setText("/");
+
+        monthCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        monthCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthCBActionPerformed(evt);
+            }
+        });
+
+        slashLB2.setText("/");
+
+        yearCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        yearCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearCBActionPerformed(evt);
+            }
+        });
+
+        originCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout detailVehiclePanelLayout = new javax.swing.GroupLayout(detailVehiclePanel);
+        detailVehiclePanel.setLayout(detailVehiclePanelLayout);
+        detailVehiclePanelLayout.setHorizontalGroup(
+            detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                            .addGap(11, 11, 11)
+                            .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                                    .addComponent(categoryLB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(categoryCBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                                    .addComponent(plateLB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(plateTxt))
+                                .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                                    .addComponent(kilometrageLB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(KilometrageTxt))
+                                .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                                    .addComponent(statusLB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(statusTxt))
+                                .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                                    .addComponent(colourLB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(colourTxt))))
+                        .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(insuranceNumberLB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(insuranceNumberTxt))
+                        .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(originLB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(originCBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(insuranceDateLB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(dayCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(slashLB1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(monthCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(slashLB2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(yearCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(createVehicleBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchVehicleBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(editVehicleBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteVehicleBtn)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        detailVehiclePanelLayout.setVerticalGroup(
+            detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                        .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(plateLB))
+                            .addComponent(plateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(colourLB))
+                            .addComponent(colourTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(statusLB))
+                            .addComponent(statusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(detailVehiclePanelLayout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(kilometrageLB))
+                            .addComponent(KilometrageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
+                        .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(categoryLB)
+                            .addComponent(categoryCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(insuranceNumberLB)
+                            .addComponent(insuranceNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(insuranceDateLB)
+                            .addComponent(dayCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(slashLB1)
+                            .addComponent(monthCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(slashLB2)
+                            .addComponent(yearCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(originLB)
+                            .addComponent(originCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(createVehicleBtn)
+                            .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(deleteVehicleBtn)
+                                .addComponent(editVehicleBtn)
+                                .addComponent(searchVehicleBtn))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        locationPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        brandCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        modelCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        provinceCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cityCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        oficeCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout locationPanelLayout = new javax.swing.GroupLayout(locationPanel);
+        locationPanel.setLayout(locationPanelLayout);
+        locationPanelLayout.setHorizontalGroup(
+            locationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(locationPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(brandCBox, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(modelCBox, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                .addComponent(provinceCBox, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cityCBox, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(oficeCBox, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        locationPanelLayout.setVerticalGroup(
+            locationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(locationPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(locationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(brandCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modelCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(provinceCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cityCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(oficeCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout vehiclePanelLayout = new javax.swing.GroupLayout(vehiclePanel);
+        vehiclePanel.setLayout(vehiclePanelLayout);
+        vehiclePanelLayout.setHorizontalGroup(
+            vehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(vehiclePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(vehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(locationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(detailVehiclePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        vehiclePanelLayout.setVerticalGroup(
+            vehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(vehiclePanelLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(locationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(detailVehiclePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(vehiclePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(vehiclePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void dayCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dayCBActionPerformed
+
+    private void monthCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_monthCBActionPerformed
+
+    private void yearCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yearCBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +398,39 @@ public class VehicleGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField KilometrageTxt;
+    private javax.swing.JComboBox<String> brandCBox;
+    private javax.swing.JComboBox<String> categoryCBox;
+    private javax.swing.JLabel categoryLB;
+    private javax.swing.JComboBox<String> cityCBox;
+    private javax.swing.JLabel colourLB;
+    private javax.swing.JTextField colourTxt;
+    private javax.swing.JButton createVehicleBtn;
+    private javax.swing.JComboBox<String> dayCB;
+    private javax.swing.JButton deleteVehicleBtn;
+    private javax.swing.JPanel detailVehiclePanel;
+    private javax.swing.JButton editVehicleBtn;
+    private javax.swing.JLabel insuranceDateLB;
+    private javax.swing.JLabel insuranceNumberLB;
+    private javax.swing.JTextField insuranceNumberTxt;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel kilometrageLB;
+    private javax.swing.JPanel locationPanel;
+    private javax.swing.JComboBox<String> modelCBox;
+    private javax.swing.JComboBox<String> monthCB;
+    private javax.swing.JComboBox<String> oficeCBox;
+    private javax.swing.JComboBox<String> originCBox;
+    private javax.swing.JLabel originLB;
+    private javax.swing.JLabel plateLB;
+    private javax.swing.JTextField plateTxt;
+    private javax.swing.JComboBox<String> provinceCBox;
+    private javax.swing.JButton searchVehicleBtn;
+    private javax.swing.JLabel slashLB1;
+    private javax.swing.JLabel slashLB2;
+    private javax.swing.JLabel statusLB;
+    private javax.swing.JTextField statusTxt;
+    private javax.swing.JPanel vehiclePanel;
+    private javax.swing.JTable vehicleTable;
+    private javax.swing.JComboBox<String> yearCB;
     // End of variables declaration//GEN-END:variables
 }
