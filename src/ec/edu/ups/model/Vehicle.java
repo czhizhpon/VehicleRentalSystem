@@ -28,6 +28,9 @@ public class Vehicle {
     private Date vehInsurranceExpires;
     private VehCategory vehCategory;
 
+    public Vehicle() {
+    }
+
     public Vehicle(int vehId, String vehPlate, String vehColor, char vehStatus, double vehKilometraje, String vehInsurranceNumber, Date vehInsurranceDate, Date vehInsurranceExpires, VehCategory vehCategory) {
         this.vehId = vehId;
         this.vehPlate = vehPlate;

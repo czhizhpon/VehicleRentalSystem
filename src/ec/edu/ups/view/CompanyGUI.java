@@ -9,7 +9,7 @@ package ec.edu.ups.view;
  *
  * @author edd
  */
-public class CompanyGUI extends javax.swing.JFrame {
+public class CompanyGUI extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CompanyGUI
@@ -27,17 +27,209 @@ public class CompanyGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        categoryPanel = new javax.swing.JPanel();
+        idCategoryLB = new javax.swing.JLabel();
+        nameCategoryLB = new javax.swing.JLabel();
+        costDayLB = new javax.swing.JLabel();
+        costDamageLB = new javax.swing.JLabel();
+        createCategoryBtn = new javax.swing.JButton();
+        searchCategoryBtn = new javax.swing.JButton();
+        editCategoryBtn = new javax.swing.JButton();
+        deleteCategoryBtn = new javax.swing.JButton();
+        costDamageTxt = new javax.swing.JTextField();
+        costDayTxt = new javax.swing.JTextField();
+        nameCategoryTxt = new javax.swing.JTextField();
+        idCategoryTxt = new javax.swing.JTextField();
+        costDamageLB1 = new javax.swing.JLabel();
+        warrantyTxt = new javax.swing.JTextField();
+        privilegePanel = new javax.swing.JPanel();
+        editPrivilegeBtn = new javax.swing.JButton();
+        searchPrivilegeBtn = new javax.swing.JButton();
+        deletePrivilegeBtn = new javax.swing.JButton();
+        namePrivilegeLB = new javax.swing.JLabel();
+        createPrivilegeBtn = new javax.swing.JButton();
+        discountPrivilegeLB = new javax.swing.JLabel();
+        discountPrivilegeTxt = new javax.swing.JTextField();
+        namePrivilegeTxt = new javax.swing.JTextField();
+
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
+
+        categoryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Categoría"));
+
+        idCategoryLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        idCategoryLB.setText("ID:");
+        idCategoryLB.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+
+        nameCategoryLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        nameCategoryLB.setText("Nombre:");
+        nameCategoryLB.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+
+        costDayLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        costDayLB.setText("Costo por día:");
+
+        costDamageLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        costDamageLB.setText("Costo por daño:");
+
+        createCategoryBtn.setText("Crear");
+
+        searchCategoryBtn.setText("Buscar");
+
+        editCategoryBtn.setText("Editar");
+
+        deleteCategoryBtn.setText("Eliminar");
+
+        costDamageLB1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        costDamageLB1.setText("Garantia:");
+
+        javax.swing.GroupLayout categoryPanelLayout = new javax.swing.GroupLayout(categoryPanel);
+        categoryPanel.setLayout(categoryPanelLayout);
+        categoryPanelLayout.setHorizontalGroup(
+            categoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(categoryPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(categoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(categoryPanelLayout.createSequentialGroup()
+                        .addComponent(createCategoryBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchCategoryBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(editCategoryBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteCategoryBtn))
+                    .addGroup(categoryPanelLayout.createSequentialGroup()
+                        .addGroup(categoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(costDamageLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(costDayLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(idCategoryLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nameCategoryLB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(categoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameCategoryTxt)
+                            .addComponent(idCategoryTxt)
+                            .addComponent(costDayTxt)
+                            .addComponent(costDamageTxt)))
+                    .addGroup(categoryPanelLayout.createSequentialGroup()
+                        .addComponent(costDamageLB1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(warrantyTxt)))
+                .addContainerGap())
+        );
+        categoryPanelLayout.setVerticalGroup(
+            categoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(categoryPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(categoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idCategoryLB)
+                    .addComponent(idCategoryTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(categoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameCategoryLB)
+                    .addComponent(nameCategoryTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(categoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(costDayLB)
+                    .addComponent(costDayTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(categoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(costDamageLB)
+                    .addComponent(costDamageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(categoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(costDamageLB1)
+                    .addComponent(warrantyTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(categoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createCategoryBtn)
+                    .addComponent(searchCategoryBtn)
+                    .addComponent(editCategoryBtn)
+                    .addComponent(deleteCategoryBtn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        privilegePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Privilegio"));
+
+        editPrivilegeBtn.setText("Editar");
+
+        searchPrivilegeBtn.setText("Buscar");
+
+        deletePrivilegeBtn.setText("Eliminar");
+
+        namePrivilegeLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        namePrivilegeLB.setText("Nombre:");
+        namePrivilegeLB.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+
+        createPrivilegeBtn.setText("Crear");
+
+        discountPrivilegeLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        discountPrivilegeLB.setText("Descuento:");
+
+        javax.swing.GroupLayout privilegePanelLayout = new javax.swing.GroupLayout(privilegePanel);
+        privilegePanel.setLayout(privilegePanelLayout);
+        privilegePanelLayout.setHorizontalGroup(
+            privilegePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(privilegePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(privilegePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(privilegePanelLayout.createSequentialGroup()
+                        .addComponent(createPrivilegeBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchPrivilegeBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(editPrivilegeBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(deletePrivilegeBtn))
+                    .addGroup(privilegePanelLayout.createSequentialGroup()
+                        .addGroup(privilegePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(discountPrivilegeLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(namePrivilegeLB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(privilegePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(namePrivilegeTxt)
+                            .addComponent(discountPrivilegeTxt))))
+                .addGap(24, 24, 24))
+        );
+        privilegePanelLayout.setVerticalGroup(
+            privilegePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(privilegePanelLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addGroup(privilegePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(namePrivilegeLB)
+                    .addComponent(namePrivilegeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(privilegePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(discountPrivilegeLB)
+                    .addComponent(discountPrivilegeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(privilegePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createPrivilegeBtn)
+                    .addComponent(searchPrivilegeBtn)
+                    .addComponent(editPrivilegeBtn)
+                    .addComponent(deletePrivilegeBtn))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(categoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(privilegePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(categoryPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(privilegePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,5 +271,29 @@ public class CompanyGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel categoryPanel;
+    private javax.swing.JLabel costDamageLB;
+    private javax.swing.JLabel costDamageLB1;
+    private javax.swing.JTextField costDamageTxt;
+    private javax.swing.JLabel costDayLB;
+    private javax.swing.JTextField costDayTxt;
+    private javax.swing.JButton createCategoryBtn;
+    private javax.swing.JButton createPrivilegeBtn;
+    private javax.swing.JButton deleteCategoryBtn;
+    private javax.swing.JButton deletePrivilegeBtn;
+    private javax.swing.JLabel discountPrivilegeLB;
+    private javax.swing.JTextField discountPrivilegeTxt;
+    private javax.swing.JButton editCategoryBtn;
+    private javax.swing.JButton editPrivilegeBtn;
+    private javax.swing.JLabel idCategoryLB;
+    private javax.swing.JTextField idCategoryTxt;
+    private javax.swing.JLabel nameCategoryLB;
+    private javax.swing.JTextField nameCategoryTxt;
+    private javax.swing.JLabel namePrivilegeLB;
+    private javax.swing.JTextField namePrivilegeTxt;
+    private javax.swing.JPanel privilegePanel;
+    private javax.swing.JButton searchCategoryBtn;
+    private javax.swing.JButton searchPrivilegeBtn;
+    private javax.swing.JTextField warrantyTxt;
     // End of variables declaration//GEN-END:variables
 }

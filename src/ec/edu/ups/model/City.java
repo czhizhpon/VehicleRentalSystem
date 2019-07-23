@@ -19,6 +19,9 @@ public class City {
     private String citName;
     private Province citProvince;
 
+    public City() {
+    }
+
     public City(int citId, String citName) {
         this.citId = citId;
         this.citName = citName;

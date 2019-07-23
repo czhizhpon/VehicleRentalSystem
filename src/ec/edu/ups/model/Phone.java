@@ -18,6 +18,9 @@ public class Phone {
     private String phoNumber;
     private String phoType;
 
+    public Phone() {
+    }
+
     public Phone(int phoId, String phoNumber, String phoType) {
         this.phoId = phoId;
         this.phoNumber = phoNumber;

@@ -45,11 +45,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Gestionar Veh&#xed;culos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addVehicleJMIActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="addCompanyJMI">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Empresa"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCompanyJMIActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -70,16 +76,25 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Veh&#xed;culo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="creVehicleJMIActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="creRentalJMI">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Alquiler"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="creRentalJMIActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="creBillJMI">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Factura"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="creBillJMIActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -87,11 +102,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Mis Facturas"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="billJMActionPerformed"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="reservateJM">
           <Properties>
             <Property name="text" type="java.lang.String" value="Reservar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reservateJMActionPerformed"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="helpJM">
           <Properties>

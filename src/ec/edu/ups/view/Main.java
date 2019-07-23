@@ -39,21 +39,20 @@ public class Main {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
-        
+     
         LoginGUI login = new LoginGUI();
         login.setVisible(true);
-        
-        
-        OfficeController o = new OfficeController();
-        
-        Office of = o.loadOffice(1, 1, 2);
-        
-        System.out.println("Calle principal:" + of.getOffMainSt());
-        System.out.println("Calle Secundaria:" + of.getOffSideSt());
-        System.out.println("Postal:" + of.getOffCodPostal());
-        System.out.println("Ciudad:" + of.getOffCity().getCitName());
-        System.out.println("Provincia:" + of.getOffCity().getCitProvince().getProName());
+//        
+//        
+//        OfficeController o = new OfficeController();
+//        
+//        Office of = o.loadOffice(1, 1, 2);
+//        
+//        System.out.println("Calle principal:" + of.getOffMainSt());
+//        System.out.println("Calle Secundaria:" + of.getOffSideSt());
+//        System.out.println("Postal:" + of.getOffCodPostal());
+//        System.out.println("Ciudad:" + of.getOffCity().getCitName());
+//        System.out.println("Provincia:" + of.getOffCity().getCitProvince().getProName());
         
     }
     

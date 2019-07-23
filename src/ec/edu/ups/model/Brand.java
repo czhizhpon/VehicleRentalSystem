@@ -18,6 +18,9 @@ public class Brand {
     private int braId;
     private String braName;
 
+    public Brand() {
+    }
+
     public Brand(int braId, String braName) {
         this.braId = braId;
         this.braName = braName;

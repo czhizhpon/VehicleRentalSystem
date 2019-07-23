@@ -18,11 +18,16 @@ public class Reservation {
     
     private int resId;
     private Date resDate;
+    private Customer resCustomer;
     private Vehicle resVehicle;
 
-    public Reservation(int resId, Date resDate, Vehicle resVehicle) {
+    public Reservation() {
+    }
+
+    public Reservation(int resId, Date resDate, Customer resCustomer,Vehicle resVehicle) {
         this.resId = resId;
         this.resDate = resDate;
+        this.resCustomer = resCustomer;
         this.resVehicle = resVehicle;
     }
 
@@ -40,6 +45,14 @@ public class Reservation {
 
     public void setResDate(Date resDate) {
         this.resDate = resDate;
+    }
+
+    public Customer getResCustomer() {
+        return resCustomer;
+    }
+
+    public void setResCustomer(Customer resCustomer) {
+        this.resCustomer = resCustomer;
     }
 
     public Vehicle getResVehicle() {

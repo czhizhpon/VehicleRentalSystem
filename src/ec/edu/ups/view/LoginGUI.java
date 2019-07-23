@@ -126,12 +126,18 @@ public class LoginGUI extends javax.swing.JFrame {
     private void loginBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtActionPerformed
         // TODO add your handling code here:
         try{
-            MainGUI main = new MainGUI(this.usernameTxt.getText().charAt(0));
-            main.setVisible(true);
-
-            dispose();
+            
+            char c = this.usernameTxt.getText().charAt(0);
+            if (c == 'A' || c == 'C' || c == 'E'){
+                MainGUI main = new MainGUI(c);
+                main.setVisible(true);
+                dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Error al Iniciar Sesion");
+            }
         } catch (Exception ex){
-            JOptionPane.showMessageDialog(null, "Error al Iniciar Sesion");
+            JOptionPane.showMessageDialog(null, "Error al Iniciar Sesion"
+                    + "\n" + ex.getMessage());
         }
     }//GEN-LAST:event_loginBtActionPerformed
 

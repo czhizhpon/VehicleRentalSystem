@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,15 +41,7 @@ public class MainGUI extends javax.swing.JFrame {
     public void setUserType(char userType) {
         this.userType = userType;
     }
-
-    public MyDataGUI getData() {
-        return data;
-    }
-
-    public void setData(MyDataGUI data) {
-        this.data = data;
-    }
-
+    
     public JMenu getHelpJM() {
         return helpJM;
     }
@@ -119,9 +112,19 @@ public class MainGUI extends javax.swing.JFrame {
         addJM.add(addOfficeJMI);
 
         addVehicleJMI.setText("Gestionar Vehículos");
+        addVehicleJMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addVehicleJMIActionPerformed(evt);
+            }
+        });
         addJM.add(addVehicleJMI);
 
         addCompanyJMI.setText("Empresa");
+        addCompanyJMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCompanyJMIActionPerformed(evt);
+            }
+        });
         addJM.add(addCompanyJMI);
 
         mainBar.add(addJM);
@@ -137,20 +140,45 @@ public class MainGUI extends javax.swing.JFrame {
         createJM.add(creUserJMI);
 
         creVehicleJMI.setText("Vehículo");
+        creVehicleJMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creVehicleJMIActionPerformed(evt);
+            }
+        });
         createJM.add(creVehicleJMI);
 
         creRentalJMI.setText("Alquiler");
+        creRentalJMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creRentalJMIActionPerformed(evt);
+            }
+        });
         createJM.add(creRentalJMI);
 
         creBillJMI.setText("Factura");
+        creBillJMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creBillJMIActionPerformed(evt);
+            }
+        });
         createJM.add(creBillJMI);
 
         mainBar.add(createJM);
 
         billJM.setText("Mis Facturas");
+        billJM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                billJMActionPerformed(evt);
+            }
+        });
         mainBar.add(billJM);
 
         reservateJM.setText("Reservar");
+        reservateJM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reservateJMActionPerformed(evt);
+            }
+        });
         mainBar.add(reservateJM);
 
         helpJM.setText("Ayuda");
@@ -162,27 +190,55 @@ public class MainGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void creUserJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creUserJMIActionPerformed
-        // TODO add your handling code here:
+        try{
+            if ( userManagementGUI == null) 
+                userManagementGUI = new UserManagementGUI();
+            if (userManagementGUI.isVisible()){
+                userManagementGUI.setSelected(true);
+            }else{
+                this.desktopMain.add(userManagementGUI);
+                userManagementGUI.setVisible(true);
+            }
+            
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
+        }
     }//GEN-LAST:event_creUserJMIActionPerformed
 
     private void addOfficeJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOfficeJMIActionPerformed
-        // TODO add your handling code here:
+        
+        try{
+            if (officeManagementGUI== null) 
+                officeManagementGUI = new OfficeManagementGUI();
+            if (officeManagementGUI.isVisible()){
+//                officeManagementGUI
+            }else{
+                this.desktopMain.add(officeManagementGUI);
+                officeManagementGUI.setVisible(true);
+            }
+            
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
+        }
+        
     }//GEN-LAST:event_addOfficeJMIActionPerformed
 
     private void myDataJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myDataJMIActionPerformed
         // TODO add your handling code here:
+        try {
+            if (myDataGUI == null)
+                myDataGUI = new MyDataGUI(getWidth(), getHeight());
+            
+            if (myDataGUI.isVisible()){
 
-        if (data == null)
-        data = new MyDataGUI(getWidth(), getHeight());
-        if (data.isVisible()){
-            try {
-                data.setSelected(true);
-            } catch (PropertyVetoException ex) {
-                Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    myDataGUI.setSelected(true);
+
+            }else{
+                this.desktopMain.add(myDataGUI);
+                myDataGUI.setVisible(true);
             }
-        }else{
-            this.desktopMain.add(data);
-            data.setVisible(true);
+        } catch (PropertyVetoException ex) {
+                JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
         }
     }//GEN-LAST:event_myDataJMIActionPerformed
     /**
@@ -197,6 +253,122 @@ public class MainGUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_logoutJMIActionPerformed
 
+    private void addVehicleJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVehicleJMIActionPerformed
+        
+        try{
+            if (vehicleManagementGUI == null) 
+                vehicleManagementGUI = new VehicleManagementGUI();
+            if (vehicleManagementGUI.isVisible()){
+//                vehicleManagementGUI
+            }else{
+                this.desktopMain.add(vehicleManagementGUI);
+                vehicleManagementGUI.setVisible(true);
+            }
+            
+            
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
+        }
+    }//GEN-LAST:event_addVehicleJMIActionPerformed
+
+    private void addCompanyJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCompanyJMIActionPerformed
+        try{
+            if (companyGUI == null) 
+                companyGUI = new CompanyGUI();
+            if (companyGUI.isVisible()){
+//                companyGUI
+            }else{
+                this.desktopMain.add(companyGUI);
+                companyGUI.setVisible(true);
+            }
+            
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
+        }
+    }//GEN-LAST:event_addCompanyJMIActionPerformed
+
+    private void creVehicleJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creVehicleJMIActionPerformed
+        
+        try{
+            if (vehicleGUI == null) 
+                vehicleGUI = new VehicleGUI();
+            if (vehicleGUI.isVisible()){
+//                vehicleGUI
+            }else{
+                this.desktopMain.add(vehicleGUI);
+                vehicleGUI.setVisible(true);
+            }
+            
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
+        }
+        
+    }//GEN-LAST:event_creVehicleJMIActionPerformed
+
+    private void creRentalJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creRentalJMIActionPerformed
+        try{
+            if (rentalGUI == null) 
+                rentalGUI = new RentalGUI();
+            if (rentalGUI.isVisible()){
+//                rentalGUI
+            }else{
+                this.desktopMain.add(rentalGUI);
+                rentalGUI.setVisible(true);
+            }
+            
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
+        }
+    }//GEN-LAST:event_creRentalJMIActionPerformed
+
+    private void creBillJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creBillJMIActionPerformed
+        try{
+            if (billGUI == null) 
+                billGUI = new BillGUI();
+            if (billGUI.isVisible()){
+//                billGUI
+            }else{
+                this.desktopMain.add(billGUI);
+                billGUI.setVisible(true);
+            }
+            
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
+        }
+    }//GEN-LAST:event_creBillJMIActionPerformed
+
+    private void billJMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billJMActionPerformed
+        try{
+            if (myBillGUI == null) 
+                myBillGUI = new MyBillGUI();
+            if (myBillGUI.isVisible()){
+//                myBillGUI
+            }else{
+                this.desktopMain.add(myBillGUI);
+                myBillGUI.setVisible(true);
+            }
+            
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
+        }
+    }//GEN-LAST:event_billJMActionPerformed
+
+    private void reservateJMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservateJMActionPerformed
+        try{
+            if (reservateGUI == null) 
+                reservateGUI = new ReservateGUI();
+            if (reservateGUI.isVisible()){
+//                reservateGUI
+            }else{
+                this.desktopMain.add(reservateGUI);
+                reservateGUI.setVisible(true);
+            }
+            
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
+        }
+    }//GEN-LAST:event_reservateJMActionPerformed
+
     private boolean loadMenus(){
         
         switch(getUserType()){
@@ -210,7 +382,7 @@ public class MainGUI extends javax.swing.JFrame {
                 employeeMenu();
                 break;
             default:
-                System.out.println(new NullPointerException("No menus found."));
+                dispose();
                 return false;
             
             
@@ -326,8 +498,16 @@ public class MainGUI extends javax.swing.JFrame {
         setJMenuBar(mainBar);
     }
     
-    private MyDataGUI data;
-    private List<JMenu> menus;
+    private MyDataGUI myDataGUI;
+    private BillGUI billGUI;
+    private CompanyGUI companyGUI;
+    private MyBillGUI myBillGUI;
+    private OfficeManagementGUI officeManagementGUI;
+    private RentalGUI rentalGUI;
+    private ReservateGUI reservateGUI;
+    private UserManagementGUI userManagementGUI;
+    private VehicleGUI vehicleGUI;
+    private VehicleManagementGUI vehicleManagementGUI;
     private char userType;
     
     
