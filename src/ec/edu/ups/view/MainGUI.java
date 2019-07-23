@@ -9,6 +9,7 @@ import java.beans.PropertyVetoException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -29,6 +30,7 @@ public class MainGUI extends javax.swing.JFrame {
         initComponents();
         setSize(1100,900);
         setLocationRelativeTo(null);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         this.userType = useType;
         loadMenus();
@@ -74,10 +76,13 @@ public class MainGUI extends javax.swing.JFrame {
         creRentalJMI = new javax.swing.JMenuItem();
         creBillJMI = new javax.swing.JMenuItem();
         billJM = new javax.swing.JMenu();
+        myBillsJMI = new javax.swing.JMenuItem();
         reservateJM = new javax.swing.JMenu();
+        reservationJMI = new javax.swing.JMenuItem();
         helpJM = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Alquiler de Vehículos");
         getContentPane().add(desktopMain, java.awt.BorderLayout.CENTER);
 
         myDataJm.setText("Mi Perfil");
@@ -165,20 +170,38 @@ public class MainGUI extends javax.swing.JFrame {
 
         mainBar.add(createJM);
 
-        billJM.setText("Mis Facturas");
+        billJM.setText("Facturas");
         billJM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 billJMActionPerformed(evt);
             }
         });
+
+        myBillsJMI.setText("Mis Facturas");
+        myBillsJMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myBillsJMIActionPerformed(evt);
+            }
+        });
+        billJM.add(myBillsJMI);
+
         mainBar.add(billJM);
 
-        reservateJM.setText("Reservar");
+        reservateJM.setText("Reservaciones");
         reservateJM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reservateJMActionPerformed(evt);
             }
         });
+
+        reservationJMI.setText("Reservar");
+        reservationJMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reservationJMIActionPerformed(evt);
+            }
+        });
+        reservateJM.add(reservationJMI);
+
         mainBar.add(reservateJM);
 
         helpJM.setText("Ayuda");
@@ -211,7 +234,7 @@ public class MainGUI extends javax.swing.JFrame {
             if (officeManagementGUI== null) 
                 officeManagementGUI = new OfficeManagementGUI();
             if (officeManagementGUI.isVisible()){
-//                officeManagementGUI
+                officeManagementGUI.setSelected(true);
             }else{
                 this.desktopMain.add(officeManagementGUI);
                 officeManagementGUI.setVisible(true);
@@ -259,7 +282,7 @@ public class MainGUI extends javax.swing.JFrame {
             if (vehicleManagementGUI == null) 
                 vehicleManagementGUI = new VehicleManagementGUI();
             if (vehicleManagementGUI.isVisible()){
-//                vehicleManagementGUI
+                vehicleManagementGUI.setSelected(true);
             }else{
                 this.desktopMain.add(vehicleManagementGUI);
                 vehicleManagementGUI.setVisible(true);
@@ -276,7 +299,7 @@ public class MainGUI extends javax.swing.JFrame {
             if (companyGUI == null) 
                 companyGUI = new CompanyGUI();
             if (companyGUI.isVisible()){
-//                companyGUI
+                companyGUI.setSelected(true);
             }else{
                 this.desktopMain.add(companyGUI);
                 companyGUI.setVisible(true);
@@ -293,7 +316,7 @@ public class MainGUI extends javax.swing.JFrame {
             if (vehicleGUI == null) 
                 vehicleGUI = new VehicleGUI();
             if (vehicleGUI.isVisible()){
-//                vehicleGUI
+                vehicleGUI.setSelected(true);
             }else{
                 this.desktopMain.add(vehicleGUI);
                 vehicleGUI.setVisible(true);
@@ -310,7 +333,7 @@ public class MainGUI extends javax.swing.JFrame {
             if (rentalGUI == null) 
                 rentalGUI = new RentalGUI();
             if (rentalGUI.isVisible()){
-//                rentalGUI
+                rentalGUI.setSelected(true);
             }else{
                 this.desktopMain.add(rentalGUI);
                 rentalGUI.setVisible(true);
@@ -326,7 +349,7 @@ public class MainGUI extends javax.swing.JFrame {
             if (billGUI == null) 
                 billGUI = new BillGUI();
             if (billGUI.isVisible()){
-//                billGUI
+                billGUI.setSelected(true);
             }else{
                 this.desktopMain.add(billGUI);
                 billGUI.setVisible(true);
@@ -338,11 +361,19 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_creBillJMIActionPerformed
 
     private void billJMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billJMActionPerformed
+        
+    }//GEN-LAST:event_billJMActionPerformed
+
+    private void reservateJMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservateJMActionPerformed
+        
+    }//GEN-LAST:event_reservateJMActionPerformed
+
+    private void myBillsJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myBillsJMIActionPerformed
         try{
             if (myBillGUI == null) 
                 myBillGUI = new MyBillGUI();
             if (myBillGUI.isVisible()){
-//                myBillGUI
+                myBillGUI.setSelected(true);
             }else{
                 this.desktopMain.add(myBillGUI);
                 myBillGUI.setVisible(true);
@@ -351,14 +382,14 @@ public class MainGUI extends javax.swing.JFrame {
         } catch (Exception ex){
             JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
         }
-    }//GEN-LAST:event_billJMActionPerformed
+    }//GEN-LAST:event_myBillsJMIActionPerformed
 
-    private void reservateJMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservateJMActionPerformed
+    private void reservationJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservationJMIActionPerformed
         try{
             if (reservateGUI == null) 
                 reservateGUI = new ReservateGUI();
             if (reservateGUI.isVisible()){
-//                reservateGUI
+                reservateGUI.setSelected(true);
             }else{
                 this.desktopMain.add(reservateGUI);
                 reservateGUI.setVisible(true);
@@ -367,7 +398,7 @@ public class MainGUI extends javax.swing.JFrame {
         } catch (Exception ex){
             JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
         }
-    }//GEN-LAST:event_reservateJMActionPerformed
+    }//GEN-LAST:event_reservationJMIActionPerformed
 
     private boolean loadMenus(){
         
@@ -527,9 +558,11 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JMenu helpJM;
     private javax.swing.JMenuItem logoutJMI;
     private javax.swing.JMenuBar mainBar;
+    private javax.swing.JMenuItem myBillsJMI;
     private javax.swing.JMenuItem myDataJMI;
     private javax.swing.JMenu myDataJm;
     private javax.swing.JMenu reservateJM;
+    private javax.swing.JMenuItem reservationJMI;
     // End of variables declaration//GEN-END:variables
     
 }
