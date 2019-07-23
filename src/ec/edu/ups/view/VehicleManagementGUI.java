@@ -9,7 +9,7 @@ package ec.edu.ups.view;
  *
  * @author edd
  */
-public class VehicleManagementGUI extends javax.swing.JFrame {
+public class VehicleManagementGUI extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form VehicleManagementGUI
@@ -35,10 +35,26 @@ public class VehicleManagementGUI extends javax.swing.JFrame {
         findBrandButton = new javax.swing.JButton();
         editBrandButton = new javax.swing.JButton();
         deleteBrandButton = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        idBrandText = new javax.swing.JTextField();
+        nameBrandText = new javax.swing.JTextField();
+        idBrandLabel = new javax.swing.JLabel();
+        nameBrandLabel = new javax.swing.JLabel();
         modelPanel = new javax.swing.JPanel();
+        idModelText = new javax.swing.JTextField();
+        nameModelText = new javax.swing.JTextField();
+        idModelLabel = new javax.swing.JLabel();
+        nameModelLabel = new javax.swing.JLabel();
+        createModelButton = new javax.swing.JButton();
+        findModelButton = new javax.swing.JButton();
+        editModelButton = new javax.swing.JButton();
+        deleteModelButton = new javax.swing.JButton();
         listPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        selectComboBox = new javax.swing.JComboBox<>();
+        searchListButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listJTable = new javax.swing.JTable();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -75,6 +91,8 @@ public class VehicleManagementGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        brandPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Marcas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+
         createBrandButton.setText("Crear");
         createBrandButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,123 +116,317 @@ public class VehicleManagementGUI extends javax.swing.JFrame {
 
         deleteBrandButton.setText("Eliminar");
 
-        jTextField1.setText("jTextField1");
+        idBrandText.setText("jTextField1");
+        idBrandText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idBrandTextActionPerformed(evt);
+            }
+        });
 
-        jTextField2.setText("jTextField2");
+        nameBrandText.setText("jTextField2");
+
+        idBrandLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        idBrandLabel.setText("Id:");
+
+        nameBrandLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        nameBrandLabel.setText("Nombre:");
 
         javax.swing.GroupLayout brandPanelLayout = new javax.swing.GroupLayout(brandPanel);
         brandPanel.setLayout(brandPanelLayout);
         brandPanelLayout.setHorizontalGroup(
             brandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(brandPanelLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(createBrandButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(30, 30, 30)
+                .addGroup(brandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(createBrandButton)
+                    .addGroup(brandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(idBrandLabel)
+                        .addComponent(nameBrandLabel)))
+                .addGap(15, 15, 15)
                 .addGroup(brandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2)
-                    .addGroup(brandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField1)
-                        .addGroup(brandPanelLayout.createSequentialGroup()
-                            .addComponent(findBrandButton)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(editBrandButton)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(deleteBrandButton))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(nameBrandText)
+                    .addComponent(idBrandText)
+                    .addGroup(brandPanelLayout.createSequentialGroup()
+                        .addComponent(findBrandButton)
+                        .addGap(15, 15, 15)
+                        .addComponent(editBrandButton)
+                        .addGap(15, 15, 15)
+                        .addComponent(deleteBrandButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         brandPanelLayout.setVerticalGroup(
             brandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, brandPanelLayout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
+                .addGroup(brandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idBrandText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idBrandLabel))
+                .addGap(20, 20, 20)
+                .addGroup(brandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameBrandText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameBrandLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(brandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createBrandButton)
                     .addComponent(findBrandButton)
                     .addComponent(editBrandButton)
                     .addComponent(deleteBrandButton))
-                .addGap(52, 52, 52))
+                .addGap(25, 25, 25))
         );
+
+        modelPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modelos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+
+        idModelText.setText("jTextField3");
+
+        nameModelText.setText("jTextField4");
+
+        idModelLabel.setText("Id:");
+
+        nameModelLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        nameModelLabel.setText("Nombre:");
+
+        createModelButton.setText("Crear");
+
+        findModelButton.setText("Buscar");
+        findModelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findModelButtonActionPerformed(evt);
+            }
+        });
+
+        editModelButton.setText("Editar");
+
+        deleteModelButton.setText("Eliminar");
 
         javax.swing.GroupLayout modelPanelLayout = new javax.swing.GroupLayout(modelPanel);
         modelPanel.setLayout(modelPanelLayout);
         modelPanelLayout.setHorizontalGroup(
             modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(modelPanelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(modelPanelLayout.createSequentialGroup()
+                        .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(nameModelLabel)
+                            .addComponent(idModelLabel))
+                        .addGap(30, 30, 30)
+                        .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idModelText)
+                            .addComponent(nameModelText)))
+                    .addGroup(modelPanelLayout.createSequentialGroup()
+                        .addComponent(createModelButton)
+                        .addGap(15, 15, 15)
+                        .addComponent(findModelButton)
+                        .addGap(15, 15, 15)
+                        .addComponent(editModelButton)
+                        .addGap(15, 15, 15)
+                        .addComponent(deleteModelButton)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         modelPanelLayout.setVerticalGroup(
             modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
+            .addGroup(modelPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idModelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idModelLabel))
+                .addGap(20, 20, 20)
+                .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameModelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameModelLabel))
+                .addGap(25, 25, 25)
+                .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createModelButton)
+                    .addComponent(findModelButton)
+                    .addComponent(editModelButton)
+                    .addComponent(deleteModelButton))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        listPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        selectComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        searchListButton.setText("Buscar");
+        searchListButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchListButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(selectComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(searchListButton)
+                .addGap(25, 25, 25))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(selectComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchListButton))
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        listJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID", "NAME"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(listJTable);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout listPanelLayout = new javax.swing.GroupLayout(listPanel);
         listPanel.setLayout(listPanelLayout);
         listPanelLayout.setHorizontalGroup(
             listPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGroup(listPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(listPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         listPanelLayout.setVerticalGroup(
             listPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(listPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(brandPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(modelPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
+                .addGap(20, 20, 20)
                 .addComponent(listPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(listPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(listPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(brandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(20, 20, 20)
                         .addComponent(modelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void createBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBrandButtonActionPerformed
+    private void searchListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchListButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_createBrandButtonActionPerformed
+    }//GEN-LAST:event_searchListButtonActionPerformed
+
+    private void findModelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findModelButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_findModelButtonActionPerformed
+
+    private void idBrandTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idBrandTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idBrandTextActionPerformed
+
+    private void editBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBrandButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editBrandButtonActionPerformed
 
     private void findBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findBrandButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_findBrandButtonActionPerformed
 
-    private void editBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBrandButtonActionPerformed
+    private void createBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBrandButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_editBrandButtonActionPerformed
+    }//GEN-LAST:event_createBrandButtonActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel brandPanel;
     private javax.swing.JButton createBrandButton;
+    private javax.swing.JButton createModelButton;
     private javax.swing.JButton deleteBrandButton;
+    private javax.swing.JButton deleteModelButton;
     private javax.swing.JButton editBrandButton;
+    private javax.swing.JButton editModelButton;
     private javax.swing.JButton findBrandButton;
+    private javax.swing.JButton findModelButton;
+    private javax.swing.JLabel idBrandLabel;
+    private javax.swing.JTextField idBrandText;
+    private javax.swing.JLabel idModelLabel;
+    private javax.swing.JTextField idModelText;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable listJTable;
     private javax.swing.JPanel listPanel;
     private javax.swing.JPanel modelPanel;
+    private javax.swing.JLabel nameBrandLabel;
+    private javax.swing.JTextField nameBrandText;
+    private javax.swing.JLabel nameModelLabel;
+    private javax.swing.JTextField nameModelText;
+    private javax.swing.JButton searchListButton;
+    private javax.swing.JComboBox<String> selectComboBox;
     // End of variables declaration//GEN-END:variables
 }
