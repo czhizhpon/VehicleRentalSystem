@@ -8,6 +8,7 @@
 
 package ec.edu.ups.controller;
 
+import ec.edu.ups.conectionDB.ConnectionJava;
 import ec.edu.ups.model.Province;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,51 +26,96 @@ import java.util.List;
  */
 public class ProvinceController {
     
-    private Connection conn;
     private PreparedStatement pstat;
     private ResultSet rstat;
-    private Statement stat;
     
-    public List<Province> getProvinces(){
-        List<Province> provinces =  new ArrayList<>();
-        conn = new SQLConection().conectarMySQL();
+    
+    public boolean createProvince(ConnectionJava connection, Province province){
+        String query = "";
+        
+        try{
+            pstat = connection.getConnection().prepareStatement(query);
+            
+            pstat.executeUpdate();
+            
+        }catch(SQLException ex){
+            throw new NullPointerException(ex.getSQLState());
+        }
+        connection.closeConnection();
+        return true;
+    }
+    
+    public boolean updateProvince(ConnectionJava connection, Province province){
+        String query = "";
+        
+        try{
+            pstat = connection.getConnection().prepareStatement(query);
+            
+            pstat.executeUpdate();
+            
+        }catch(SQLException ex){
+            throw new NullPointerException(ex.getSQLState());
+        }
+        connection.closeConnection();
+        return true;
+    }
+    
+    public boolean readProvince(ConnectionJava connection, Province province, 
+            int proId){
+        
+        String query = "SELECT *\n" +
+                        "FROM vrs_provinces \n;" + 
+                        "WHERE pro_id = ?";
+        
+        try{
+            pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, proId);
+            
+            rstat = pstat.executeQuery();
+                    
+        } catch (SQLException ex){
+            
+        }
+        
+        return true;
+    }
+    
+    public boolean deleteProvince(ConnectionJava connection, Province province){
+        String query = "";
+        
+        try{
+            pstat = connection.getConnection().prepareStatement(query);
+            
+            pstat.executeUpdate();
+            
+        }catch(SQLException ex){
+            throw new NullPointerException(ex.getSQLState());
+        }
+        connection.closeConnection();
+        return true;
+    }
+    
+    
+    public boolean getProvinces(ConnectionJava connection, List<Province> provinces){
+        provinces =  new ArrayList<>();
         
         String query = "SELECT *\n" +
                         "FROM vrs_provinces;";
         
-        runLoadStatement(query);
         try {
+            pstat = connection.getConnection().prepareStatement(query);
+            rstat = pstat.executeQuery();
+            
             while(rstat.next()){
                 Province province = new Province(rstat.getInt(1), 
                         rstat.getString(2));
                 provinces.add(province);
             }
-            conn.close();
+            connection.closeConnection();
         } catch (SQLException ex) {
-            System.out.println(ex);
+            throw new NullPointerException(ex.getSQLState());
         }
         
-        return provinces;
-    }
-    
-    public boolean runInsertStatement(String query){
-        try {
-            pstat = conn.prepareStatement(query);
-            pstat.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println(ex);;
-        }
         return true;
     }
-    
-    public void runLoadStatement(String query){
-        try {
-            stat = conn.createStatement();
-            rstat = stat.executeQuery(query);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        
-    }
-    
 }

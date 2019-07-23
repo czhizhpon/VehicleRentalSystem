@@ -20,6 +20,9 @@ public class Privilege {
     private int priId;
     private String priName;
     private int priDiscountPct;
+
+    public Privilege() {
+    }
     
     public Privilege(int priId, String priName, int priDiscountPot) {
         this.priId = priId;
@@ -43,13 +46,15 @@ public class Privilege {
         this.priName = priName;
     }
 
-    public int getPriDiscountPot() {
+    public int getPriDiscountPct() {
         return priDiscountPct;
     }
 
-    public void setPriDiscountPot(int priDiscountPct) {
+    public void setPriDiscountPct(int priDiscountPct) {
         this.priDiscountPct = priDiscountPct;
     }
+
+    
     
     @Override
     public String toString() {

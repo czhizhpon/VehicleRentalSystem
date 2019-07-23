@@ -26,6 +26,9 @@ public class Office {
     private List<Phone> offPhones;
     private List<Vehicle> offVehicles;
 
+    public Office() {
+    }
+
     public Office(int offId, String offMainSt, String offSideSt, String offNumber, 
             String offCodPostal) {
         this.offId = offId;

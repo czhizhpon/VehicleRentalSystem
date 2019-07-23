@@ -24,6 +24,9 @@ public class Rental {
     private Vehicle renVehicle;
     private Reservation renReservation;
 
+    public Rental() {
+    }
+
     public Rental(int renId, double renKilometrajeIni, double renKilometrajeFin, 
             Date renDateIni, Date renDateFin, Vehicle renVehicle,
             Reservation renReservation) {

@@ -16,6 +16,9 @@ public class Customer extends User{
     private String useWorkAdd;
     private Privilege usePrivilege;
 
+    public Customer() {
+    }
+
     public Customer(int useId, String useDNI, String useName, String useLastNamel, 
             Date useBirthDay, String useAddress, char useType, String useEmail, 
             String usePassword) {

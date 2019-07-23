@@ -29,6 +29,9 @@ public class User {
     private String usePassword;
     private List<Phone> usePhones;
 
+    public User() {
+    }
+    
     public User(int useId, String useDNI, String useName, String useLastNamel, 
             Date useBirthDay, String useAddress, char useType, String useEmail,
             String usePassword) {
@@ -38,7 +41,6 @@ public class User {
         this.useLastNamel = useLastNamel;
         this.useBirthDay = useBirthDay;
         this.useAddress = useAddress;
-//        this.useWorkAdd = useWorkAdd;
         this.useType = useType;
         this.useEmail = useEmail;
         this.usePassword = usePassword;

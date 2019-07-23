@@ -15,6 +15,9 @@ public class Employee extends User{
     
     private String empRole;
 
+    public Employee() {
+    }
+
     public Employee(int useId, String useDNI, String useName, String useLastNamel, 
             Date useBirthDay, String useAddress, char useType, String useEmail, 
             String usePassword) {

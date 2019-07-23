@@ -18,6 +18,9 @@ public class Province {
     private int proId;
     private String proName;
 
+    public Province() {
+    }
+
     public Province(int proId, String proName) {
         this.proId = proId;
         this.proName = proName;

@@ -22,6 +22,9 @@ public class VehCategory {
     private double catDamageCost;
     private int catWarrantyPct;
 
+    public VehCategory() {
+    }
+
     public VehCategory(int catId, String catName, String catDescription, double catDayCost, double catDamageCost, int catWarrantyPct) {
         this.catId = catId;
         this.catName = catName;

@@ -19,6 +19,9 @@ public class Model {
     private double modCost;
     private Brand modBrand;
 
+    public Model() {
+    }
+
     public Model(int modId, String modName, Brand modBrand) {
         this.modId = modId;
         this.modName = modName;

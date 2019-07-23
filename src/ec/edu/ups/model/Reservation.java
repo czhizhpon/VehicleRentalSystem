@@ -20,6 +20,9 @@ public class Reservation {
     private Date resDate;
     private Vehicle resVehicle;
 
+    public Reservation() {
+    }
+
     public Reservation(int resId, Date resDate, Vehicle resVehicle) {
         this.resId = resId;
         this.resDate = resDate;

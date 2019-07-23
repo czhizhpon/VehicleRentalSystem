@@ -21,6 +21,9 @@ public class BillDetail {
     private double detSubtotal;
     private Rental detRental;
 
+    public BillDetail() {
+    }
+
     public int getDetId() {
         return detId;
     }

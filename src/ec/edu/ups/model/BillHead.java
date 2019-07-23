@@ -28,6 +28,9 @@ public class BillHead {
     private Customer customer;
     private List<BillDetail> heaDetails;
 
+    public BillHead() {
+    }
+    
     public BillHead(int heaId, double heaSubtotal, double heaVat, double heaDisc, 
             double heaTotal, Date heaDate, char heaStatus, Customer customer) {
         this.heaId = heaId;
