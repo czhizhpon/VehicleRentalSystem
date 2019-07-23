@@ -201,7 +201,7 @@ public class MainGUI extends javax.swing.JFrame {
             }
             
         } catch (Exception ex){
-            JOptionPane.showConfirmDialog(null, "Error al abrir la ventana");
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
         }
     }//GEN-LAST:event_creUserJMIActionPerformed
 
@@ -218,7 +218,7 @@ public class MainGUI extends javax.swing.JFrame {
             }
             
         } catch (Exception ex){
-            JOptionPane.showConfirmDialog(null, "Error al abrir la ventana");
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
         }
         
     }//GEN-LAST:event_addOfficeJMIActionPerformed
@@ -238,7 +238,7 @@ public class MainGUI extends javax.swing.JFrame {
                 myDataGUI.setVisible(true);
             }
         } catch (PropertyVetoException ex) {
-                Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
         }
     }//GEN-LAST:event_myDataJMIActionPerformed
     /**
@@ -267,7 +267,7 @@ public class MainGUI extends javax.swing.JFrame {
             
             
         } catch (Exception ex){
-            JOptionPane.showConfirmDialog(null, "Error al abrir la ventana");
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
         }
     }//GEN-LAST:event_addVehicleJMIActionPerformed
 
@@ -283,7 +283,7 @@ public class MainGUI extends javax.swing.JFrame {
             }
             
         } catch (Exception ex){
-            JOptionPane.showConfirmDialog(null, "Error al abrir la ventana");
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
         }
     }//GEN-LAST:event_addCompanyJMIActionPerformed
 
@@ -300,7 +300,7 @@ public class MainGUI extends javax.swing.JFrame {
             }
             
         } catch (Exception ex){
-            JOptionPane.showConfirmDialog(null, "Error al abrir la ventana");
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
         }
         
     }//GEN-LAST:event_creVehicleJMIActionPerformed
@@ -317,7 +317,7 @@ public class MainGUI extends javax.swing.JFrame {
             }
             
         } catch (Exception ex){
-            JOptionPane.showConfirmDialog(null, "Error al abrir la ventana");
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
         }
     }//GEN-LAST:event_creRentalJMIActionPerformed
 
@@ -333,7 +333,7 @@ public class MainGUI extends javax.swing.JFrame {
             }
             
         } catch (Exception ex){
-            JOptionPane.showConfirmDialog(null, "Error al abrir la ventana");
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
         }
     }//GEN-LAST:event_creBillJMIActionPerformed
 
@@ -349,7 +349,7 @@ public class MainGUI extends javax.swing.JFrame {
             }
             
         } catch (Exception ex){
-            JOptionPane.showConfirmDialog(null, "Error al abrir la ventana");
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
         }
     }//GEN-LAST:event_billJMActionPerformed
 
@@ -365,7 +365,7 @@ public class MainGUI extends javax.swing.JFrame {
             }
             
         } catch (Exception ex){
-            JOptionPane.showConfirmDialog(null, "Error al abrir la ventana");
+            JOptionPane.showMessageDialog(null, "Error al abrir la ventana");
         }
     }//GEN-LAST:event_reservateJMActionPerformed
 
@@ -382,7 +382,7 @@ public class MainGUI extends javax.swing.JFrame {
                 employeeMenu();
                 break;
             default:
-                System.out.println(new NullPointerException("No menus found."));
+                dispose();
                 return false;
             
             
