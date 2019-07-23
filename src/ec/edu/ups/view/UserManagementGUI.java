@@ -27,11 +27,9 @@ public class UserManagementGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        usersBtnGroup = new javax.swing.ButtonGroup();
         userManagGUI = new javax.swing.JInternalFrame();
         userPanel = new javax.swing.JPanel();
-        adminRButton = new javax.swing.JRadioButton();
-        employeeRButton = new javax.swing.JRadioButton();
-        customerRButton = new javax.swing.JRadioButton();
         dniLB = new javax.swing.JLabel();
         nameLB = new javax.swing.JLabel();
         lastNameLB = new javax.swing.JLabel();
@@ -58,15 +56,21 @@ public class UserManagementGUI extends javax.swing.JFrame {
         editUserBtn = new javax.swing.JButton();
         deleteUserBtn = new javax.swing.JButton();
         privilegeCB = new javax.swing.JComboBox<>();
-        phonePanel = new javax.swing.JPanel();
-        phoneLb = new javax.swing.JLabel();
-        phoneTxt = new javax.swing.JTextField();
-        typePhoneCB = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        phonesTable = new javax.swing.JTable();
-        createPhoneBtn = new javax.swing.JButton();
-        deletePhoneBtn = new javax.swing.JButton();
-        updatePhoneBtn = new javax.swing.JButton();
+        phonePanel1 = new javax.swing.JPanel();
+        phoneLb1 = new javax.swing.JLabel();
+        phoneTxt1 = new javax.swing.JTextField();
+        typePhoneCB1 = new javax.swing.JComboBox();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        phonesTable1 = new javax.swing.JTable();
+        createPhoneBtn1 = new javax.swing.JButton();
+        deletePhoneBtn1 = new javax.swing.JButton();
+        updatePhoneBtn1 = new javax.swing.JButton();
+        generateBtn = new javax.swing.JButton();
+        iconLB = new javax.swing.JLabel();
+        userBoxPanel = new javax.swing.JPanel();
+        adminBtn = new javax.swing.JRadioButton();
+        employeeBtn = new javax.swing.JRadioButton();
+        customerBtn = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("User");
@@ -77,18 +81,7 @@ public class UserManagementGUI extends javax.swing.JFrame {
         userManagGUI.setResizable(true);
         userManagGUI.setVisible(true);
 
-        userPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        adminRButton.setText("Administrador");
-        adminRButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminRButtonActionPerformed(evt);
-            }
-        });
-
-        employeeRButton.setText("Empleado");
-
-        customerRButton.setText("Cliente");
+        userPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Usuario"));
 
         dniLB.setText("Cédula:");
 
@@ -200,19 +193,19 @@ public class UserManagementGUI extends javax.swing.JFrame {
 
         privilegeCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        phonePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        phonePanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Teléfonos"));
 
-        phoneLb.setText("Número:");
+        phoneLb1.setText("Número:");
 
-        phoneTxt.addActionListener(new java.awt.event.ActionListener() {
+        phoneTxt1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 phoneTxtActionPerformed(evt);
             }
         });
 
-        typePhoneCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        typePhoneCB1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        phonesTable.setModel(new javax.swing.table.DefaultTableModel(
+        phonesTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -228,68 +221,110 @@ public class UserManagementGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(phonesTable);
+        jScrollPane2.setViewportView(phonesTable1);
 
-        createPhoneBtn.setText("Crear");
+        createPhoneBtn1.setText("Crear");
 
-        deletePhoneBtn.setText("Eliminar");
-        deletePhoneBtn.addActionListener(new java.awt.event.ActionListener() {
+        deletePhoneBtn1.setText("Eliminar");
+        deletePhoneBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deletePhoneBtnActionPerformed(evt);
             }
         });
 
-        updatePhoneBtn.setText("Editar");
-        updatePhoneBtn.addActionListener(new java.awt.event.ActionListener() {
+        updatePhoneBtn1.setText("Editar");
+        updatePhoneBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updatePhoneBtnActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout phonePanelLayout = new javax.swing.GroupLayout(phonePanel);
-        phonePanel.setLayout(phonePanelLayout);
-        phonePanelLayout.setHorizontalGroup(
-            phonePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(phonePanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout phonePanel1Layout = new javax.swing.GroupLayout(phonePanel1);
+        phonePanel1.setLayout(phonePanel1Layout);
+        phonePanel1Layout.setHorizontalGroup(
+            phonePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(phonePanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(phonePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(phonePanelLayout.createSequentialGroup()
-                        .addComponent(createPhoneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(phonePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(phonePanel1Layout.createSequentialGroup()
+                        .addComponent(createPhoneBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(updatePhoneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(updatePhoneBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(deletePhoneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(phonePanelLayout.createSequentialGroup()
+                        .addComponent(deletePhoneBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(phonePanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addGroup(phonePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(phonePanelLayout.createSequentialGroup()
-                                .addComponent(phoneLb)
+                        .addGroup(phonePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(phonePanel1Layout.createSequentialGroup()
+                                .addComponent(phoneLb1)
                                 .addGap(18, 18, 18)
-                                .addComponent(phoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(typePhoneCB, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(phoneTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(typePhoneCB1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        phonePanelLayout.setVerticalGroup(
-            phonePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(phonePanelLayout.createSequentialGroup()
+        phonePanel1Layout.setVerticalGroup(
+            phonePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(phonePanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(phonePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phoneLb, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(phoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(phonePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(phoneLb1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(phoneTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(typePhoneCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(typePhoneCB1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
-                .addGroup(phonePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(createPhoneBtn)
-                    .addComponent(updatePhoneBtn)
-                    .addComponent(deletePhoneBtn))
+                .addGroup(phonePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(createPhoneBtn1)
+                    .addComponent(updatePhoneBtn1)
+                    .addComponent(deletePhoneBtn1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(phonePanelLayout.createSequentialGroup()
+            .addGroup(phonePanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
+        );
+
+        generateBtn.setText("Generar Contraseña");
+
+        iconLB.setText("Icono");
+
+        usersBtnGroup.add(adminBtn);
+        adminBtn.setText("Administrador");
+        adminBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminBtnActionPerformed(evt);
+            }
+        });
+
+        usersBtnGroup.add(employeeBtn);
+        employeeBtn.setText("Empleado");
+
+        usersBtnGroup.add(customerBtn);
+        customerBtn.setText("Cliente");
+
+        javax.swing.GroupLayout userBoxPanelLayout = new javax.swing.GroupLayout(userBoxPanel);
+        userBoxPanel.setLayout(userBoxPanelLayout);
+        userBoxPanelLayout.setHorizontalGroup(
+            userBoxPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userBoxPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(adminBtn)
+                .addGap(18, 18, 18)
+                .addComponent(employeeBtn)
+                .addGap(18, 18, 18)
+                .addComponent(customerBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        userBoxPanelLayout.setVerticalGroup(
+            userBoxPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userBoxPanelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(userBoxPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(adminBtn)
+                    .addComponent(employeeBtn)
+                    .addComponent(customerBtn))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout userPanelLayout = new javax.swing.GroupLayout(userPanel);
@@ -299,12 +334,6 @@ public class UserManagementGUI extends javax.swing.JFrame {
             .addGroup(userPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(userPanelLayout.createSequentialGroup()
-                        .addComponent(adminRButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(employeeRButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(customerRButton))
                     .addGroup(userPanelLayout.createSequentialGroup()
                         .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(directionWLB)
@@ -320,32 +349,39 @@ public class UserManagementGUI extends javax.swing.JFrame {
                     .addGroup(userPanelLayout.createSequentialGroup()
                         .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userPanelLayout.createSequentialGroup()
+                                .addGap(15, 15, 15)
                                 .addComponent(createUserBtn)
                                 .addGap(18, 18, 18)
                                 .addComponent(searchUserBtn)
                                 .addGap(18, 18, 18)
                                 .addComponent(editUserBtn)
                                 .addGap(18, 18, 18)
-                                .addComponent(deleteUserBtn))
+                                .addComponent(deleteUserBtn)
+                                .addGap(92, 92, 92))
                             .addGroup(userPanelLayout.createSequentialGroup()
-                                .addGap(127, 127, 127)
                                 .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dniTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(directionTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(directionWTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(userPanelLayout.createSequentialGroup()
-                                        .addComponent(dayCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(slashLB1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(monthCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(slashLB2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(yearCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGap(127, 127, 127)
+                                        .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(dniTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(directionTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(directionWTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(userPanelLayout.createSequentialGroup()
+                                                .addComponent(dayCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(slashLB1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(monthCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(slashLB2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(yearCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(userBoxPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(phonePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(userPanelLayout.createSequentialGroup()
-                                .addGap(96, 96, 96)
+                                .addGap(84, 84, 84)
                                 .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(usernameLB)
                                     .addComponent(emailLB)
@@ -354,39 +390,46 @@ public class UserManagementGUI extends javax.swing.JFrame {
                                 .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(emailTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                                     .addComponent(usernameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                                    .addComponent(privilegeCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(userPanelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(phonePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(privilegeCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(userPanelLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(generateBtn))
+                                    .addGroup(userPanelLayout.createSequentialGroup()
+                                        .addGap(127, 127, 127)
+                                        .addComponent(iconLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(96, 96, 96)))))
                 .addContainerGap())
         );
         userPanelLayout.setVerticalGroup(
             userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(adminRButton)
-                    .addComponent(employeeRButton)
-                    .addComponent(customerRButton))
-                .addGap(31, 31, 31)
-                .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dniLB)
-                    .addComponent(usernameLB)
-                    .addComponent(dniTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(userPanelLayout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(iconLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(userPanelLayout.createSequentialGroup()
+                        .addComponent(userBoxPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(dniLB)
+                            .addComponent(usernameLB)
+                            .addComponent(dniTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(emailLB)
+                            .addComponent(nameLB)
+                            .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(22, 22, 22)
-                .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailLB)
-                    .addComponent(nameLB)
-                    .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
                 .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lastNameLB)
                     .addComponent(privilegeLB)
                     .addComponent(lastNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(privilegeCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                    .addComponent(privilegeCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(generateBtn))
+                .addGap(23, 23, 23)
                 .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(userPanelLayout.createSequentialGroup()
                         .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -410,7 +453,7 @@ public class UserManagementGUI extends javax.swing.JFrame {
                             .addComponent(searchUserBtn)
                             .addComponent(editUserBtn)
                             .addComponent(deleteUserBtn)))
-                    .addComponent(phonePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(phonePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -439,29 +482,65 @@ public class UserManagementGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void adminRButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminRButtonActionPerformed
+    private void adminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_adminRButtonActionPerformed
+    }//GEN-LAST:event_adminBtnActionPerformed
 
-    private void directionWTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directionWTxtActionPerformed
+    private void updatePhoneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePhoneBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_directionWTxtActionPerformed
+    }//GEN-LAST:event_updatePhoneBtnActionPerformed
 
-    private void directionTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directionTxtActionPerformed
+    private void deletePhoneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePhoneBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_directionTxtActionPerformed
+    }//GEN-LAST:event_deletePhoneBtnActionPerformed
 
-    private void lastNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTxtActionPerformed
+    private void phoneTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameTxtActionPerformed
+    }//GEN-LAST:event_phoneTxtActionPerformed
+
+    private void deleteUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteUserBtnActionPerformed
+
+    private void editUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUserBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editUserBtnActionPerformed
+
+    private void searchUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchUserBtnActionPerformed
+
+    private void yearCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yearCBActionPerformed
+
+    private void monthCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_monthCBActionPerformed
+
+    private void dayCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dayCBActionPerformed
+
+    private void dniTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dniTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dniTxtActionPerformed
 
     private void nameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nameTxtActionPerformed
 
-    private void dniTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dniTxtActionPerformed
+    private void lastNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dniTxtActionPerformed
+    }//GEN-LAST:event_lastNameTxtActionPerformed
+
+    private void directionTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directionTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_directionTxtActionPerformed
+
+    private void directionWTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directionWTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_directionWTxtActionPerformed
 
     private void usernameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTxtActionPerformed
         // TODO add your handling code here:
@@ -470,42 +549,6 @@ public class UserManagementGUI extends javax.swing.JFrame {
     private void emailTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailTxtActionPerformed
-
-    private void dayCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayCBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dayCBActionPerformed
-
-    private void monthCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthCBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_monthCBActionPerformed
-
-    private void yearCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearCBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_yearCBActionPerformed
-
-    private void searchUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchUserBtnActionPerformed
-
-    private void editUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUserBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editUserBtnActionPerformed
-
-    private void deleteUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteUserBtnActionPerformed
-
-    private void phoneTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneTxtActionPerformed
-
-    private void deletePhoneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePhoneBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deletePhoneBtnActionPerformed
-
-    private void updatePhoneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePhoneBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updatePhoneBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -544,13 +587,15 @@ public class UserManagementGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton adminRButton;
+    private javax.swing.JRadioButton adminBtn;
     private javax.swing.JLabel birthdayLB;
     private javax.swing.JButton createPhoneBtn;
+    private javax.swing.JButton createPhoneBtn1;
     private javax.swing.JButton createUserBtn;
-    private javax.swing.JRadioButton customerRButton;
+    private javax.swing.JRadioButton customerBtn;
     private javax.swing.JComboBox<String> dayCB;
     private javax.swing.JButton deletePhoneBtn;
+    private javax.swing.JButton deletePhoneBtn1;
     private javax.swing.JButton deleteUserBtn;
     private javax.swing.JLabel directionLB;
     private javax.swing.JTextField directionTxt;
@@ -561,28 +606,39 @@ public class UserManagementGUI extends javax.swing.JFrame {
     private javax.swing.JButton editUserBtn;
     private javax.swing.JLabel emailLB;
     private javax.swing.JTextField emailTxt;
-    private javax.swing.JRadioButton employeeRButton;
+    private javax.swing.JRadioButton employeeBtn;
+    private javax.swing.JButton generateBtn;
+    private javax.swing.JLabel iconLB;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lastNameLB;
     private javax.swing.JTextField lastNameTxt;
     private javax.swing.JComboBox<String> monthCB;
     private javax.swing.JLabel nameLB;
     private javax.swing.JTextField nameTxt;
     private javax.swing.JLabel phoneLb;
+    private javax.swing.JLabel phoneLb1;
     private javax.swing.JPanel phonePanel;
+    private javax.swing.JPanel phonePanel1;
     private javax.swing.JTextField phoneTxt;
+    private javax.swing.JTextField phoneTxt1;
     private javax.swing.JTable phonesTable;
+    private javax.swing.JTable phonesTable1;
     private javax.swing.JComboBox<String> privilegeCB;
     private javax.swing.JLabel privilegeLB;
     private javax.swing.JButton searchUserBtn;
     private javax.swing.JLabel slashLB1;
     private javax.swing.JLabel slashLB2;
     private javax.swing.JComboBox typePhoneCB;
+    private javax.swing.JComboBox typePhoneCB1;
     private javax.swing.JButton updatePhoneBtn;
+    private javax.swing.JButton updatePhoneBtn1;
+    private javax.swing.JPanel userBoxPanel;
     private javax.swing.JInternalFrame userManagGUI;
     private javax.swing.JPanel userPanel;
     private javax.swing.JLabel usernameLB;
     private javax.swing.JTextField usernameTxt;
+    private javax.swing.ButtonGroup usersBtnGroup;
     private javax.swing.JComboBox<String> yearCB;
     // End of variables declaration//GEN-END:variables
 }
