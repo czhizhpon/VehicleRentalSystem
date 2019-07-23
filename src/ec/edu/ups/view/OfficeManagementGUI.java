@@ -9,7 +9,7 @@ package ec.edu.ups.view;
  *
  * @author edd
  */
-public class OfficeManagementGUI extends javax.swing.JFrame {
+public class OfficeManagementGUI extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form OfficeManagementGUI
