@@ -29,12 +29,23 @@ public class CityController {
     private PreparedStatement pstat;
     private ResultSet rstat;
     
-    public boolean createCity(){
+    public boolean createCity(ConnectionJava connection, City city, int proId){
+        String query = "";
         
+        try{
+            pstat = connection.getConnection().prepareStatement(query);
+            
+            pstat.executeUpdate();
+            
+        }catch(SQLException ex){
+            throw new NullPointerException(ex.getSQLState());
+        }
+        connection.closeConnection();
         return true;
     }
     
-    public boolean readCity(ConnectionJava connection, City city, int proId, int citId){
+    public boolean readCity(ConnectionJava connection, City city, int proId, 
+            int citId){
         
         String query = "SELECT cit_id, cit_name\n" +        
                         "FROM vrs_cities \n" +
@@ -58,16 +69,44 @@ public class CityController {
             connection.closeConnection();
             
         } catch (SQLException ex) {
-            
-            System.out.println(ex);
-            return false;
+            throw new NullPointerException(ex.getSQLState());
         }
         return true;
         
     }
     
-    public boolean getCities(ConnectionJava connection, List<City> cities, int proId){
-        cities = new ArrayList<>();
+    public boolean updateCity(ConnectionJava connection, City city){
+        String query = "";
+        
+        try{
+            pstat = connection.getConnection().prepareStatement(query);
+            
+            pstat.executeUpdate();
+            
+        }catch(SQLException ex){
+            throw new NullPointerException(ex.getSQLState());
+        }
+        connection.closeConnection();
+        return true;
+    }
+    
+    public boolean deleteCity(ConnectionJava connection, int citId){
+        String query = "";
+        
+        try{
+            pstat = connection.getConnection().prepareStatement(query);
+            
+            pstat.executeUpdate();
+            
+        }catch(SQLException ex){
+            throw new NullPointerException(ex.getSQLState());
+        }
+        connection.closeConnection();
+        return true;
+    }
+    
+    public boolean getCities(ConnectionJava connection, List<City> cities, 
+            int proId){
         
         String query = "SELECT cit_id, cit_name\n" +        
                         "FROM vrs_cities \n" +

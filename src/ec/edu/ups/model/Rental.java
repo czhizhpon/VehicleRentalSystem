@@ -21,6 +21,7 @@ public class Rental {
     private double renKilometrajeFin;
     private Date renDateIni;
     private Date renDateFin;
+    private Customer renCustomer;
     private Vehicle renVehicle;
     private Reservation renReservation;
 
@@ -28,13 +29,14 @@ public class Rental {
     }
 
     public Rental(int renId, double renKilometrajeIni, double renKilometrajeFin, 
-            Date renDateIni, Date renDateFin, Vehicle renVehicle,
+            Date renDateIni, Date renDateFin, Customer renCustomer,Vehicle renVehicle,
             Reservation renReservation) {
         this.renId = renId;
         this.renKilometrajeIni = renKilometrajeIni;
         this.renKilometrajeFin = renKilometrajeFin;
         this.renDateIni = renDateIni;
         this.renDateFin = renDateFin;
+        this.renCustomer = renCustomer;
         this.renVehicle = renVehicle;
         this.renReservation = renReservation;
     }
@@ -77,6 +79,14 @@ public class Rental {
 
     public void setRenDateFin(Date renDateFin) {
         this.renDateFin = renDateFin;
+    }
+
+    public Customer getRenCustomer() {
+        return renCustomer;
+    }
+
+    public void setRenCustomer(Customer renCustomer) {
+        this.renCustomer = renCustomer;
     }
     
     public Vehicle getRenVehicle() {

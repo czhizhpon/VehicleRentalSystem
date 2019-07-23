@@ -68,11 +68,9 @@ public class OfficeController {
         connection.closeConnection();
     }
     
-    public boolean readOffice(ConnectionJava connection, Office office, int proId, 
-            int citId, int offId){
+    public boolean readOffice(ConnectionJava connection, Office office, 
+            Province province, City city){
         
-        City city;
-        Province province;
         List<Phone> phones;
         
         String query = "SELECT o.off_id, \n" 
@@ -84,8 +82,8 @@ public class OfficeController {
         try {
             
             pstat = connection.getConnection().prepareStatement(query);
-            pstat.setInt(1, citId);
-            pstat.setInt(2, offId);
+            pstat.setInt(1, city.getCitId());
+            pstat.setInt(2, office.getOffId());
             
             rstat = pstat.executeQuery();
             
@@ -95,18 +93,14 @@ public class OfficeController {
 //                City city = new City(rstat.getInt(3), rstat.getString(4));
 //                office = new Office(rstat.getInt(5), rstat.getString(6), 
 //                rstat.getString(7), rstat.getString(8), rstat.getString(9));
-                city = new City();
-                province = new Province();
+                
                 phones = new ArrayList<>();
                 
-                office.setOffId(rstat.getInt(5));
-                office.setOffMainSt(rstat.getString(8));
-                office.setOffSideSt(rstat.getString(7));
-                office.setOffNumber(rstat.getString(8));
-                office.setOffCodPostal(rstat.getString(9));
-                
-                this.offCity.readCity(connection, city, proId, citId);
-                this.offProvince.readProvince(connection, province, proId);
+                office.setOffId(rstat.getInt(1));
+                office.setOffMainSt(rstat.getString(2));
+                office.setOffSideSt(rstat.getString(3));
+                office.setOffNumber(rstat.getString(4));
+                office.setOffCodPostal(rstat.getString(5));
                 
                 city.setCitProvince(province);
                 office.setOffCity(city);
@@ -121,17 +115,37 @@ public class OfficeController {
     }
     
     public boolean updateOffice(ConnectionJava connection, Office office){
+        String query = "";
         
+        try{
+            pstat = connection.getConnection().prepareStatement(query);
+            
+            pstat.executeUpdate();
+            
+        }catch(SQLException ex){
+            throw new NullPointerException(ex.getSQLState());
+        }
+        connection.closeConnection();
         return true;
     }
     
     public boolean deleteOffice(ConnectionJava connection, int offId){
+        String query = "";
         
+        try{
+            pstat = connection.getConnection().prepareStatement(query);
+            
+            pstat.executeUpdate();
+            
+        }catch(SQLException ex){
+            throw new NullPointerException(ex.getSQLState());
+        }
+        connection.closeConnection();
         return true;
     }
     
-    public boolean getOffices(ConnectionJava connection, List<Office> offices, int citId){
-        offices = new ArrayList<>();
+    public boolean getOffices(ConnectionJava connection, List<Office> offices, 
+            int citId){
         
         String query = "SELECT o.off_id, o.off_main_st, o.off_side_st, "
                 + "o.off_number, o.off_cod_postal\n" 

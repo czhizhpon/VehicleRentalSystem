@@ -96,8 +96,8 @@ public class ProvinceController {
     }
     
     
-    public boolean getProvinces(ConnectionJava connection, List<Province> provinces){
-        provinces =  new ArrayList<>();
+    public boolean getProvinces(ConnectionJava connection, 
+            List<Province> provinces){
         
         String query = "SELECT *\n" +
                         "FROM vrs_provinces;";
