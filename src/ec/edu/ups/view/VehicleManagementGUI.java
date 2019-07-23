@@ -9,7 +9,7 @@ package ec.edu.ups.view;
  *
  * @author edd
  */
-public class VehicleManagementGUI extends javax.swing.JFrame {
+public class VehicleManagementGUI extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form VehicleManagementGUI
@@ -30,7 +30,6 @@ public class VehicleManagementGUI extends javax.swing.JFrame {
         jFrame1 = new javax.swing.JFrame();
         jFrame2 = new javax.swing.JFrame();
         jFrame3 = new javax.swing.JFrame();
-        vechicleManagementUI = new javax.swing.JInternalFrame();
         brandPanel = new javax.swing.JPanel();
         createBrandButton = new javax.swing.JButton();
         findBrandButton = new javax.swing.JButton();
@@ -91,12 +90,6 @@ public class VehicleManagementGUI extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        vechicleManagementUI.setClosable(true);
-        vechicleManagementUI.setIconifiable(true);
-        vechicleManagementUI.setMaximizable(true);
-        vechicleManagementUI.setTitle("Gestión de Vehículos");
-        vechicleManagementUI.setVisible(true);
 
         brandPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Marcas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
@@ -351,75 +344,58 @@ public class VehicleManagementGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout vechicleManagementUILayout = new javax.swing.GroupLayout(vechicleManagementUI.getContentPane());
-        vechicleManagementUI.getContentPane().setLayout(vechicleManagementUILayout);
-        vechicleManagementUILayout.setHorizontalGroup(
-            vechicleManagementUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vechicleManagementUILayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(vechicleManagementUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(modelPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(brandPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(25, 25, 25)
-                .addComponent(listPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
-        );
-        vechicleManagementUILayout.setVerticalGroup(
-            vechicleManagementUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(vechicleManagementUILayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(brandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(modelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vechicleManagementUILayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(listPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(vechicleManagementUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(brandPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(modelPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(listPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(vechicleManagementUI)
-                .addGap(0, 0, 0))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(listPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(brandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(modelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void createBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBrandButtonActionPerformed
+    private void searchListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchListButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_createBrandButtonActionPerformed
-
-    private void findBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findBrandButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_findBrandButtonActionPerformed
-
-    private void editBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBrandButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editBrandButtonActionPerformed
-
-    private void idBrandTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idBrandTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idBrandTextActionPerformed
+    }//GEN-LAST:event_searchListButtonActionPerformed
 
     private void findModelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findModelButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_findModelButtonActionPerformed
 
-    private void searchListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchListButtonActionPerformed
+    private void idBrandTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idBrandTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchListButtonActionPerformed
+    }//GEN-LAST:event_idBrandTextActionPerformed
+
+    private void editBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBrandButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editBrandButtonActionPerformed
+
+    private void findBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findBrandButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_findBrandButtonActionPerformed
+
+    private void createBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBrandButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createBrandButtonActionPerformed
 
     
 
@@ -452,6 +428,5 @@ public class VehicleManagementGUI extends javax.swing.JFrame {
     private javax.swing.JTextField nameModelText;
     private javax.swing.JButton searchListButton;
     private javax.swing.JComboBox<String> selectComboBox;
-    private javax.swing.JInternalFrame vechicleManagementUI;
     // End of variables declaration//GEN-END:variables
 }
