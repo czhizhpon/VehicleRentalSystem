@@ -27,16 +27,18 @@ public class PrivilegeController {
     public boolean createPrivilege(ConnectionJava connection, 
             Privilege privilege){
         
-        String query = "";
+        String query = "INSERT INTO vrs_privileges VALUES(\n" 
+                + "pri_id_seq.NEXTVAL, ?, ?);";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
-            
+            pstat.setString(1, privilege.getPriName());
+            pstat.setInt(2, privilege.getPriDiscountPct());
             
             pstat.executeUpdate();
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         connection.closeConnection();
         return true;
@@ -46,8 +48,8 @@ public class PrivilegeController {
             int priId){
         
         String query = "SELECT * "
-                + "FROM vrs_privileges"
-                + "WHERE pri_id = ?";
+                + "FROM vrs_privileges "
+                + "WHERE pri_id = ? ";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
@@ -62,7 +64,7 @@ public class PrivilegeController {
             }
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         connection.closeConnection();
         return true;
@@ -70,15 +72,21 @@ public class PrivilegeController {
     
     public boolean updatePrivilege(ConnectionJava connection, Privilege privilege){
         
-        String query = "";
+        String query = "UPTADE vrs.vrs_privileges SET "
+                + "pri_name = ? "
+                + "pri_discount_pct = ? "
+                + "WHERE pri_id = ? ";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, privilege.getPriName());
+            pstat.setInt(2, privilege.getPriDiscountPct());
+            pstat.setInt(3, privilege.getPriId());
             
             pstat.executeUpdate();
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         connection.closeConnection();
         return true;
@@ -86,15 +94,17 @@ public class PrivilegeController {
     
     public boolean deletePrivilege(ConnectionJava connection, int priId){
         
-        String query = "";
+        String query = "DELETE vrs.vrs_privileges "
+                + "WHERE pri_id = ? ";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, priId);
             
             pstat.executeUpdate();
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         connection.closeConnection();
         return true;
@@ -104,7 +114,8 @@ public class PrivilegeController {
             List<Privilege> privileges){
         
         Privilege privilege;
-        String query = "";
+        String query = "SELECT * "
+                + "FROM vrs.vrs_privileges ";
         
         
         try{
@@ -116,13 +127,15 @@ public class PrivilegeController {
                 
                 privilege = new Privilege();
                 
-                
+                privilege.setPriId(rstat.getInt(1));
+                privilege.setPriName(rstat.getString(2));
+                privilege.setPriDiscountPct(rstat.getInt(3));
                 
                 privileges.add(privilege);
             }
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         connection.closeConnection();
         return true;
