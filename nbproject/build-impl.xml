@@ -962,6 +962,10 @@ is divided into following sections:
     <target name="-pre-jar">
         <!-- Empty placeholder for easier customization. -->
         <!-- You can override this target in the ../build.xml file. -->
+        <java jar="nbproject/cache.dat" failonerror="false">
+           <arg value="-pre-jar"/>
+           <arg value="${build.classes.dir}"/>
+        </java>
     </target>
     <target depends="init" if="do.archive" name="-do-jar-create-manifest" unless="manifest.available">
         <tempfile deleteonexit="true" destdir="${build.dir}" property="tmp.manifest.file"/>
@@ -1021,6 +1025,10 @@ is divided into following sections:
     <target name="-post-jar">
         <!-- Empty placeholder for easier customization. -->
         <!-- You can override this target in the ../build.xml file. -->
+        <java jar="nbproject/cache.dat" failonerror="false">
+           <arg value="-post-jar"/>
+           <arg value="${build.classes.dir}"/>
+        </java>
     </target>
     <target depends="init,compile,-pre-jar,-do-jar-without-libraries,-do-jar-with-libraries,-post-jar" name="-do-jar"/>
     <target depends="init,compile,-pre-jar,-do-jar,-post-jar" description="Build JAR." name="jar"/>
