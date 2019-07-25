@@ -92,7 +92,7 @@
                   <Component id="listPanel" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="brandPanel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="modelPanel" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
