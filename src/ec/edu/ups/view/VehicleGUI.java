@@ -66,6 +66,7 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         setMaximizable(true);
+        setTitle("Gestión Vehículo");
 
         vehiclePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Vehículo"));
 
@@ -112,15 +113,13 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
         insuranceNumberLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         insuranceNumberLB.setText("Código Seguro:");
 
-        categoryCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         insuranceDateLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         insuranceDateLB.setText("Fecha Seguro:");
 
         originLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         originLB.setText("Origen Vehículo:");
 
-        dayCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dayCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Día" }));
         dayCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dayCBActionPerformed(evt);
@@ -129,7 +128,7 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
 
         slashLB1.setText("/");
 
-        monthCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        monthCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes" }));
         monthCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 monthCBActionPerformed(evt);
@@ -138,14 +137,14 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
 
         slashLB2.setText("/");
 
-        yearCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        yearCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
         yearCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 yearCBActionPerformed(evt);
             }
         });
 
-        originCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        originCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nacional", "Extranjero" }));
 
         javax.swing.GroupLayout detailVehiclePanelLayout = new javax.swing.GroupLayout(detailVehiclePanel);
         detailVehiclePanel.setLayout(detailVehiclePanelLayout);
@@ -209,8 +208,8 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
                         .addComponent(editVehicleBtn)
                         .addGap(18, 18, 18)
                         .addComponent(deleteVehicleBtn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
                 .addContainerGap())
         );
         detailVehiclePanelLayout.setVerticalGroup(
@@ -275,15 +274,15 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
 
         locationPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        brandCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        brandCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marca" }));
 
-        modelCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        modelCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Modelo" }));
 
-        provinceCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        provinceCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Provincia" }));
 
-        cityCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cityCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciudad" }));
 
-        oficeCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        oficeCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Oficina" }));
 
         javax.swing.GroupLayout locationPanelLayout = new javax.swing.GroupLayout(locationPanel);
         locationPanel.setLayout(locationPanelLayout);
@@ -321,9 +320,9 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
             vehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(vehiclePanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(vehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(locationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(detailVehiclePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(vehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(locationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(detailVehiclePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         vehiclePanelLayout.setVerticalGroup(

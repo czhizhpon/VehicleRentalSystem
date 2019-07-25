@@ -56,6 +56,7 @@ public class CompanyGUI extends javax.swing.JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         setMaximizable(true);
+        setTitle("Administrar Datos de Empresa");
 
         categoryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Categoría"));
 
