@@ -13,6 +13,7 @@ package ec.edu.ups.model;
  * @author Sarmiento Bryan, Serpa Roberto, Zhizhpon Eduardo
  */
 public class BillDetail {
+    
     private int detId;
     private int detDuration;
     private double detDayCost;

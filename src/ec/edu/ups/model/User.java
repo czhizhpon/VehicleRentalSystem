@@ -19,14 +19,15 @@ import java.util.List;
 public class User {
     
     private int useId;
+    private String useUsername;
+    private String usePassword;
     private String useDNI;
     private String useName;
     private String useLastNamel;
+    private String useEmail;
     private Date useBirthDay;
     private String useAddress;
     private char useType;
-    private String useEmail;
-    private String usePassword;
     private List<Phone> usePhones;
 
     public User() {
@@ -110,6 +111,14 @@ public class User {
         this.useEmail = useEmail;
     }
 
+    public String getUseUsername() {
+        return useUsername;
+    }
+
+    public void setUseUsername(String useUsername) {
+        this.useUsername = useUsername;
+    }
+    
     public String getUsePassword() {
         return usePassword;
     }

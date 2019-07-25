@@ -7,9 +7,7 @@
  */
 package ec.edu.ups.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @since 11-Jun-2019
@@ -26,12 +24,15 @@ public class Vehicle {
     private String vehInsurranceNumber;
     private Date vehInsurranceDate;
     private Date vehInsurranceExpires;
+    private char vehOrigin;
     private VehCategory vehCategory;
 
     public Vehicle() {
     }
 
-    public Vehicle(int vehId, String vehPlate, String vehColor, char vehStatus, double vehKilometraje, String vehInsurranceNumber, Date vehInsurranceDate, Date vehInsurranceExpires, VehCategory vehCategory) {
+    public Vehicle(int vehId, String vehPlate, String vehColor, char vehStatus, 
+            double vehKilometraje, String vehInsurranceNumber, Date vehInsurranceDate, 
+            Date vehInsurranceExpires, char vehOrigin, VehCategory vehCategory) {
         this.vehId = vehId;
         this.vehPlate = vehPlate;
         this.vehColor = vehColor;
@@ -40,9 +41,10 @@ public class Vehicle {
         this.vehInsurranceNumber = vehInsurranceNumber;
         this.vehInsurranceDate = vehInsurranceDate;
         this.vehInsurranceExpires = vehInsurranceExpires;
+        this.vehOrigin = vehOrigin;
         this.vehCategory = vehCategory;
     }
-
+    
     public int getVehId() {
         return vehId;
     }
@@ -114,6 +116,16 @@ public class Vehicle {
     public void setVehInsurranceExpires(Date vehInsurranceExpires) {
         this.vehInsurranceExpires = vehInsurranceExpires;
     }
+
+    public char getVehOrigin() {
+        return vehOrigin;
+    }
+
+    public void setVehOrigin(char vehOrigin) {
+        this.vehOrigin = vehOrigin;
+    }
+    
+    
 
     @Override
     public String toString() {

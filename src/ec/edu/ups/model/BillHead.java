@@ -26,6 +26,7 @@ public class BillHead {
     private Date heaDate;
     private char heaStatus;
     private Customer customer;
+    private PaymentMethod heaPayMeth;
     private List<BillDetail> heaDetails;
 
     public BillHead() {
@@ -107,6 +108,14 @@ public class BillHead {
         this.customer = customer;
     }
 
+    public PaymentMethod getHeaPayMeth() {
+        return heaPayMeth;
+    }
+
+    public void setHeaPayMeth(PaymentMethod heaPayMeth) {
+        this.heaPayMeth = heaPayMeth;
+    }
+    
     public List<BillDetail> getHeaDetails() {
         return heaDetails;
     }

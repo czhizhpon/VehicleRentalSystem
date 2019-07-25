@@ -17,18 +17,12 @@ import java.util.Date;
 public class Reservation {
     
     private int resId;
-    private Date resDate;
+    private Date resDateIni;
+    private Date resDateFin;
     private Customer resCustomer;
     private Vehicle resVehicle;
 
     public Reservation() {
-    }
-
-    public Reservation(int resId, Date resDate, Customer resCustomer,Vehicle resVehicle) {
-        this.resId = resId;
-        this.resDate = resDate;
-        this.resCustomer = resCustomer;
-        this.resVehicle = resVehicle;
     }
 
     public int getResId() {
@@ -39,12 +33,20 @@ public class Reservation {
         this.resId = resId;
     }
 
-    public Date getResDate() {
-        return resDate;
+    public Date getResDateIni() {
+        return resDateIni;
     }
 
-    public void setResDate(Date resDate) {
-        this.resDate = resDate;
+    public void setResDateIni(Date resDateIni) {
+        this.resDateIni = resDateIni;
+    }
+
+    public Date getResDateFin() {
+        return resDateFin;
+    }
+
+    public void setResDateFin(Date resDateFin) {
+        this.resDateFin = resDateFin;
     }
 
     public Customer getResCustomer() {
@@ -62,12 +64,5 @@ public class Reservation {
     public void setResVehicle(Vehicle resVehicle) {
         this.resVehicle = resVehicle;
     }
-
-    @Override
-    public String toString() {
-        return "Reservation{" + "resId=" + resId + ", resDate=" + resDate 
-                + ", resVehicle=" + resVehicle.toString() + '}';
-    }
-    
     
 }

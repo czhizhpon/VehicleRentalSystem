@@ -17,7 +17,6 @@ public class VehCategory {
     
     private int catId;
     private String catName;
-    private String catDescription;
     private double catDayCost;
     private double catDamageCost;
     private int catWarrantyPct;
@@ -25,10 +24,9 @@ public class VehCategory {
     public VehCategory() {
     }
 
-    public VehCategory(int catId, String catName, String catDescription, double catDayCost, double catDamageCost, int catWarrantyPct) {
+    public VehCategory(int catId, String catName, double catDayCost, double catDamageCost, int catWarrantyPct) {
         this.catId = catId;
         this.catName = catName;
-        this.catDescription = catDescription;
         this.catDayCost = catDayCost;
         this.catDamageCost = catDamageCost;
         this.catWarrantyPct = catWarrantyPct;
@@ -48,14 +46,6 @@ public class VehCategory {
 
     public void setCatName(String catName) {
         this.catName = catName;
-    }
-
-    public String getCatDescription() {
-        return catDescription;
-    }
-
-    public void setCatDescription(String catDescription) {
-        this.catDescription = catDescription;
     }
 
     public double getCatDayCost() {
@@ -85,7 +75,7 @@ public class VehCategory {
     @Override
     public String toString() {
         return "VehCategory{" + "catId=" + catId + ", catName=" + catName 
-                + ", catDescription=" + catDescription + ", catDayCost=" 
+                + ", catDayCost=" 
                 + catDayCost + ", catDamageCost=" + catDamageCost 
                 + ", catWarrantyPct=" + catWarrantyPct + '}';
     }
