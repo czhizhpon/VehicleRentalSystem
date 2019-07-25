@@ -28,13 +28,14 @@ public class ConnectionJava {
         connection = new ConnectionDataBase();
     }
     
-    public void startConnection() throws NullPointerException{
-        connection.setUrl("jdbc:oracle:thin:@localhost:1521:orcl:");
-        connection.setUsername("hr");
-        connection.setPassword("hr_123");
-        connection.coneection();
-
-        if (connection.getConnection() == null) {
+    public void startConnection(String username, String password) throws NullPointerException{
+        
+        try{
+            connection.setUrl("jdbc:oracle:thin:@localhost:1521:vrsdb");
+            connection.setUsername(username);
+            connection.setPassword(password);
+            connection.coneection();
+        } catch (NullPointerException e){
             throw new NullPointerException("Faild connection with DataBase");
         }
         

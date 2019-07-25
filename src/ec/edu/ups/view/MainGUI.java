@@ -6,6 +6,7 @@
 package ec.edu.ups.view;
 
 import ec.edu.ups.conectionDB.ConnectionJava;
+import ec.edu.ups.model.User;
 import java.beans.PropertyVetoException;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,27 +26,28 @@ public class MainGUI extends javax.swing.JFrame {
     
     /**
      * Creates new form MainGUI
-     * @param useType
+     * @param user
      * @param connection
      */
-    public MainGUI(char useType, ConnectionJava connection) {
+    public MainGUI(User user, ConnectionJava connection) {
         initComponents();
         setSize(1100,900);
         setLocationRelativeTo(null);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         
-        this.userType = useType;
+        this.user = user;
         this.connection = connection;
         loadMenus();
     }
 
-    public char getUserType() {
-        return userType;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserType(char userType) {
-        this.userType = userType;
+    public void setUser(User user) {
+        this.user = user;
     }
+
     
     public JMenu getHelpJM() {
         return helpJM;
@@ -405,7 +407,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private boolean loadMenus(){
         
-        switch(getUserType()){
+        switch(getUser().getUseType()){
             case 'C':
                 customerMenu();
                 break;
@@ -542,7 +544,7 @@ public class MainGUI extends javax.swing.JFrame {
     private UserManagementGUI userManagementGUI;
     private VehicleGUI vehicleGUI;
     private VehicleManagementGUI vehicleManagementGUI;
-    private char userType;
+    private User user;
     
     
     

@@ -6,6 +6,10 @@
 package ec.edu.ups.view;
 
 import ec.edu.ups.conectionDB.ConnectionJava;
+import ec.edu.ups.controller.UserController;
+import ec.edu.ups.model.Employee;
+import ec.edu.ups.model.User;
+import ec.edu.ups.services.Services;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class LoginGUI extends javax.swing.JFrame {
 
+    
+    private UserController conUser;
     private ConnectionJava connection;
     
     /**
@@ -21,10 +27,9 @@ public class LoginGUI extends javax.swing.JFrame {
      */
     public LoginGUI() {
         
-        startConnection();
-        
         initComponents();
         this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -130,20 +135,26 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameTxtActionPerformed
 
     private void loginBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtActionPerformed
-        // TODO add your handling code here:
+        
         try{
             
-            char c = this.usernameTxt.getText().charAt(0);
-            if (c == 'A' || c == 'C' || c == 'E'){
-                MainGUI main = new MainGUI(c, this.connection);
-                main.setVisible(true);
-                dispose();
-            }else{
-                JOptionPane.showMessageDialog(null, "Error al Iniciar Sesion");
-            }
+            char [] input = this.passwordTxt.getPassword();
+            
+            //String passMd5 = services.getMd5(String.valueOf(input));
+            
+            startConnection(this.usernameTxt.getText(), String.valueOf(input));
+            
+            conUser = new UserController();
+            User user = new User();
+            
+            conUser.readUser(connection, user, usernameTxt.getText());
+            
+            
+            
         } catch (Exception ex){
-            JOptionPane.showMessageDialog(null, "Error al Iniciar Sesion"
-                    + "\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en el nombre de usuario"
+                    + " o la contraseña."
+                    + "\n" + ex.toString());
         }
     }//GEN-LAST:event_loginBtActionPerformed
 
@@ -151,12 +162,12 @@ public class LoginGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordTxtActionPerformed
 
-    private void startConnection(){
+    private void startConnection(String username, String password){
         this.connection = new ConnectionJava();
         try{
-            this.connection.startConnection();
+            this.connection.startConnection(username, password);
         } catch (NullPointerException e){
-            JOptionPane.showMessageDialog(null, e.toString());
+            throw e;
         }
     }
     

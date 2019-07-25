@@ -8,6 +8,7 @@
 package ec.edu.ups.controller;
 
 import ec.edu.ups.conectionDB.ConnectionJava;
+import ec.edu.ups.model.Employee;
 import ec.edu.ups.model.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,6 +21,9 @@ import java.util.List;
  * @author Sarmiento Bryan, Serpa Roberto, Zhizhpon Eduardo
  */
 public class UserController {
+    
+    private CustomerController conCus;
+    private EmployeeController conEmp;
     
     private PreparedStatement pstat;
     private ResultSet rstat;
@@ -39,22 +43,57 @@ public class UserController {
         return true;
     }
     
-    public boolean read(ConnectionJava connection){
-        String query = "";
+    public boolean readUser(ConnectionJava connection, User user, String username){
+        String query = "SELECT *"
+                + "FROM vrs_users"
+                + "WHERE use_username LIKE ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, username);
             
             rstat = pstat.executeQuery();
             
             while(rstat.next()){
-                ;
+                
+                user.setUseId(rstat.getInt(1));
+                user.setUseUsername(rstat.getString(2));
+                user.setUsePassword(rstat.getString(3));
+                user.setUseDNI(rstat.getString(4));
+                user.setUseName(rstat.getString(5));
+                user.setUseLastNamel(rstat.getString(6));
+                user.setUseEmail(rstat.getString(7));
+                user.setUseBirthDay(rstat.getDate(8));
+                user.setUseAddress(rstat.getString(9));
+
+                user.setUseType(rstat.getString(11).charAt(0));
+                
+                
+//                switch(rstat.getString(11)){
+//                    case "A":
+//                        break;
+//                    case "E":
+//                        break;
+//                    case "C":
+//                        break;
+//                }
             }
             
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
         connection.closeConnection();
+        return true;
+    }
+    
+    public boolean readEmployee(ConnectionJava connection, Employee employee, 
+            int useId){
+        
+        try{
+            this.conEmp.readEmployee(connection, employee, useId);
+        }catch(NullPointerException e){
+            
+        }
         return true;
     }
     
