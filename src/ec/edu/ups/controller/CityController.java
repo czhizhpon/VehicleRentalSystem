@@ -11,6 +11,7 @@ package ec.edu.ups.controller;
 
 import ec.edu.ups.conectionDB.ConnectionJava;
 import ec.edu.ups.model.City;
+import ec.edu.ups.model.Province;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,10 +31,13 @@ public class CityController {
     private ResultSet rstat;
     
     public boolean createCity(ConnectionJava connection, City city, int proId){
-        String query = "";
+        String query = "INSERT INTO VRS_CITIES VALUES(\n" 
+                + "cit_id_seq.NEXTVAL, ?, ?)";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, city.getCitName());
+            pstat.setInt(2, proId);
             
             pstat.executeUpdate();
             
@@ -44,7 +48,7 @@ public class CityController {
         return true;
     }
     
-    public boolean readCity(ConnectionJava connection, City city, int proId, 
+    public boolean readCity(ConnectionJava connection, City city, Province province, 
             int citId){
         
         String query = "SELECT cit_id, cit_name\n" +        
@@ -54,7 +58,7 @@ public class CityController {
         
         try {
             pstat = connection.getConnection().prepareStatement(query);
-            pstat.setInt(1, proId);
+            pstat.setInt(1, province.getProId());
             pstat.setInt(2, citId);
             
             rstat = pstat.executeQuery();
@@ -76,10 +80,14 @@ public class CityController {
     }
     
     public boolean updateCity(ConnectionJava connection, City city){
-        String query = "";
+        String query = "UPDATE vrs_cities SET"
+                + "cit_name = ?"
+                + "pro_name = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, city.getCitName());
+            pstat.setInt(2, city.getCitProvince().getProId());
             
             pstat.executeUpdate();
             
@@ -91,10 +99,12 @@ public class CityController {
     }
     
     public boolean deleteCity(ConnectionJava connection, int citId){
-        String query = "";
+        String query = "DELETE vrs_cities "
+                + "WHERE cit_id = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, citId);
             
             pstat.executeUpdate();
             
@@ -107,7 +117,7 @@ public class CityController {
     
     public boolean getCities(ConnectionJava connection, List<City> cities, 
             int proId){
-        
+        City city;
         String query = "SELECT cit_id, cit_name\n" +        
                         "FROM vrs_cities \n" +
                         "WHERE pro_id = ?;";
@@ -117,7 +127,7 @@ public class CityController {
             pstat.setInt(1, proId);
             rstat = pstat.executeQuery();
             while (rstat.next()) {                
-                City city = new City(rstat.getInt(1), rstat.getString(2));
+                city = new City(rstat.getInt(1), rstat.getString(2));
                 cities.add(city);
             }
             connection.closeConnection();

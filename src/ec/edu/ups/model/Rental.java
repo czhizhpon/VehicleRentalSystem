@@ -21,26 +21,16 @@ public class Rental {
     private double renKilometrajeFin;
     private Date renDateIni;
     private Date renDateFin;
+    private double renWarranty;
+    private char renStatus;
     private Customer renCustomer;
     private Vehicle renVehicle;
     private Reservation renReservation;
+    private PaymentMethod renPayMeth;
 
     public Rental() {
     }
-
-    public Rental(int renId, double renKilometrajeIni, double renKilometrajeFin, 
-            Date renDateIni, Date renDateFin, Customer renCustomer,Vehicle renVehicle,
-            Reservation renReservation) {
-        this.renId = renId;
-        this.renKilometrajeIni = renKilometrajeIni;
-        this.renKilometrajeFin = renKilometrajeFin;
-        this.renDateIni = renDateIni;
-        this.renDateFin = renDateFin;
-        this.renCustomer = renCustomer;
-        this.renVehicle = renVehicle;
-        this.renReservation = renReservation;
-    }
-
+    
     public int getRenId() {
         return renId;
     }
@@ -81,6 +71,22 @@ public class Rental {
         this.renDateFin = renDateFin;
     }
 
+    public double getRenWarranty() {
+        return renWarranty;
+    }
+
+    public void setRenWarranty(double renWarranty) {
+        this.renWarranty = renWarranty;
+    }
+
+    public char getRenStatus() {
+        return renStatus;
+    }
+
+    public void setRenStatus(char renStatus) {
+        this.renStatus = renStatus;
+    }
+
     public Customer getRenCustomer() {
         return renCustomer;
     }
@@ -105,6 +111,14 @@ public class Rental {
         this.renReservation = renReservation;
     }
 
+    public PaymentMethod getRenPayMeth() {
+        return renPayMeth;
+    }
+
+    public void setRenPayMeth(PaymentMethod renPayMeth) {
+        this.renPayMeth = renPayMeth;
+    }
+    
     @Override
     public String toString() {
         return "Rental{" + "renId=" + renId + ", renKilometrajeIni=" 

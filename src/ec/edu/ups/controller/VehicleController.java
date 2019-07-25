@@ -43,22 +43,40 @@ public class VehicleController {
         return true;
     }
     
-    public boolean readVehicle(ConnectionJava connection, Vehicle vehicle){
+    public boolean readVehicle(ConnectionJava connection, Vehicle vehicle, 
+            int vehId){
         
         VehCategory vehCategory;
-        String query = "";
+        String query = "SELECT veh_id, veh_plate, veh_color, veh_status, veh_kilometrage,"
+                + "veh_insurance_number, veh_insurrance_date, veh_insurrance_expires,"
+                + "veh_origin, cat_id"
+                + "FROM vrs_vehicle"
+                + "WHERE veh_id = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, vehId);
             
             rstat = pstat.executeQuery();
             
+            /*offId, modId, catId, proId*/
             while(rstat.next()){
+                
+                vehicle.setVehId(rstat.getInt(1));
+                vehicle.setVehPlate(rstat.getString(2));
+                vehicle.setVehColor(rstat.getString(3));
+                vehicle.setVehStatus(rstat.getString(4).charAt(0));
+                vehicle.setVehKilometraje(rstat.getDouble(5));
+                vehicle.setVehInsurranceNumber(rstat.getString(6));
+                vehicle.setVehInsurranceDate(rstat.getDate(7));
+                vehicle.setVehInsurranceExpires(rstat.getDate(8));
+                vehicle.setVehOrigin(rstat.getString(9).charAt(0));
+                
                 vehCategory = new VehCategory();
                 
                 
                 this.vehCategoryController.readVehCategory(connection, 
-                        vehCategory, 5);
+                        vehCategory, rstat.getInt(10));
                 vehicle.setVehCategory(vehCategory);
             }
             

@@ -45,15 +45,20 @@ public class PrivilegeController {
     public boolean readPrivilege(ConnectionJava connection, Privilege privilege, 
             int priId){
         
-        String query = "";
+        String query = "SELECT * "
+                + "FROM vrs_privileges"
+                + "WHERE pri_id = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, priId);
             
             rstat = pstat.executeQuery();
             
             while(rstat.next()){
-                ;
+                privilege.setPriId(rstat.getInt(1));
+                privilege.setPriName(rstat.getString(2));
+                privilege.setPriDiscountPct(rstat.getInt(3));
             }
             
         }catch(SQLException ex){
