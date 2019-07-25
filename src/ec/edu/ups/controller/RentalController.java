@@ -24,17 +24,22 @@ import java.util.List;
  */
 public class RentalController {
     
+    private VehicleController conVehicle;
+    private CustomerController conCustomer;
+    
     private PreparedStatement pstat;
     private ResultSet rstat;
     
-    public boolean createRental(ConnectionJava connection, Rental rental, 
-            int vehId, int cusId, int resId){
-        String query = "";
+    public boolean createRental(ConnectionJava connection, Rental rental){
+        
+        /*sequence, km ini, km fin, date ini, date fin, res_id, veh_id, use_id*/
         
         try{
-            pstat = connection.getConnection().prepareStatement(query);
-            
-            pstat.executeUpdate();
+            if (rental.getRenReservation() != null ){
+                createRentalWithReservation(connection, rental);
+            }else{
+                createRentalWithoutReservation(connection, rental);
+            }
             
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
@@ -43,8 +48,56 @@ public class RentalController {
         return true;
     }
     
-    public boolean readRental(ConnectionJava connection, Rental rental, Vehicle 
-            vehicle, Customer customer, Reservation reservation){
+    private boolean createRentalWithReservation(ConnectionJava connection, 
+            Rental rental) throws SQLException{
+        
+        String query = "INSERT INTO vrs_rentals VALUES(\n" 
+                + "ren_id_seq.NEXTVAL, ?, ?, ?,\n" 
+                + "?, ?, ?, ?\n)";
+        
+        
+        pstat = connection.getConnection().prepareStatement(query);
+        
+        pstat.setDouble(1, rental.getRenKilometrajeIni());
+        pstat.setDouble(2, rental.getRenKilometrajeFin());
+        pstat.setDate(3, new java.sql.Date(rental.getRenDateIni().getTime()));
+        pstat.setDate(4, new java.sql.Date(rental.getRenDateFin().getTime()));
+        pstat.setInt(5, rental.getRenReservation().getResId());
+        pstat.setInt(6, rental.getRenVehicle().getVehId());
+        pstat.setInt(7, rental.getRenCustomer().getUseId());
+        
+        pstat.executeUpdate();
+        
+        
+        return true;
+    }
+    
+    private boolean createRentalWithoutReservation(ConnectionJava connection, 
+            Rental rental) throws SQLException{
+        
+        String query = "INSERT INTO vrs_rentals VALUES(\n" 
+                + "ren_id_seq.NEXTVAL, ?, ?, ?,\n" 
+                + "?, null, ?, ?\n)";
+        
+        
+        pstat = connection.getConnection().prepareStatement(query);
+        
+        pstat.setDouble(1, rental.getRenKilometrajeIni());
+        pstat.setDouble(2, rental.getRenKilometrajeFin());
+        pstat.setDate(3, new java.sql.Date(rental.getRenDateIni().getTime()));
+        pstat.setDate(4, new java.sql.Date(rental.getRenDateFin().getTime()));
+//        pstat.setInt(5, rental.getRenReservation().getResId());
+        pstat.setInt(5, rental.getRenVehicle().getVehId());
+        pstat.setInt(6, rental.getRenCustomer().getUseId());
+        
+        pstat.executeUpdate();
+        
+        
+        return true;
+    }
+    
+    public boolean readRental(ConnectionJava connection, Rental rental, 
+            String useDNI){
         
         String query = "";
         
@@ -55,9 +108,9 @@ public class RentalController {
             
             while(rstat.next()){
                 
-                rental.setRenCustomer(customer);
-                rental.setRenVehicle(vehicle);
-                rental.setRenReservation(reservation);
+//                rental.setRenCustomer(customer);
+//                rental.setRenVehicle(vehicle);
+//                rental.setRenReservation(reservation);
             }
             
         }catch(SQLException ex){
@@ -105,21 +158,35 @@ public class RentalController {
         Rental rental;
         Vehicle vehicle;
         Reservation reservation;
-        String query = "";
+        String query = "SELECT *"
+                + "FROM vrs_rentals"
+                + "WHERE use_id = ?";
+                //+ "ren_status = ?";
         
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, customer.getUseId());
+            pstat.setString(2, "D");
             
             rstat = pstat.executeQuery();
             
+            /*res_id, veh_id, use_id*/
             while(rstat.next()){
                 
                 rental = new Rental();
                 vehicle = new Vehicle();
                 reservation = new Reservation();
                 
+                rental.setRenId(rstat.getInt(1));
+                rental.setRenKilometrajeIni(rstat.getDouble(2));
+                rental.setRenKilometrajeFin(rstat.getDouble(3));
+                rental.setRenDateIni(rstat.getDate(4));
+                rental.setRenDateFin(rstat.getDate(5));
+                //rental.setRenWarranty(rstat.getDouble(6));
                 
+                
+                this.conVehicle.readVehicle(connection, vehicle, rstat.getInt(7));
                 
                 rental.setRenCustomer(customer);
                 rental.setRenVehicle(vehicle);

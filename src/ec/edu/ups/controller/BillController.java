@@ -8,6 +8,7 @@
 package ec.edu.ups.controller;
 
 import ec.edu.ups.conectionDB.ConnectionJava;
+import ec.edu.ups.model.BillDetail;
 import ec.edu.ups.model.BillHead;
 import ec.edu.ups.model.Customer;
 import java.sql.PreparedStatement;
@@ -26,25 +27,56 @@ public class BillController {
     private ResultSet rstat;
     
     public boolean createBillHead(ConnectionJava connection, BillHead billHead){
-        
-        /*sequence, subtotal, discount, vat, total, Date, status, customer*/
-        String query = "INSERT INTO vrs_bill_heads VALUES(\n" 
-                + "hea_id_seq.NEXTVAL, ?, ?, ?, ?,\n" 
-                + "?, ?, ?);";
-        
         try{
+            /*Get sequence value*/
+            int heaId;
+
+            String query = "SELECT hea_id_seq.NEXTVAL \n"
+                    + "FROM dual;";
             pstat = connection.getConnection().prepareStatement(query);
-            pstat.setDouble(1, billHead.getHeaSubtotal());
-            pstat.setDouble(2, billHead.getHeaVat());
-            pstat.setDouble(3, billHead.getHeaDisc());
-            pstat.setDouble(4, billHead.getHeaTotal());
+            rstat = pstat.executeQuery();
+            
+            heaId = rstat.getInt(1);
+            
+            /*sequence, subtotal, discount, vat, total, Date, status, customer*/
+            query = "INSERT INTO vrs_bill_heads VALUES(\n" 
+                    + "?, ?, ?, ?, ?,\n" 
+                    + "?, ?, ?);";
+        
+        
+            pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, heaId);
+            pstat.setDouble(2, billHead.getHeaSubtotal());
+            pstat.setDouble(3, billHead.getHeaVat());
+            pstat.setDouble(4, billHead.getHeaDisc());
+            pstat.setDouble(5, billHead.getHeaTotal());
             
             java.sql.Date sqlDate = new java.sql.Date(billHead.getHeaDate().getTime());
-            pstat.setDate(5, sqlDate);
-            pstat.setString(6, "" + billHead.getHeaStatus());
-            pstat.setInt(7, billHead.getCustomer().getUseId());
+            pstat.setDate(6, sqlDate);
+            pstat.setString(7, "" + billHead.getHeaStatus());
+            pstat.setInt(8, billHead.getCustomer().getUseId());
             
             pstat.executeUpdate();
+            
+            
+            /*sequence, duration, day_cost, extra_damage, extra_delay, subtotal, 
+            head, vehicle*/
+            query = "INSERT INTO vrs_bill_details VALUES(\n" 
+                    + "det_id_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?);";
+            
+            pstat = connection.getConnection().prepareStatement(query);
+            
+            for(BillDetail detail: billHead.getHeaDetails()){
+                pstat.setInt(1, detail.getDetDuration());
+                pstat.setDouble(2, detail.getDetDayCost());
+                pstat.setDouble(3, detail.getDetExtraDamage());
+                pstat.setDouble(4, detail.getDetExtraDelay());
+                pstat.setDouble(5, detail.getDetSubtotal());
+                pstat.setInt(6, heaId);
+                pstat.setInt(7, detail.getDetRental().getRenVehicle().getVehId());
+                
+                pstat.executeUpdate();
+            }
             
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
@@ -82,7 +114,8 @@ public class BillController {
                 + "hea_disc = ? \n"
                 + "hea_total = ? \n"
                 + "hea_date = ? \n"
-                + "hea_status = ? \n";
+                + "hea_status = ? \n"
+                + "WHERE hea_id = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
@@ -90,7 +123,8 @@ public class BillController {
             pstat.setDouble(2, billHead.getHeaVat());
             pstat.setDouble(3, billHead.getHeaDisc());
             pstat.setDouble(4, billHead.getHeaTotal());
-            pstat.setDate(4, new java.sql.Date(billHead.getHeaDate().getTime()));
+            pstat.setDate(5, new java.sql.Date(billHead.getHeaDate().getTime()));
+            pstat.setInt(6, billHead.getHeaId());
             
             pstat.executeUpdate();
             
@@ -102,10 +136,14 @@ public class BillController {
     }
     
     public boolean deleteBillHead(ConnectionJava connection, int bilId){
-        String query = "";
+        String query = "UPDATE vrs_bill_heads SET"
+                + "hea_status = ? \n"
+                + "WHERE hea_id = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, "A");
+            pstat.setInt(2, bilId);
             
             pstat.executeUpdate();
             

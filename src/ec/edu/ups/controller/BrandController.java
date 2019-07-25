@@ -25,7 +25,8 @@ public class BrandController {
     private ResultSet rstat;
     
     public boolean createBrand(ConnectionJava connection, Brand brand){
-        String query = "";
+        String query = "INSERT INTO VRS_BRANDS VALUES(\n" 
+                + "bra_id_seq.NEXTVAL,?)";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
@@ -41,10 +42,13 @@ public class BrandController {
     }
     
     public boolean readBrand(ConnectionJava connection, Brand brand, int braId){
-        String query = "";
+        String query = "SELECT *"
+                + "FROM vrs_brands"
+                + "WHERE bra_id = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, braId);
             
             rstat = pstat.executeQuery();
             
@@ -61,10 +65,14 @@ public class BrandController {
     }
     
     public boolean updateBrand(ConnectionJava connection, Brand brand){
-        String query = "";
+        String query = "UPDATE vrs_brans SET"
+                + "bra_name = ?"
+                + "WHERE bra_id = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, brand.getBraName());
+            pstat.setInt(2, brand.getBraId());
             
             pstat.executeUpdate();
             
@@ -76,16 +84,19 @@ public class BrandController {
     }
     
     public boolean deleteBrand(ConnectionJava connection, int braId){
-        String query = "";
+        String query = "DELETE vrs_brands "
+                + "WHERE bra_id = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, braId);
             
             pstat.executeUpdate();
             
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
+        
         connection.closeConnection();
         return true;
     }
@@ -93,7 +104,8 @@ public class BrandController {
     public boolean getBrands(ConnectionJava connection, List<Brand>  brands){
         
         Brand brand;
-        String query = "";
+        String query = "SELECT *"
+                + "FROM vrs_brands";
         
         
         try{
