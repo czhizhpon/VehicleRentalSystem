@@ -36,7 +36,8 @@ public class ConnectionJava {
             connection.setPassword(password);
             connection.coneection();
         } catch (NullPointerException e){
-            throw new NullPointerException("Faild connection with DataBase");
+            throw new NullPointerException("Failed connection with VRS"
+                    + " Data Base");
         }
         
     }

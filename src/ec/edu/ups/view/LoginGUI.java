@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class LoginGUI extends javax.swing.JFrame {
 
+    private Services services;
     
     private UserController conUser;
     private ConnectionJava connection;
@@ -30,6 +31,8 @@ public class LoginGUI extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         
+        connection = new ConnectionJava();
+        services = new Services();
     }
 
     /**
@@ -140,21 +143,33 @@ public class LoginGUI extends javax.swing.JFrame {
             
             char [] input = this.passwordTxt.getPassword();
             
-            //String passMd5 = services.getMd5(String.valueOf(input));
+            String passMd5 = services.getMd5(String.valueOf(input));
             
             startConnection(this.usernameTxt.getText(), String.valueOf(input));
             
             conUser = new UserController();
             User user = new User();
             
+            
             conUser.readUser(connection, user, usernameTxt.getText());
             
+            if (rootPaneCheckingEnabled) {
+                
+            }
+            
+            MainGUI m = new MainGUI(user, connection);
+            
+            m.setVisible(true);
+            
+            dispose();
             
             
         } catch (Exception ex){
             JOptionPane.showMessageDialog(null, "Error en el nombre de usuario"
                     + " o la contraseña."
-                    + "\n" + ex.toString());
+                    + "\n" + ex);
+            
+            System.out.println(ex.toString());
         }
     }//GEN-LAST:event_loginBtActionPerformed
 
