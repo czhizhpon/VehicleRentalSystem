@@ -66,6 +66,7 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         setMaximizable(true);
+        setTitle("Gestión Vehículo");
 
         vehiclePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Vehículo"));
 

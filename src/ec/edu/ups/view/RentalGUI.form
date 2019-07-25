@@ -6,6 +6,7 @@
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="iconifiable" type="boolean" value="true"/>
     <Property name="maximizable" type="boolean" value="true"/>
+    <Property name="title" type="java.lang.String" value="Alquiler"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -25,52 +26,52 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="billPanel" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="rentalPanel" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="billPanel" alignment="0" max="32767" attributes="0"/>
+          <Component id="rentalPanel" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="billPanel">
+    <Container class="javax.swing.JPanel" name="rentalPanel">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="billBtnPanel" max="32767" attributes="0"/>
-                      <Component id="billDetailPanel" max="32767" attributes="0"/>
-                      <Component id="customerPanel" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="vehiclePanel" min="-2" pref="428" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="vehicleDetailPanel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="customerPanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="billDetailPanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="billBtnPanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="vehicleDetailPanel" max="32767" attributes="0"/>
+                      <Component id="vehiclePanel" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="customerPanel">
+        <Container class="javax.swing.JPanel" name="vehiclePanel">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Datos Cliente"/>
+                <TitledBorder title="Datos Veh&#xed;culo"/>
               </Border>
             </Property>
           </Properties>
@@ -80,132 +81,167 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="dniCustomerLB" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="dniCustomerTxt" min="-2" pref="200" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="nameCustomerLB" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="nameCustomerTxt" min="-2" pref="200" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="directionCustomerLB" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="directionCustomerTxt" min="-2" pref="200" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="phoneCustomerLB" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="phoneCustomerTxt" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="rentalBtn" min="-2" pref="98" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lastnameCustomerLB" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="searchCustomerBtn" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="createCustomerBtn" min="-2" max="-2" attributes="0"/>
+                                      <Component id="kilometrageEndLB" min="-2" pref="110" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="kilometrageEndTxt" min="-2" pref="200" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="lastnameCustomerTxt" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="dateInitLB" min="-2" pref="110" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="dateInitTxt" min="-2" pref="200" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="totalDaysLB" min="-2" pref="110" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="totalDaysTxt" min="-2" pref="200" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="plateLB" max="32767" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="plateTxt" min="-2" pref="200" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="statusVehicleLB" max="32767" attributes="0"/>
+                                                  <Component id="kilometrageInitLB" max="32767" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="kilometrageInitTxt" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                                  <Component id="statusVehicleTxt" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="searchVehicleBtn" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="dniCustomerLB" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="dniCustomerTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="searchCustomerBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="createCustomerBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="plateLB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="plateTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="searchVehicleBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="nameCustomerLB" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lastnameCustomerLB" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="nameCustomerTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lastnameCustomerTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="statusVehicleLB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="statusVehicleTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="directionCustomerLB" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="phoneCustomerLB" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="directionCustomerTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="phoneCustomerTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="kilometrageInitLB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="kilometrageInitTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="kilometrageEndLB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="kilometrageEndTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="dateInitLB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="dateInitTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="totalDaysLB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="totalDaysTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="rentalBtn" min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="dniCustomerLB">
+            <Component class="javax.swing.JLabel" name="plateLB">
               <Properties>
-                <Property name="text" type="java.lang.String" value="C&#xe9;dula:"/>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="Placa:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="nameCustomerLB">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nombre:"/>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="plateTxt">
             </Component>
-            <Component class="javax.swing.JLabel" name="directionCustomerLB">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Direcci&#xf3;n:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lastnameCustomerLB">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Apellido:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="phoneCustomerLB">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="N&#xfa;mero:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="directionCustomerTxt">
-            </Component>
-            <Component class="javax.swing.JTextField" name="nameCustomerTxt">
+            <Component class="javax.swing.JTextField" name="statusVehicleTxt">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameCustomerTxtActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="statusVehicleTxtActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="dniCustomerTxt">
+            <Component class="javax.swing.JLabel" name="statusVehicleLB">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="Estado Veh&#xed;culo: "/>
+              </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="lastnameCustomerTxt">
+            <Component class="javax.swing.JLabel" name="kilometrageInitLB">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="Kilometrage Inicial:"/>
+              </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="phoneCustomerTxt">
+            <Component class="javax.swing.JTextField" name="kilometrageInitTxt">
             </Component>
-            <Component class="javax.swing.JButton" name="searchCustomerBtn">
+            <Component class="javax.swing.JLabel" name="kilometrageEndLB">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="Kilometrage Final:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="kilometrageEndTxt">
+            </Component>
+            <Component class="javax.swing.JLabel" name="dateInitLB">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="Fecha Inicio:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="dateInitTxt">
+            </Component>
+            <Component class="javax.swing.JLabel" name="totalDaysLB">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="Total D&#xed;as:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="totalDaysTxt">
+            </Component>
+            <Component class="javax.swing.JButton" name="searchVehicleBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="createCustomerBtn">
+            <Component class="javax.swing.JButton" name="rentalBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Crear"/>
+                <Property name="text" type="java.lang.String" value="Alquilar"/>
               </Properties>
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="billDetailPanel">
+        <Container class="javax.swing.JPanel" name="vehicleDetailPanel">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Detalle"/>
+                <TitledBorder title="Detalles"/>
               </Border>
             </Property>
           </Properties>
@@ -214,19 +250,35 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
-                              <Component id="addDetailBtn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="editDetailBtn" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" pref="484" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="subtotalLB" max="32767" attributes="0"/>
+                                  <Component id="damageLB" max="32767" attributes="0"/>
+                                  <Component id="dayCostLB" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                      <Component id="subtotalTxt" min="-2" pref="200" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                              <Component id="dayCostTxt" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                              <Component id="damageTxt" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="aceptBtn" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -234,13 +286,25 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="227" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="255" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="dayCostLB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="dayCostTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="addDetailBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="editDetailBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="damageLB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="damageTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="subtotalTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="subtotalLB" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="aceptBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -253,7 +317,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="detailVehicleTable">
+                <Component class="javax.swing.JTable" name="jTable1">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="4">
@@ -267,66 +331,34 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="addDetailBtn">
+            <Component class="javax.swing.JLabel" name="dayCostLB">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Agregar Detalle"/>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="Precio por D&#xed;a:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="editDetailBtn">
+            <Component class="javax.swing.JTextField" name="dayCostTxt">
+            </Component>
+            <Component class="javax.swing.JLabel" name="damageLB">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Editar Detalle"/>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="% de Da&#xf1;o:"/>
               </Properties>
             </Component>
-          </SubComponents>
-        </Container>
-        <Container class="javax.swing.JPanel" name="billBtnPanel">
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-                      <Component id="createBillBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="cancelBillBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                      <Component id="printBillBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="createBillBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cancelBillBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="printBillBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JButton" name="createBillBtn">
+            <Component class="javax.swing.JTextField" name="damageTxt">
+            </Component>
+            <Component class="javax.swing.JLabel" name="subtotalLB">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Crear Factura"/>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="Subtotal:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="cancelBillBtn">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Anular Factura"/>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="subtotalTxt">
             </Component>
-            <Component class="javax.swing.JButton" name="printBillBtn">
+            <Component class="javax.swing.JButton" name="aceptBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Imprimir Factura"/>
+                <Property name="text" type="java.lang.String" value="Aceptar"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printBillBtnActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -77,26 +77,35 @@ public class UserManagementGUI extends JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         setMaximizable(true);
-        setTitle("User");
+        setTitle("Gestión Usuarios");
 
         userPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Usuario"));
 
+        dniLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         dniLB.setText("Cédula:");
 
+        nameLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         nameLB.setText("Nombre:");
 
+        lastNameLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lastNameLB.setText("Apellido:");
 
+        directionLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         directionLB.setText("Dirección:");
 
+        directionWLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         directionWLB.setText("D. Trabajo:");
 
+        birthdayLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         birthdayLB.setText("Fecha Nacimiento:");
 
+        usernameLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         usernameLB.setText("Nombre de Usuario:");
 
+        emailLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         emailLB.setText("Email:");
 
+        privilegeLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         privilegeLB.setText("Privilegio:");
 
         directionWTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -193,6 +202,7 @@ public class UserManagementGUI extends JInternalFrame {
 
         phonePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Teléfonos"));
 
+        phoneLb.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         phoneLb.setText("Número:");
 
         phoneTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -334,18 +344,6 @@ public class UserManagementGUI extends JInternalFrame {
                 .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(userPanelLayout.createSequentialGroup()
                         .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(directionWLB)
-                            .addComponent(birthdayLB)
-                            .addComponent(directionLB)
-                            .addComponent(lastNameLB)
-                            .addComponent(nameLB)
-                            .addComponent(dniLB))
-                        .addGap(21, 21, 21)
-                        .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lastNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(userPanelLayout.createSequentialGroup()
-                        .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userPanelLayout.createSequentialGroup()
                                 .addGap(15, 15, 15)
                                 .addComponent(createUserBtn)
@@ -380,24 +378,37 @@ public class UserManagementGUI extends JInternalFrame {
                             .addComponent(phonePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(userPanelLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(usernameLB)
-                                    .addComponent(emailLB)
-                                    .addComponent(privilegeLB))
+                                .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(usernameLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(emailLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(privilegeLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(emailTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                                     .addComponent(usernameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                                     .addComponent(privilegeCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 298, Short.MAX_VALUE)
                                 .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userPanelLayout.createSequentialGroup()
                                         .addComponent(generateBtn)
                                         .addGap(96, 96, 96))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userPanelLayout.createSequentialGroup()
                                         .addComponent(iconLB, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(61, 61, 61)))))))
-                .addContainerGap())
+                                        .addGap(61, 61, 61))))))
+                    .addGroup(userPanelLayout.createSequentialGroup()
+                        .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lastNameLB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(birthdayLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(dniLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(nameLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(directionLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(directionWLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(21, 21, 21)
+                        .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lastNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         userPanelLayout.setVerticalGroup(
             userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
