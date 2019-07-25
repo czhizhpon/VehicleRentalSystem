@@ -1,13 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @(#)ReservateGUI.java    0.1.0, 25-Jul-2019 
+ * 
+ * Universidad Politécnica Salesiana
+ * Carrera de Computación
+ * Cuenca - Ecuador	
  */
 package ec.edu.ups.view;
 
 /**
- *
- * @author edd
+ * @since   22-Jul-2019
+ * @version 0.1.0
+ * @author  Sarmiento Bryan, Serpa Roberto, Zhizhpon Eduardo
  */
 public class ReservateGUI extends javax.swing.JInternalFrame {
 
@@ -55,7 +58,7 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
         reservateButton = new javax.swing.JButton();
         vehiclesPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        vehiclesTable = new javax.swing.JTable();
+        asdas = new javax.swing.JTable();
         confirmButton = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -101,6 +104,12 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
         brandComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brandComboBoxActionPerformed(evt);
+            }
+        });
+
+        modelComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modelComboBoxActionPerformed(evt);
             }
         });
 
@@ -237,7 +246,7 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
 
         vehiclesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Vehículos Disponibles"));
 
-        vehiclesTable.setModel(new javax.swing.table.DefaultTableModel(
+        asdas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -268,7 +277,7 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(vehiclesTable);
+        jScrollPane2.setViewportView(asdas);
 
         confirmButton.setText("Aceptar");
 
@@ -339,8 +348,13 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_resYearCBActionPerformed
 
+    private void modelComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modelComboBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable asdas;
     private javax.swing.JComboBox<String> brandComboBox;
     private javax.swing.JLabel brandLabel;
     private javax.swing.JComboBox<String> cityComboBox;
@@ -370,6 +384,5 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
     private javax.swing.JButton reservateButton;
     private javax.swing.JLabel reservateLabel;
     private javax.swing.JPanel vehiclesPanel;
-    private javax.swing.JTable vehiclesTable;
     // End of variables declaration//GEN-END:variables
 }

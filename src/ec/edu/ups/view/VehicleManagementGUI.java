@@ -1,13 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @(#)VehicleManagementGUI.java    0.1.0, 25-Jul-2019 
+ * 
+ * Universidad Politécnica Salesiana
+ * Carrera de Computación
+ * Cuenca - Ecuador	
  */
 package ec.edu.ups.view;
 
 /**
- *
- * @author edd
+ * @since   22-Jul-2019
+ * @version 0.1.0
+ * @author  Sarmiento Bryan, Serpa Roberto, Zhizhpon Eduardo
  */
 public class VehicleManagementGUI extends javax.swing.JInternalFrame {
 
@@ -49,10 +52,10 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         editModelButton = new javax.swing.JButton();
         deleteModelButton = new javax.swing.JButton();
         listPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        buttonsPanel = new javax.swing.JPanel();
         selectComboBox = new javax.swing.JComboBox<>();
         searchListButton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        tablePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listJTable = new javax.swing.JTable();
 
@@ -241,7 +244,7 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
 
         listPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        buttonsPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         selectComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marcas", "Modelos" }));
         selectComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -257,28 +260,28 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout buttonsPanelLayout = new javax.swing.GroupLayout(buttonsPanel);
+        buttonsPanel.setLayout(buttonsPanelLayout);
+        buttonsPanelLayout.setHorizontalGroup(
+            buttonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buttonsPanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(selectComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(searchListButton)
                 .addGap(25, 25, 25))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        buttonsPanelLayout.setVerticalGroup(
+            buttonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buttonsPanelLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(buttonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(selectComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchListButton))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tablePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         listJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -307,18 +310,18 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(listJTable);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
+        tablePanel.setLayout(tablePanelLayout);
+        tablePanelLayout.setHorizontalGroup(
+            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tablePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        tablePanelLayout.setVerticalGroup(
+            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tablePanelLayout.createSequentialGroup()
                 .addContainerGap(25, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
@@ -331,17 +334,17 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
             .addGroup(listPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(listPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(buttonsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         listPanelLayout.setVerticalGroup(
             listPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(listPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -406,6 +409,7 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel brandPanel;
+    private javax.swing.JPanel buttonsPanel;
     private javax.swing.JButton createBrandButton;
     private javax.swing.JButton createModelButton;
     private javax.swing.JButton deleteBrandButton;
@@ -421,8 +425,6 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable listJTable;
     private javax.swing.JPanel listPanel;
@@ -433,5 +435,6 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
     private javax.swing.JTextField nameModelText;
     private javax.swing.JButton searchListButton;
     private javax.swing.JComboBox<String> selectComboBox;
+    private javax.swing.JPanel tablePanel;
     // End of variables declaration//GEN-END:variables
 }
