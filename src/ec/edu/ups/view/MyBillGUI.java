@@ -45,9 +45,9 @@ public class MyBillGUI extends javax.swing.JInternalFrame {
 
         dateBillPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Seleccionar"));
 
-        yearCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        yearCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
 
-        monthCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        monthCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes" }));
 
         jButton1.setText("Filtrar");
 
