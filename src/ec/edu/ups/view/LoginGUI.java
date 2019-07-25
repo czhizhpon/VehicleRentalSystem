@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class LoginGUI extends javax.swing.JFrame {
 
+    private Services services;
     
     private UserController conUser;
     private ConnectionJava connection;
@@ -31,7 +32,7 @@ public class LoginGUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         connection = new ConnectionJava();
-        
+        services = new Services();
     }
 
     /**
@@ -142,7 +143,7 @@ public class LoginGUI extends javax.swing.JFrame {
             
             char [] input = this.passwordTxt.getPassword();
             
-            //String passMd5 = services.getMd5(String.valueOf(input));
+            String passMd5 = services.getMd5(String.valueOf(input));
             
             startConnection(this.usernameTxt.getText(), String.valueOf(input));
             
@@ -151,6 +152,10 @@ public class LoginGUI extends javax.swing.JFrame {
             
             
             conUser.readUser(connection, user, usernameTxt.getText());
+            
+            if (rootPaneCheckingEnabled) {
+                
+            }
             
             MainGUI m = new MainGUI(user, connection);
             

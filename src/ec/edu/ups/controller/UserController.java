@@ -45,7 +45,7 @@ public class UserController {
     
     public boolean readUser(ConnectionJava connection, User user, String username){
         String query = "SELECT  * "
-                + "FROM vrs_users "
+                + "FROM administrador.vrs_users "
                 + "WHERE use_username LIKE ?";
         
         try{
