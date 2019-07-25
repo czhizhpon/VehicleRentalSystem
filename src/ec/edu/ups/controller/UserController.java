@@ -44,8 +44,8 @@ public class UserController {
     }
     
     public boolean readUser(ConnectionJava connection, User user, String username){
-        String query = "SELECT *"
-                + "FROM vrs_users"
+        String query = "SELECT  * "
+                + "FROM vrs_users "
                 + "WHERE use_username LIKE ?";
         
         try{
@@ -54,8 +54,8 @@ public class UserController {
             
             rstat = pstat.executeQuery();
             
+            
             while(rstat.next()){
-                
                 user.setUseId(rstat.getInt(1));
                 user.setUseUsername(rstat.getString(2));
                 user.setUsePassword(rstat.getString(3));
@@ -68,7 +68,6 @@ public class UserController {
 
                 user.setUseType(rstat.getString(11).charAt(0));
                 
-                
 //                switch(rstat.getString(11)){
 //                    case "A":
 //                        break;
@@ -80,7 +79,7 @@ public class UserController {
             }
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         connection.closeConnection();
         return true;

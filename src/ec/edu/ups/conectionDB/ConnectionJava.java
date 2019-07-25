@@ -32,11 +32,11 @@ public class ConnectionJava {
         
         try{
             connection.setUrl("jdbc:oracle:thin:@localhost:1521:vrsdb");
-            connection.setUsername(username);
-            connection.setPassword(password);
+            connection.setUsername("administrador");
+            connection.setPassword("adm_123");
             connection.coneection();
         } catch (NullPointerException e){
-            throw new NullPointerException("Faild connection with DataBase");
+            throw new NullPointerException("Failed connection with VRS");
         }
         
     }

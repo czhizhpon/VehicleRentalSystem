@@ -30,6 +30,8 @@ public class LoginGUI extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         
+        connection = new ConnectionJava();
+        
     }
 
     /**
@@ -147,14 +149,22 @@ public class LoginGUI extends javax.swing.JFrame {
             conUser = new UserController();
             User user = new User();
             
+            
             conUser.readUser(connection, user, usernameTxt.getText());
             
+            MainGUI m = new MainGUI(user, connection);
+            
+            m.setVisible(true);
+            
+            dispose();
             
             
         } catch (Exception ex){
             JOptionPane.showMessageDialog(null, "Error en el nombre de usuario"
                     + " o la contraseña."
-                    + "\n" + ex.toString());
+                    + "\n" + ex);
+            
+            System.out.println(ex.toString());
         }
     }//GEN-LAST:event_loginBtActionPerformed
 
