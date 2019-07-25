@@ -1,13 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @(#)OfficeManagementGUI.java    0.1.0, 25-Jul-2019 
+ * 
+ * Universidad Politécnica Salesiana
+ * Carrera de Computación
+ * Cuenca - Ecuador	
  */
 package ec.edu.ups.view;
 
 /**
- *
- * @author edd
+ * @since   22-Jul-2019
+ * @version 0.1.0
+ * @author  Sarmiento Bryan, Serpa Roberto, Zhizhpon Eduardo
  */
 public class OfficeManagementGUI extends javax.swing.JInternalFrame {
 
@@ -52,7 +55,7 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         deleteOfficeButton = new javax.swing.JButton();
         phonesPanel = new javax.swing.JPanel();
         phoneNumberText = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        numbersLabel = new javax.swing.JLabel();
         phonesComboBox = new javax.swing.JComboBox<>();
         createPhoneButton = new javax.swing.JButton();
         editPhoneButton = new javax.swing.JButton();
@@ -169,7 +172,7 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("Número:");
+        numbersLabel.setText("Número:");
 
         phonesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Móvil", "Convencional" }));
 
@@ -218,7 +221,7 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(phonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(phonesPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(numbersLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(phoneNumberText))
                     .addComponent(phonesComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -241,7 +244,7 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
                     .addGroup(phonesPanelLayout.createSequentialGroup()
                         .addGroup(phonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(phoneNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(numbersLabel))
                         .addGap(18, 18, 18)
                         .addComponent(phonesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -468,28 +471,28 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(provincePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(officePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(37, 37, 37)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(listPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cityPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(provincePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cityPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(listPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(officePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -543,7 +546,6 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
     private javax.swing.JTextField idOfficeText;
     private javax.swing.JLabel idProvinceLabel;
     private javax.swing.JTextField idProvinceText;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> listComboBox;
@@ -558,6 +560,7 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
     private javax.swing.JTextField nameProvinceText;
     private javax.swing.JLabel numberOfficeLabel;
     private javax.swing.JTextField numberOfficeText;
+    private javax.swing.JLabel numbersLabel;
     private javax.swing.JPanel officePanel;
     private javax.swing.JTextField phoneNumberText;
     private javax.swing.JComboBox<String> phonesComboBox;
