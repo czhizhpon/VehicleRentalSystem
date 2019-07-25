@@ -123,6 +123,7 @@ public class CityController {
     
     public boolean getCities(ConnectionJava connection, List<City> cities, 
             int proId){
+        
         City city;
         String query =  "SELECT cit_id, cit_name\n" +        
                         "FROM VRS.VRS_CITIES\n" +
