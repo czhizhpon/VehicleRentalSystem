@@ -58,7 +58,7 @@ public class ConnectionDataBase {
             this.setConnection(DriverManager.getConnection(this.getUrl(),
                     this.getUsername(), this.getPassword()));
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new NullPointerException(e.toString());
         }
     }
     

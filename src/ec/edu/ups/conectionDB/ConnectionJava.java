@@ -28,7 +28,7 @@ public class ConnectionJava {
         connection = new ConnectionDataBase();
     }
     
-    public void startConnection(){
+    public void startConnection() throws NullPointerException{
         connection.setUrl("jdbc:oracle:thin:@localhost:1521:orcl:");
         connection.setUsername("hr");
         connection.setPassword("hr_123");

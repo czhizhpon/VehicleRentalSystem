@@ -22,10 +22,36 @@ import java.util.List;
  */
 public class VehicleController {
     
+    private BrandController conBrand;
+    private ModelController conModel;
     private VehCategoryController vehCategoryController;
     
     private PreparedStatement pstat;
     private ResultSet rstat;
+
+    public BrandController getConBrand() {
+        return conBrand;
+    }
+
+    public void setConBrand(BrandController conBrand) {
+        this.conBrand = conBrand;
+    }
+
+    public ModelController getConModel() {
+        return conModel;
+    }
+
+    public void setConModel(ModelController conModel) {
+        this.conModel = conModel;
+    }
+
+    public VehCategoryController getVehCategoryController() {
+        return vehCategoryController;
+    }
+
+    public void setVehCategoryController(VehCategoryController vehCategoryController) {
+        this.vehCategoryController = vehCategoryController;
+    }
     
     public boolean createVehicle(ConnectionJava connection, Vehicle vehicle){
         

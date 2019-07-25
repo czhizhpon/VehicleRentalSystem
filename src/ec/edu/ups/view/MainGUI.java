@@ -5,6 +5,7 @@
  */
 package ec.edu.ups.view;
 
+import ec.edu.ups.conectionDB.ConnectionJava;
 import java.beans.PropertyVetoException;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,19 +21,21 @@ import javax.swing.JOptionPane;
  */
 public class MainGUI extends javax.swing.JFrame {
 
-    
+    private ConnectionJava connection;
     
     /**
      * Creates new form MainGUI
      * @param useType
+     * @param connection
      */
-    public MainGUI(char useType) {
+    public MainGUI(char useType, ConnectionJava connection) {
         initComponents();
         setSize(1100,900);
         setLocationRelativeTo(null);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         this.userType = useType;
+        this.connection = connection;
         loadMenus();
     }
 
@@ -280,7 +283,7 @@ public class MainGUI extends javax.swing.JFrame {
         
         try{
             if (vehicleManagementGUI == null) 
-                vehicleManagementGUI = new VehicleManagementGUI();
+                vehicleManagementGUI = new VehicleManagementGUI(this.connection);
             if (vehicleManagementGUI.isVisible()){
                 vehicleManagementGUI.setSelected(true);
             }else{

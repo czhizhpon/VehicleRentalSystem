@@ -5,17 +5,35 @@
  */
 package ec.edu.ups.view;
 
+import ec.edu.ups.conectionDB.ConnectionJava;
+import ec.edu.ups.controller.VehicleController;
+import ec.edu.ups.model.Brand;
+import ec.edu.ups.model.Model;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author edd
  */
 public class VehicleManagementGUI extends javax.swing.JInternalFrame {
 
+    private VehicleController conVehicle;
+    private ConnectionJava connection;
+    
     /**
      * Creates new form VehicleManagementGUI
+     * @param connection
      */
-    public VehicleManagementGUI() {
+    public VehicleManagementGUI(ConnectionJava connection) {
+        this.connection = connection;
+        
+        
         initComponents();
+        listBrands();
+        
     }
 
     /**
@@ -50,7 +68,7 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         deleteModelButton = new javax.swing.JButton();
         listPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        selectComboBox = new javax.swing.JComboBox<>();
+        selectComboBox = new javax.swing.JComboBox<String>();
         searchListButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -119,6 +137,7 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
 
         deleteBrandButton.setText("Eliminar");
 
+        idBrandText.setEditable(false);
         idBrandText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idBrandTextActionPerformed(evt);
@@ -175,6 +194,8 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         );
 
         modelPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modelos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+
+        idModelText.setEditable(false);
 
         idModelLabel.setText("Id:");
 
@@ -243,7 +264,7 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        selectComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marcas", "Modelos" }));
+        selectComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Marcas", "Modelos" }));
         selectComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectComboBoxActionPerformed(evt);
@@ -376,6 +397,16 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
 
     private void searchListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchListButtonActionPerformed
         // TODO add your handling code here:
+        switch(this.selectComboBox.getSelectedItem().toString()){
+            
+            
+            case "Modelos":
+                List<Model> models = new ArrayList<>();
+                //this.conVehicle.getConModel().getModels(connection, models);
+                
+                
+                break;
+        }
     }//GEN-LAST:event_searchListButtonActionPerformed
 
     private void findModelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findModelButtonActionPerformed
@@ -391,7 +422,9 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_editBrandButtonActionPerformed
 
     private void findBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findBrandButtonActionPerformed
-        // TODO add your handling code here:
+        
+        
+        
     }//GEN-LAST:event_findBrandButtonActionPerformed
 
     private void createBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBrandButtonActionPerformed
@@ -434,4 +467,46 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
     private javax.swing.JButton searchListButton;
     private javax.swing.JComboBox<String> selectComboBox;
     // End of variables declaration//GEN-END:variables
+
+    private void listBrands(){
+        
+        DefaultTableModel tableModel = new DefaultTableModel();
+        List<Brand> brands = new ArrayList<>();
+        try{
+            this.conVehicle.getConBrand().getBrands(connection, brands);
+            int n = brands.size();
+            String [] column = {"id", "Nombre"};
+            String [][] rows = new String[n][2];
+
+            for (int i = 0; i < n; i++) {
+                rows[i][0] = "" + brands.get(i).getBraId();
+                rows[i][1] = brands.get(i).getBraName();
+            }
+            tableModel.setDataVector(rows, column);
+            this.listJTable.setModel(tableModel);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+        
+        
+    }
+    
+    private void listModels(Brand brand){
+        DefaultTableModel tableModel = new DefaultTableModel();
+        List<Model> models = new ArrayList<>();
+        this.conVehicle.getConModel().getModels(connection, models, brand);
+        
+        int n = models.size();
+        String [] column = {"id", "Nombre", "Costo"};
+        String [][] rows = new String[n][2];
+        
+        for (int i = 0; i < n; i++) {
+            rows[i][0] = "" + models.get(i).getModId();
+            rows[i][1] = models.get(i).getModName();
+            rows[i][2] = "" + models.get(i).getModCost();
+        }
+        tableModel.setDataVector(rows, column);
+        this.listJTable.setModel(tableModel);
+    }
+
 }

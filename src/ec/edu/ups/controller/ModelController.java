@@ -101,15 +101,18 @@ public class ModelController {
         return true;
     }
     
-    public boolean getModels(ConnectionJava connection, List<Model> models){
+    public boolean getModels(ConnectionJava connection, List<Model> models, 
+            Brand brand){
         
         Model model;
-        Brand brand;
-        String query = "";
+        String query = "SELECT *"
+                + "FROM vrs_models"
+                + "WHERE bra_id = ?";
         
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, brand.getBraId());
             
             rstat = pstat.executeQuery();
             

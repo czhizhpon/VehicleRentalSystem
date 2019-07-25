@@ -5,6 +5,7 @@
  */
 package ec.edu.ups.view;
 
+import ec.edu.ups.conectionDB.ConnectionJava;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,10 +14,15 @@ import javax.swing.JOptionPane;
  */
 public class LoginGUI extends javax.swing.JFrame {
 
+    private ConnectionJava connection;
+    
     /**
      * Creates new form LoginGUI
      */
     public LoginGUI() {
+        
+        startConnection();
+        
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -129,7 +135,7 @@ public class LoginGUI extends javax.swing.JFrame {
             
             char c = this.usernameTxt.getText().charAt(0);
             if (c == 'A' || c == 'C' || c == 'E'){
-                MainGUI main = new MainGUI(c);
+                MainGUI main = new MainGUI(c, this.connection);
                 main.setVisible(true);
                 dispose();
             }else{
@@ -145,7 +151,14 @@ public class LoginGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordTxtActionPerformed
 
-    
+    private void startConnection(){
+        this.connection = new ConnectionJava();
+        try{
+            this.connection.startConnection();
+        } catch (NullPointerException e){
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel image;
