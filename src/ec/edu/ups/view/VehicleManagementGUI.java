@@ -89,7 +89,10 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
+        setTitle("Administrar Datos Vehiculo");
 
         brandPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Marcas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
@@ -116,14 +119,11 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
 
         deleteBrandButton.setText("Eliminar");
 
-        idBrandText.setText("jTextField1");
         idBrandText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idBrandTextActionPerformed(evt);
             }
         });
-
-        nameBrandText.setText("jTextField2");
 
         idBrandLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         idBrandLabel.setText("Id:");
@@ -175,10 +175,6 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         );
 
         modelPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modelos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
-
-        idModelText.setText("jTextField3");
-
-        nameModelText.setText("jTextField4");
 
         idModelLabel.setText("Id:");
 
@@ -293,7 +289,7 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
                 {null, null}
             },
             new String [] {
-                "ID", "NAME"
+                "ID", "NOMBRE"
             }
         ) {
             boolean[] canEdit = new boolean [] {
