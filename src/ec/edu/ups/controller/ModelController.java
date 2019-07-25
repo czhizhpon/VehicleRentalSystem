@@ -27,17 +27,22 @@ public class ModelController {
     private PreparedStatement pstat;
     private ResultSet rstat;
     
-    public boolean createModel(ConnectionJava connection, Model model, int braId){
+    public boolean createModel(ConnectionJava connection, Model model, 
+            int braId){
         
-        String query = "";
+        String query = "INSERT INTO VRS.VRS_MODELS VALUES(\n"
+                + "mod_id_seq.NEXTVAL, ?, ?, ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, model.getModName());
+            pstat.setDouble(2, model.getModCost());
+            pstat.setInt(3, braId);
             
             pstat.executeUpdate();
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         connection.closeConnection();
         return true;
@@ -47,7 +52,9 @@ public class ModelController {
             Brand brand){
         
         
-        String query = "";
+        String query = "SELECT * "
+                + "FROM vrs.vrs_models "
+                + "WHERE mod_id = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
@@ -63,7 +70,7 @@ public class ModelController {
             }
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         connection.closeConnection();
         return true;
@@ -71,15 +78,21 @@ public class ModelController {
     
     public boolean updateModel(ConnectionJava connection, Model model){
         
-        String query = "";
+        String query = "UPDATE vrs.vrs_models SET "
+                + "mod_name = ? "
+                + "mod_price = ? "
+                + "WHERE mod_id = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, model.getModName());
+            pstat.setDouble(2, model.getModCost());
+            pstat.setInt(3, model.getModId());
             
             pstat.executeUpdate();
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         connection.closeConnection();
         return true;
@@ -87,15 +100,17 @@ public class ModelController {
     
     public boolean deleteModel(ConnectionJava connection, int modId){
         
-        String query = "";
+        String query = "DELETE vrs.vrs_models "
+                + "WHERE mod_id = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, modId);
             
             pstat.executeUpdate();
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         connection.closeConnection();
         return true;
@@ -105,8 +120,8 @@ public class ModelController {
             Brand brand){
         
         Model model;
-        String query = "SELECT *"
-                + "FROM vrs_models"
+        String query = "SELECT * "
+                + "FROM vrs_models "
                 + "WHERE bra_id = ?";
         
         
@@ -133,7 +148,7 @@ public class ModelController {
             }
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         connection.closeConnection();
         return true;

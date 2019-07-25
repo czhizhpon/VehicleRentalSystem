@@ -25,7 +25,7 @@ public class BrandController {
     private ResultSet rstat;
     
     public boolean createBrand(ConnectionJava connection, Brand brand){
-        String query = "INSERT INTO VRS_BRANDS VALUES(\n" 
+        String query = "INSERT INTO VRS.VRS_BRANDS VALUES(\n" 
                 + "bra_id_seq.NEXTVAL,?)";
         
         try{
@@ -35,15 +35,15 @@ public class BrandController {
             pstat.executeUpdate();
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         connection.closeConnection();
         return true;
     }
     
     public boolean readBrand(ConnectionJava connection, Brand brand, int braId){
-        String query = "SELECT *"
-                + "FROM vrs_brands"
+        String query = "SELECT * "
+                + "FROM vrs.vrs_brands "
                 + "WHERE bra_id = ?";
         
         try{
@@ -58,15 +58,15 @@ public class BrandController {
             }
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         connection.closeConnection();
         return true;
     }
     
     public boolean updateBrand(ConnectionJava connection, Brand brand){
-        String query = "UPDATE vrs_brans SET"
-                + "bra_name = ?"
+        String query = "UPDATE vrs.vrs_brans SET "
+                + "bra_name = ? "
                 + "WHERE bra_id = ?";
         
         try{
@@ -77,14 +77,14 @@ public class BrandController {
             pstat.executeUpdate();
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         connection.closeConnection();
         return true;
     }
     
     public boolean deleteBrand(ConnectionJava connection, int braId){
-        String query = "DELETE vrs_brands "
+        String query = "DELETE vrs.vrs_brands "
                 + "WHERE bra_id = ?";
         
         try{
@@ -94,7 +94,7 @@ public class BrandController {
             pstat.executeUpdate();
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         
         connection.closeConnection();
@@ -104,8 +104,8 @@ public class BrandController {
     public boolean getBrands(ConnectionJava connection, List<Brand>  brands){
         
         Brand brand;
-        String query = "SELECT *"
-                + "FROM vrs_brands";
+        String query = "SELECT * "
+                + "FROM vrs.vrs_brands";
         
         
         try{
@@ -124,7 +124,7 @@ public class BrandController {
             }
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         connection.closeConnection();
         return true;
