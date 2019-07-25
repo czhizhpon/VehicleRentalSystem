@@ -171,7 +171,7 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Número:");
 
-        phonesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        phonesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Móvil", "Convencional" }));
 
         createPhoneButton.setText("Crear");
         createPhoneButton.addActionListener(new java.awt.event.ActionListener() {
@@ -318,7 +318,7 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
 
         listPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Listas"));
 
-        listComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        listComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Provincias", "Ciudades" }));
 
         loadListButton.setText("Cargar");
         loadListButton.addActionListener(new java.awt.event.ActionListener() {
@@ -355,7 +355,7 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
                 {null, null}
             },
             new String [] {
-                "Title 1", "Title 2"
+                "ID", "NOMBRE"
             }
         ) {
             boolean[] canEdit = new boolean [] {

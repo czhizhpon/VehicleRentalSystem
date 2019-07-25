@@ -243,7 +243,12 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        selectComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        selectComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marcas", "Modelos" }));
+        selectComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectComboBoxActionPerformed(evt);
+            }
+        });
 
         searchListButton.setText("Buscar");
         searchListButton.addActionListener(new java.awt.event.ActionListener() {
@@ -392,6 +397,10 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
     private void createBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBrandButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_createBrandButtonActionPerformed
+
+    private void selectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectComboBoxActionPerformed
 
     
 
