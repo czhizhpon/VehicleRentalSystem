@@ -42,7 +42,8 @@ public class VehCategoryController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     
@@ -70,7 +71,8 @@ public class VehCategoryController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     
@@ -97,7 +99,8 @@ public class VehCategoryController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     
@@ -116,7 +119,8 @@ public class VehCategoryController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     
@@ -148,7 +152,8 @@ public class VehCategoryController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
         
     }

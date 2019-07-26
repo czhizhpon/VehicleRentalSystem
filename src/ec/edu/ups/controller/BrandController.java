@@ -37,7 +37,7 @@ public class BrandController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -60,12 +60,36 @@ public class BrandController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
+        return true;
+    }
+     public boolean readBrand(ConnectionJava connection, Brand brand, 
+             String braName){
+        String query = "SELECT * "
+                + "FROM vrs.vrs_brands "
+                + "WHERE bra_name = ?";
+        
+        try{
+            pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, braName);
+            
+            rstat = pstat.executeQuery();
+            
+            while(rstat.next()){
+                brand.setBraId(rstat.getInt(1));
+                brand.setBraName(rstat.getString(2));
+            }
+            
+        }catch(SQLException ex){
+            throw new NullPointerException(ex.toString());
+        }
+        //connection.closeConnection();
         return true;
     }
     
+    
     public boolean updateBrand(ConnectionJava connection, Brand brand){
-        String query = "UPDATE vrs.vrs_brans SET "
+        String query = "UPDATE vrs.vrs_brands SET "
                 + "bra_name = ? "
                 + "WHERE bra_id = ?";
         
@@ -79,17 +103,17 @@ public class BrandController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
-    public boolean deleteBrand(ConnectionJava connection, int braId){
+    public boolean deleteBrand(ConnectionJava connection, String braName){
         String query = "DELETE vrs.vrs_brands "
-                + "WHERE bra_id = ?";
+                + "WHERE bra_name = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
-            pstat.setInt(1, braId);
+            pstat.setString(1, braName);
             
             pstat.executeUpdate();
             
@@ -97,7 +121,7 @@ public class BrandController {
             throw new NullPointerException(ex.toString());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -126,7 +150,7 @@ public class BrandController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
         
     }

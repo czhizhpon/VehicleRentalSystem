@@ -78,7 +78,7 @@ public class CustomerController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -214,7 +214,7 @@ public class CustomerController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -267,7 +267,7 @@ public class CustomerController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         
         return true;
     }
@@ -303,7 +303,7 @@ public class CustomerController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -323,7 +323,7 @@ public class CustomerController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -352,7 +352,7 @@ public class CustomerController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
         
     }

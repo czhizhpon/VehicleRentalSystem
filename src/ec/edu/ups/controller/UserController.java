@@ -49,6 +49,7 @@ public class UserController {
                 + "WHERE use_username LIKE ?";
         
         try{
+            
             pstat = connection.getConnection().prepareStatement(query);
             pstat.setString(1, username);
             
@@ -81,7 +82,7 @@ public class UserController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
         return true;
     }
     

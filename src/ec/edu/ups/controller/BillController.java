@@ -92,7 +92,7 @@ public class BillController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -130,7 +130,7 @@ public class BillController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -150,7 +150,7 @@ public class BillController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -169,7 +169,7 @@ public class BillController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -214,7 +214,7 @@ public class BillController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
         
     }

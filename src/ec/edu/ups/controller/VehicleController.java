@@ -89,7 +89,8 @@ public class VehicleController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     
@@ -141,7 +142,8 @@ public class VehicleController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     
@@ -236,7 +238,8 @@ public class VehicleController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     
@@ -254,7 +257,8 @@ public class VehicleController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     
@@ -302,7 +306,8 @@ public class VehicleController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
         
     }

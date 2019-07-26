@@ -48,7 +48,7 @@ public class ProvinceController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -69,7 +69,7 @@ public class ProvinceController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -91,7 +91,7 @@ public class ProvinceController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -109,7 +109,7 @@ public class ProvinceController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -141,7 +141,7 @@ public class ProvinceController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
 }

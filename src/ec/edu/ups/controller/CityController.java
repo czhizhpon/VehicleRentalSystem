@@ -53,7 +53,7 @@ public class CityController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -90,7 +90,7 @@ public class CityController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -113,7 +113,7 @@ public class CityController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -132,7 +132,7 @@ public class CityController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -162,7 +162,7 @@ public class CityController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
