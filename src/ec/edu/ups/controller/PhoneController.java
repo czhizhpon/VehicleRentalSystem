@@ -42,7 +42,7 @@ public class PhoneController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -64,7 +64,7 @@ public class PhoneController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -92,7 +92,7 @@ public class PhoneController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -115,7 +115,7 @@ public class PhoneController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -134,7 +134,7 @@ public class PhoneController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -169,7 +169,7 @@ public class PhoneController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -204,7 +204,7 @@ public class PhoneController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     

@@ -40,7 +40,8 @@ public class PrivilegeController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     
@@ -66,7 +67,8 @@ public class PrivilegeController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     
@@ -88,7 +90,8 @@ public class PrivilegeController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     
@@ -106,7 +109,8 @@ public class PrivilegeController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     
@@ -137,7 +141,8 @@ public class PrivilegeController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
         
     }
