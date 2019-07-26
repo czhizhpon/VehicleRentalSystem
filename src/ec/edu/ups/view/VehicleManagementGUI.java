@@ -10,6 +10,7 @@ package ec.edu.ups.view;
 import ec.edu.ups.conectionDB.ConnectionJava;
 import ec.edu.ups.controller.ModelController;
 import ec.edu.ups.model.Brand;
+import ec.edu.ups.model.Model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -246,6 +247,11 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         nameModelLabel.setText("Nombre:");
 
         createModelButton.setText("Crear");
+        createModelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createModelButtonActionPerformed(evt);
+            }
+        });
 
         findModelButton.setText("Buscar");
         findModelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -255,8 +261,18 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         });
 
         editModelButton.setText("Editar");
+        editModelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editModelButtonActionPerformed(evt);
+            }
+        });
 
         deleteModelButton.setText("Eliminar");
+        deleteModelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteModelButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout modelPanelLayout = new javax.swing.GroupLayout(modelPanel);
         modelPanel.setLayout(modelPanelLayout);
@@ -443,7 +459,25 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_searchListButtonActionPerformed
 
     private void findModelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findModelButtonActionPerformed
-        // TODO add your handling code here:
+        
+        try{
+            
+            Model model = new Model();
+            this.conModel.readModel(connection, model, 
+                    Integer.parseInt(this.idModelText.getText()));
+            
+            if (model.getModName() == null) {
+                throw new NullPointerException();
+            } else {
+                this.nameModelText.setText(model.getModName());
+                this.idModelText.setText("" + model.getModId());
+            }
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "No se encontró el modelo ingresado.", 
+                    "Advertencia", JOptionPane.QUESTION_MESSAGE);
+        }
+        
     }//GEN-LAST:event_findModelButtonActionPerformed
 
     private void idBrandTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idBrandTextActionPerformed
@@ -484,12 +518,11 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "No se encontró la Marca ingresada.", "Advertencia", 
                     JOptionPane.QUESTION_MESSAGE);
         }
-            
-        
         
     }//GEN-LAST:event_findBrandButtonActionPerformed
 
     private void createBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBrandButtonActionPerformed
+        
         try{
             Brand brand = new Brand();
             brand.setBraName(this.nameBrandText.getText());
@@ -504,11 +537,10 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
                 
             }
             
-            
-            
         } catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al crear la marca", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
     }//GEN-LAST:event_createBrandButtonActionPerformed
 
     private void selectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectComboBoxActionPerformed
@@ -518,14 +550,79 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
     private void deleteBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBrandButtonActionPerformed
         
         try{
+            
             this.conModel.getConBrand().deleteBrand(connection, 
                     this.nameBrandText.getText());
             listBrands();
+            
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error al eliminar la marca", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_deleteBrandButtonActionPerformed
+
+    private void createModelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createModelButtonActionPerformed
+        
+        try{
+            
+            Model model = new Model();
+            model.setModName(this.nameModelText.getText());
+
+            if (this.conModel.createModel(connection, model, 
+                    Integer.parseInt(this.idBrandLabel.getText()))){
+                JOptionPane.showMessageDialog(null, 
+                        "Modelo " + model.getModName()+ " creado.", 
+                        "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                
+                this.nameModelText.setText("");
+                
+                //OJO ACABAR EL LIST MODELS
+                listModels();
+                
+            }
+            
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al crear el modelo", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_createModelButtonActionPerformed
+
+    private void editModelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editModelButtonActionPerformed
+        
+        try{
+            
+            Model model = new Model();
+            model.setModId(Integer.parseInt(this.idModelText.getText()));
+            model.setModName(this.nameModelText.getText());
+            this.conModel.updateModel(connection, model);
+            
+            //OJO HACER EL OTRO
+            listModels();
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al editar."
+                    + e.toString(), "Error" , JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_editModelButtonActionPerformed
+
+    private void deleteModelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteModelButtonActionPerformed
+        
+        try{
+            
+            this.conModel.deleteModel(connection, 
+                    Integer.parseInt(this.idModelText.getText()));
+            
+            // OJO
+            listModels();
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al eliminar la marca", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_deleteModelButtonActionPerformed
 
     
 
@@ -565,25 +662,57 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         DefaultTableModel tableModel = new DefaultTableModel();
         List<Brand> brands = new ArrayList<>();
         
-        
         String [] colums = {"Id", "Nombre"}; 
         String [][] rows;
+        
         try{
-        this.conModel.getConBrand().getBrands(connection, brands);
-        int n = brands.size();
-        
-        rows = new String[n][2];
-        
-        for (int i = 0; i < n; i++) {
-            rows[i][0] = "" + brands.get(i).getBraId();
-            rows[i][1] = brands.get(i).getBraName();
-        }
-        
-        tableModel.setDataVector(rows, colums);
-        this.listJTable.setModel(tableModel);
+            this.conModel.getConBrand().getBrands(connection, brands);
+            int n = brands.size();
+            
+            rows = new String[n][2];
+            
+            for (int i = 0; i < n; i++) {
+                rows[i][0] = "" + brands.get(i).getBraId();
+                rows[i][1] = brands.get(i).getBraName();
+            }
+            
+            tableModel.setDataVector(rows, colums);
+            this.listJTable.setModel(tableModel);
         } catch(Exception e){
             System.out.println(e.toString());
         }
+        
+    }
+    
+    private void listModels(){
+        
+        DefaultTableModel tableModel = new DefaultTableModel();
+        List<Model> models = new ArrayList<>();
+        
+        Brand brand = new Brand(Integer.parseInt(this.idBrandText.getText()), 
+                this.nameBrandLabel.getText());
+        
+        
+        String [] colums = {"Id", "Nombre"}; 
+        String [][] rows;
+        
+        try{
+            this.conModel.getModels(connection, models, brand);
+            int n = models.size();
+            
+            rows = new String[n][2];
+            
+            for (int i = 0; i < n; i++) {
+                rows[i][0] = "" + models.get(i).getModId();
+                rows[i][1] = models.get(i).getModName();
+            }
+            
+            tableModel.setDataVector(rows, colums);
+            this.listJTable.setModel(tableModel);
+        } catch(Exception e){
+            System.out.println(e.toString());
+        }
+        
     }
     
 }
