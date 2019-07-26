@@ -481,6 +481,7 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
             } else {
                 this.nameModelText.setText(model.getModName());
                 this.idModelText.setText("" + model.getModId());
+                this.costModelText.setText("" + model.getModCost());
             }
             
         }catch(Exception e){
@@ -523,6 +524,9 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
             }else{
                 this.nameBrandText.setText(brand.getBraName());
                 this.idBrandText.setText("" + brand.getBraId());
+                
+                listModels();
+                
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "No se encontró la Marca ingresada.", "Advertencia", 
@@ -607,6 +611,8 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
             Model model = new Model();
             model.setModId(Integer.parseInt(this.idModelText.getText()));
             model.setModName(this.nameModelText.getText());
+            model.setModCost(Double.parseDouble(this.costModelText.getText()));
+            
             this.conModel.updateModel(connection, model);
             
             //OJO HACER EL OTRO
