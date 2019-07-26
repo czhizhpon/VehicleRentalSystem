@@ -145,6 +145,58 @@ public class VehicleController {
         return true;
     }
     
+    public boolean readVehicle(ConnectionJava connection, Vehicle vehicle, 
+            String plate){
+        
+        VehCategory vehCategory;
+        Model model;
+        
+        String query = "SELECT veh_id, veh_plate, veh_color, veh_status, veh_kilometrage,"
+                + "veh_insurance_number, veh_insurrance_date, veh_insurrance_expires,"
+                + "veh_origin, cat_id"
+                + "FROM vrs_vehicle"
+                + "WHERE veh_id = ?";
+        
+        try{
+            pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, plate);
+            
+            rstat = pstat.executeQuery();
+            
+            /*offId, modId, catId, proId*/
+            while(rstat.next()){
+                
+                vehicle.setVehId(rstat.getInt(1));
+                vehicle.setVehPlate(rstat.getString(2));
+                vehicle.setVehColor(rstat.getString(3));
+                vehicle.setVehStatus(rstat.getString(4).charAt(0));
+                vehicle.setVehKilometraje(rstat.getDouble(5));
+                vehicle.setVehInsurranceNumber(rstat.getString(6));
+                vehicle.setVehInsurranceDate(rstat.getDate(7));
+                vehicle.setVehInsurranceExpires(rstat.getDate(8));
+                vehicle.setVehOrigin(rstat.getString(9).charAt(0));
+                
+                model = new Model();
+                
+                this.conModel.readModel(connection, model, rstat.getInt(11));
+                
+                vehCategory = new VehCategory();
+                
+                
+                this.vehCategoryController.readVehCategory(connection, 
+                        vehCategory, rstat.getInt(12));
+                
+                vehicle.setVehCategory(vehCategory);
+                
+            }
+            
+        }catch(SQLException ex){
+            throw new NullPointerException(ex.toString());
+        }
+        connection.closeConnection();
+        return true;
+    }
+    
     public boolean updateVehicle(ConnectionJava connection, 
             Vehicle vehicle, int offId){
         

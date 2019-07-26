@@ -5,17 +5,43 @@
  */
 package ec.edu.ups.view;
 
+import ec.edu.ups.conectionDB.ConnectionJava;
+import ec.edu.ups.controller.RentalController;
+import ec.edu.ups.controller.UserController;
+import ec.edu.ups.controller.VehicleController;
+import ec.edu.ups.model.Rental;
+import ec.edu.ups.model.User;
+import ec.edu.ups.model.Vehicle;
+import ec.edu.ups.services.Services;
+
 /**
  *
  * @author edd
  */
 public class RentalGUI extends javax.swing.JInternalFrame {
+    
+    private Services services;
+    
+    private UserController conUser;
+    private RentalController conRental;
+    private VehicleController conVehicle;
+    
+    private ConnectionJava connection;
+    
+    private User user;
+    
+    private String days;
+    
 
     /**
      * Creates new form RentalGUI
      */
-    public RentalGUI() {
+    public RentalGUI(User user) {
+        this.user = user;
         initComponents();
+        
+        connection = new ConnectionJava();
+        services = new Services();
     }
 
     /**
@@ -87,6 +113,11 @@ public class RentalGUI extends javax.swing.JInternalFrame {
         totalDaysLB.setText("Total Días:");
 
         searchVehicleBtn.setText("Buscar");
+        searchVehicleBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchVehicleBtnActionPerformed(evt);
+            }
+        });
 
         rentalBtn.setText("Alquilar");
 
@@ -130,7 +161,7 @@ public class RentalGUI extends javax.swing.JInternalFrame {
                                             .addComponent(statusVehicleTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(searchVehicleBtn)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(26, Short.MAX_VALUE))))
         );
         vehiclePanelLayout.setVerticalGroup(
             vehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,6 +221,11 @@ public class RentalGUI extends javax.swing.JInternalFrame {
         subtotalLB.setText("Subtotal:");
 
         aceptBtn.setText("Aceptar");
+        aceptBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout vehicleDetailPanelLayout = new javax.swing.GroupLayout(vehicleDetailPanel);
         vehicleDetailPanel.setLayout(vehicleDetailPanelLayout);
@@ -246,7 +282,7 @@ public class RentalGUI extends javax.swing.JInternalFrame {
             rentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rentalPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(vehiclePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(vehiclePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(vehicleDetailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -280,6 +316,64 @@ public class RentalGUI extends javax.swing.JInternalFrame {
     private void statusVehicleTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusVehicleTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_statusVehicleTxtActionPerformed
+
+    private void searchVehicleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchVehicleBtnActionPerformed
+        
+        try {
+            
+            
+            conUser = new UserController();
+            
+            conUser.readUser(connection, user, user.getUseUsername());
+            
+            conVehicle = new VehicleController();
+            
+            Vehicle vehicle = new Vehicle();
+            
+            conVehicle.readVehicle(connection, vehicle, plateTxt.getText());
+            
+            switch(vehicle.getVehStatus()){
+                case 'D':
+                    statusVehicleTxt.setText("" + vehicle.getVehStatus());
+                    break;
+                case 'A':
+                    statusVehicleTxt.setText("" + vehicle.getVehStatus());
+                    break;
+                case 'R':
+                    statusVehicleTxt.setText("" + vehicle.getVehStatus());
+                    break;
+                case 'S':
+                    statusVehicleTxt.setText("" + vehicle.getVehStatus());
+                    break;
+                    
+            }
+            
+            kilometrageInitTxt.setText("" + vehicle.getVehKilometraje());
+            kilometrageEndTxt.setText("" + vehicle.getVehKilometraje());
+            
+            String date = "" + (new java.util.GregorianCalendar().getCalendarType());
+            dateInitTxt.setText(date);
+            
+            dayCostTxt.setText("" + vehicle.getVehCategory().getCatDayCost());
+            damageTxt.setText("0");
+            
+            //Rental rental = new Rental();
+            
+        } catch (Exception e) {
+            
+        }
+        Vehicle vehicle = new Vehicle();
+        
+        
+        
+    }//GEN-LAST:event_searchVehicleBtnActionPerformed
+
+    private void aceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptBtnActionPerformed
+        
+        
+        
+        
+    }//GEN-LAST:event_aceptBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
