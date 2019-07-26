@@ -90,12 +90,32 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
         categoryLB.setText("Categoría:");
 
         createVehicleBtn.setText("Crear");
+        createVehicleBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createVehicleBtnActionPerformed(evt);
+            }
+        });
 
         searchVehicleBtn.setText("Buscar");
+        searchVehicleBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchVehicleBtnActionPerformed(evt);
+            }
+        });
 
         editVehicleBtn.setText("Editar");
+        editVehicleBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editVehicleBtnActionPerformed(evt);
+            }
+        });
 
         deleteVehicleBtn.setText("Eliminar");
+        deleteVehicleBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteVehicleBtnActionPerformed(evt);
+            }
+        });
 
         vehicleTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -275,6 +295,11 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
         locationPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         brandCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marca" }));
+        brandCBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                brandCBoxActionPerformed(evt);
+            }
+        });
 
         modelCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Modelo" }));
 
@@ -360,6 +385,37 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
     private void yearCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearCBActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_yearCBActionPerformed
+
+    private void brandCBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brandCBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_brandCBoxActionPerformed
+
+    private void createVehicleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createVehicleBtnActionPerformed
+        // TODO add your handling code here:
+        
+        //CREAR
+                
+    }//GEN-LAST:event_createVehicleBtnActionPerformed
+
+    private void searchVehicleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchVehicleBtnActionPerformed
+        // TODO add your handling code here:
+        
+        // BUSCAR
+    }//GEN-LAST:event_searchVehicleBtnActionPerformed
+
+    private void editVehicleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editVehicleBtnActionPerformed
+        // TODO add your handling code here:
+        
+        //EDITAR
+        
+    }//GEN-LAST:event_editVehicleBtnActionPerformed
+
+    private void deleteVehicleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteVehicleBtnActionPerformed
+        // TODO add your handling code here:
+        
+        //ELIMINAR
+        
+    }//GEN-LAST:event_deleteVehicleBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField KilometrageTxt;
