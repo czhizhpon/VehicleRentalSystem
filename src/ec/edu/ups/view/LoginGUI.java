@@ -98,7 +98,7 @@ public class LoginGUI extends javax.swing.JFrame {
                 loginBtActionPerformed(evt);
             }
         });
-        inputPanel.add(loginBt, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, -1, 30));
+        inputPanel.add(loginBt, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, -1, 30));
 
         image.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         image.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
