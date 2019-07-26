@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -52,6 +53,8 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
         this.conPhone = new PhoneController();
         this.conUser = new UserController();
         
+        
+        
         setEmployee(employee);
     }
     
@@ -62,6 +65,8 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
         this.connection = connection;
         this.conCustomer = new CustomerController();
         this.conPhone = new PhoneController();
+        
+        
         
         setCustomer(customer);
     }
@@ -99,7 +104,7 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
         phonePanel = new javax.swing.JPanel();
         phoneLb = new javax.swing.JLabel();
         phoneText = new javax.swing.JTextField();
-        typePhoneCmbBoc = new javax.swing.JComboBox();
+        PhoneCB = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         phonesTable = new javax.swing.JTable();
         createPhoneButton = new javax.swing.JButton();
@@ -277,7 +282,7 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
             }
         });
 
-        typePhoneCmbBoc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Móvil", "Convencional" }));
+        PhoneCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Móvil", "Fijo" }));
 
         phonesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -298,6 +303,11 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(phonesTable);
 
         createPhoneButton.setText("Crear");
+        createPhoneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createPhoneButtonActionPerformed(evt);
+            }
+        });
 
         deletePhoneButton.setText("Eliminar");
         deletePhoneButton.addActionListener(new java.awt.event.ActionListener() {
@@ -333,7 +343,7 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
                                 .addComponent(phoneLb)
                                 .addGap(18, 18, 18)
                                 .addComponent(phoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(typePhoneCmbBoc, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(PhoneCB, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
                 .addContainerGap())
@@ -352,7 +362,7 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
                         .addComponent(phoneLb))
                     .addComponent(phoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(typePhoneCmbBoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PhoneCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addGroup(phonePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(createPhoneButton)
@@ -484,11 +494,97 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_acceptButtonActionPerformed
 
     private void updatePhoneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePhoneButtonActionPerformed
-        // TODO add your handling code here:
+        
+        
+        try{
+            
+            
+            int index = this.phonesTable.getSelectedRow();
+            
+            Phone phone;
+            
+            switch(evt.getActionCommand()){
+                case "Editar":
+                    
+
+                    if (index < 0) {
+                        JOptionPane.showMessageDialog(null, "Seleccione un teléfono.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                        throw new NullPointerException();
+                    }
+
+                    phone = this.phones.get(index);
+
+                    this.phoneText.setText(phone.getPhoNumber());
+
+                    if (phone.getPhoType().equals("M")) {
+
+                        this.PhoneCB.setSelectedItem("Móvil");
+                    }else{
+                        this.PhoneCB.setSelectedItem("Fijo");
+                    }
+
+                    this.updatePhoneButton.setActionCommand("Aceptar");
+                    this.updatePhoneButton.setText("Aceptar");
+                    break;
+                case "Aceptar":
+                    phone = new Phone();
+                    phone.setPhoNumber(this.phoneText.getText());
+
+                    switch(this.PhoneCB.getSelectedItem().toString()){
+                        case "Móvil":
+                            phone.setPhoType("M");
+                            break;
+                        case "Fijo":
+                            phone.setPhoType("F");
+                            break;
+                    }
+                    
+                    phone.setPhoId(this.phones.get(index).getPhoId());
+                    
+                    this.phones.set(index, phone);
+                    
+                    
+                    if (!this.idText.getText().equals("")) {
+                        this.conPhone.updatePhone(connection, phone);
+                    }
+                    
+                    listPhones();
+                    
+                    this.updatePhoneButton.setActionCommand("Editar");
+                    this.updatePhoneButton.setText("Editar");
+                    break;
+            }
+            
+            
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+        
+        
+        
+        
+        
     }//GEN-LAST:event_updatePhoneButtonActionPerformed
 
     private void deletePhoneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePhoneButtonActionPerformed
-        // TODO add your handling code here:
+        
+        int index = this.phonesTable.getSelectedRow();
+        
+        if (index < 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione un teléfono.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            throw new NullPointerException();
+        }
+        
+        this.phones.remove(index);
+        
+        if (!this.idText.getText().equals("")) {
+            this.conPhone.deletePhone(connection, 
+                    this.phones.get(index).getPhoId());
+        }
+        
+        
+        listPhones();
+        
     }//GEN-LAST:event_deletePhoneButtonActionPerformed
 
     private void phoneTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneTextActionPerformed
@@ -515,8 +611,44 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_idTextActionPerformed
 
+    private void createPhoneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPhoneButtonActionPerformed
+        try{
+        Phone phone = new Phone();
+            phone.setPhoNumber(this.phoneText.getText());
+
+            switch(this.PhoneCB.getSelectedItem().toString()){
+                case "Móvil":
+                    phone.setPhoType("M");
+                    break;
+                case "Fijo":
+                    phone.setPhoType("F");
+                    break;
+            }
+        
+        if (this.idText.getText().equals("")) {
+            if (this.phones == null) {
+                this.phones = new ArrayList<>();
+            }
+
+            this.phones.add(phone);
+            listPhones(Integer.parseInt(this.idText.getText()));
+        }else{
+            System.out.println(""+ phone.getPhoNumber() + phone.getPhoType());
+            this.conPhone.createUserPhone(connection, phone, 
+                    Integer.parseInt(this.idText.getText()));
+            this.phones.add(phone);
+            listPhones(Integer.parseInt(this.idText.getText()));
+        }
+        
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+        
+    }//GEN-LAST:event_createPhoneButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox PhoneCB;
     private javax.swing.JButton acceptButton;
     private javax.swing.JLabel addressLb;
     private javax.swing.JTextField addressText;
@@ -541,7 +673,6 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
     private javax.swing.JPanel phonePanel;
     private javax.swing.JTextField phoneText;
     private javax.swing.JTable phonesTable;
-    private javax.swing.JComboBox typePhoneCmbBoc;
     private javax.swing.JButton updatePhoneButton;
     private javax.swing.JLabel userLb;
     private javax.swing.JTextField userText;
@@ -602,7 +733,7 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
     private void listPhones(int useID){
         
         DefaultTableModel tableModel = new DefaultTableModel();
-        List<Phone> phones = new ArrayList<>();
+        phones = new ArrayList<>();
         
         String [] colums = {"Número", "Tipo"}; 
         String [][] rows;
@@ -627,4 +758,23 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
         
     }
 
+    
+    private void listPhones(){
+     DefaultTableModel tableModel = new DefaultTableModel();
+        
+        String [] colums = {"Número", "Tipo"}; 
+        String [][] rows;
+        
+        int n = this.phones.size();
+        
+        rows = new String[n][2];
+        
+        for (int i = 0; i < n; i++) {
+            rows[i][0] = this.phones.get(i).getPhoType();
+            rows[i][1] = this.phones.get(i).getPhoNumber();
+        }
+        
+        tableModel.setDataVector(rows, colums);
+        this.phonesTable.setModel(tableModel);
+    }
 }

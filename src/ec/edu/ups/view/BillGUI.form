@@ -190,6 +190,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchCustomerBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="createCustomerBtn">
               <Properties>
@@ -268,6 +271,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar Detalle"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addDetailBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="editDetailBtn">
               <Properties>
@@ -311,6 +317,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Crear Factura"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createBillBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="cancelBillBtn">
               <Properties>
