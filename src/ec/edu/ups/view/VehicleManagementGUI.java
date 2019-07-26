@@ -613,6 +613,12 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
             model.setModName(this.nameModelText.getText());
             model.setModCost(Double.parseDouble(this.costModelText.getText()));
             
+            Brand brand = new Brand();
+            this.conModel.getConBrand().readBrand(connection, brand, 
+                    this.nameBrandText.getText());
+            
+            model.setModBrand(brand);
+            
             this.conModel.updateModel(connection, model);
             
             //OJO HACER EL OTRO
