@@ -65,6 +65,9 @@ public class RentalController {
         pstat.setInt(5, rental.getRenReservation().getResId());
         pstat.setInt(6, rental.getRenVehicle().getVehId());
         pstat.setInt(7, rental.getRenCustomer().getUseId());
+        pstat.setDouble(8, rental.getRenWarranty());
+        pstat.setString(9, "" + rental.getRenStatus());
+        pstat.setInt(10, rental.getRenPayMeth().getPayId());
         
         pstat.executeUpdate();
         
@@ -86,9 +89,12 @@ public class RentalController {
         pstat.setDouble(2, rental.getRenKilometrajeFin());
         pstat.setDate(3, new java.sql.Date(rental.getRenDateIni().getTime()));
         pstat.setDate(4, new java.sql.Date(rental.getRenDateFin().getTime()));
-//        pstat.setInt(5, rental.getRenReservation().getResId());
-        pstat.setInt(5, rental.getRenVehicle().getVehId());
-        pstat.setInt(6, rental.getRenCustomer().getUseId());
+        //pstat.setInt(5, rental.getRenReservation().getResId());
+        pstat.setInt(6, rental.getRenVehicle().getVehId());
+        pstat.setInt(7, rental.getRenCustomer().getUseId());
+        pstat.setDouble(8, rental.getRenWarranty());
+        pstat.setString(9, "" + rental.getRenStatus());
+        pstat.setInt(10, rental.getRenPayMeth().getPayId());
         
         pstat.executeUpdate();
         
@@ -158,10 +164,10 @@ public class RentalController {
         Rental rental;
         Vehicle vehicle;
         Reservation reservation;
-        String query = "SELECT *"
-                + "FROM vrs_rentals"
-                + "WHERE use_id = ?";
-                //+ "ren_status = ?";
+        String query = "SELECT * "
+                + "FROM vrs_rentals "
+                + "WHERE use_id = ? "
+                + "AND ren_status = ? ";
         
         
         try{
@@ -183,7 +189,7 @@ public class RentalController {
                 rental.setRenKilometrajeFin(rstat.getDouble(3));
                 rental.setRenDateIni(rstat.getDate(4));
                 rental.setRenDateFin(rstat.getDate(5));
-                //rental.setRenWarranty(rstat.getDouble(6));
+                rental.setRenWarranty(rstat.getDouble(6));
                 
                 
                 this.conVehicle.readVehicle(connection, vehicle, rstat.getInt(7));

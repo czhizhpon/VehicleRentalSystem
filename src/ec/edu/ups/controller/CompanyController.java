@@ -17,6 +17,11 @@ public class CompanyController {
     private PrivilegeController conPrivilege;
     private VehCategoryController conCategory;
 
+    public CompanyController() {
+        conPrivilege = new PrivilegeController();
+        conCategory = new VehCategoryController();
+    }
+    
     public PrivilegeController getConPrivilege() {
         return conPrivilege;
     }
