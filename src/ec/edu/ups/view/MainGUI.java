@@ -490,7 +490,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void creBillJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creBillJMIActionPerformed
         try{
             if (billGUI == null) 
-                billGUI = new BillGUI();
+                billGUI = new BillGUI(connection);
             if (billGUI.isVisible()){
                 billGUI.setSelected(true);
             }else{
@@ -544,7 +544,6 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_reservationJMIActionPerformed
 
     private boolean loadMenus(){
-        
         switch(getUser().getUseType()){
             case 'C':
                 customerMenu();

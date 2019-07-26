@@ -27,7 +27,7 @@ public class PhoneController {
     public boolean createUserPhone(ConnectionJava connection, Phone phone, 
             int useID){
         String query = "INSERT INTO VRS.VRS_PHONES VALUES(\n"
-                + "pho_id_seq.NEXTVAL, ?, ?, ?, ?)";
+                + "vrs.pho_id_seq.NEXTVAL, ?, ?, ?, null)";
         
         try{
             
@@ -35,12 +35,11 @@ public class PhoneController {
             pstat.setString(1, phone.getPhoNumber());
             pstat.setString(2, phone.getPhoType());
             pstat.setInt(3, useID);
-            pstat.setNull(4, java.sql.Types.INTEGER);
             
             pstat.executeUpdate();
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         
         //connection.closeConnection();

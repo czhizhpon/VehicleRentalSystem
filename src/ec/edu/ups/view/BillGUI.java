@@ -5,17 +5,39 @@
  */
 package ec.edu.ups.view;
 
+import ec.edu.ups.conectionDB.ConnectionJava;
+import ec.edu.ups.controller.CustomerController;
+import ec.edu.ups.controller.PhoneController;
+import ec.edu.ups.model.BillDetail;
+import ec.edu.ups.model.BillHead;
+import ec.edu.ups.model.Customer;
+import ec.edu.ups.model.Phone;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author edd
  */
 public class BillGUI extends javax.swing.JInternalFrame {
 
+    private CustomerController conCustomer;
+    private PhoneController conPhone;
+    private ConnectionJava connection;
+    
+    private Customer customer;
+    private List<BillDetail> details;
+    private double subtotal;
+    
     /**
      * Creates new form BillGUI
      */
-    public BillGUI() {
+    public BillGUI(ConnectionJava connection) {
         initComponents();
+        conCustomer = new CustomerController();
+        conPhone = new PhoneController();
+        this.connection = connection;
     }
 
     /**
@@ -78,6 +100,11 @@ public class BillGUI extends javax.swing.JInternalFrame {
         });
 
         searchCustomerBtn.setText("Buscar");
+        searchCustomerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchCustomerBtnActionPerformed(evt);
+            }
+        });
 
         createCustomerBtn.setText("Crear");
 
@@ -153,6 +180,11 @@ public class BillGUI extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(detailVehicleTable);
 
         addDetailBtn.setText("Agregar Detalle");
+        addDetailBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDetailBtnActionPerformed(evt);
+            }
+        });
 
         editDetailBtn.setText("Editar Detalle");
 
@@ -185,6 +217,11 @@ public class BillGUI extends javax.swing.JInternalFrame {
         );
 
         createBillBtn.setText("Crear Factura");
+        createBillBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createBillBtnActionPerformed(evt);
+            }
+        });
 
         cancelBillBtn.setText("Anular Factura");
 
@@ -264,6 +301,63 @@ public class BillGUI extends javax.swing.JInternalFrame {
     private void printBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBillBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_printBillBtnActionPerformed
+
+    private void searchCustomerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerBtnActionPerformed
+        
+        customer = new Customer();
+        try{
+            this.conCustomer.readDniCustomer(connection, customer, this.dniCustomerTxt.getText());
+
+            if (customer.getUseName() == null) {
+                throw new NullPointerException();
+            }
+            
+            this.nameCustomerTxt.setText(customer.getUseName());
+            this.lastnameCustomerTxt.setText(customer.getUseLastNamel());
+            this.directionCustomerTxt.setText(customer.getUseAddress());
+            
+            Phone phone = new Phone();
+            this.conPhone.readPhone(connection, phone, customer.getUseId());
+            
+            this.phoneCustomerTxt.setText(phone.getPhoNumber());
+            
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "No se encontró el Cliente");
+        }
+        
+        
+    }//GEN-LAST:event_searchCustomerBtnActionPerformed
+
+    private void addDetailBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDetailBtnActionPerformed
+        
+    }//GEN-LAST:event_addDetailBtnActionPerformed
+
+    private void createBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBillBtnActionPerformed
+        
+        this.subtotal = 0;
+        BillHead bill = new BillHead();
+        
+        bill.setCustomer(customer);
+        bill.setHeaDate(new Date());
+        bill.setHeaDetails(details);
+        bill.setHeaStatus('V');
+        
+        for (BillDetail detail : details) {
+            this.subtotal = this.subtotal + detail.getDetSubtotal();
+        }
+        
+        bill.setHeaSubtotal(subtotal);
+        bill.setHeaVat(subtotal * .012);
+        bill.setHeaDisc(subtotal * customer.getUsePrivilege().getPriDiscountPct());
+        
+        double total = bill.getHeaSubtotal() + bill.getHeaVat() - bill.getHeaDisc();
+        
+        bill.setHeaTotal(total);
+        
+        
+        
+        
+    }//GEN-LAST:event_createBillBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addDetailBtn;
