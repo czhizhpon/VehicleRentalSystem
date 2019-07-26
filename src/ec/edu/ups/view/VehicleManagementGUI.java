@@ -474,7 +474,7 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
             
             Model model = new Model();
             this.conModel.readModel(connection, model, 
-                    Integer.parseInt(this.idModelText.getText()));
+                    this.nameModelText.getText());
             
             if (model.getModName() == null) {
                 throw new NullPointerException();
