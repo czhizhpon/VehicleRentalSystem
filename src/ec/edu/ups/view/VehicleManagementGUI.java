@@ -106,6 +106,8 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         findModelButton = new javax.swing.JButton();
         editModelButton = new javax.swing.JButton();
         deleteModelButton = new javax.swing.JButton();
+        costModelLabel = new javax.swing.JLabel();
+        costModelText = new javax.swing.JTextField();
         listPanel = new javax.swing.JPanel();
         buttonsPanel = new javax.swing.JPanel();
         selectComboBox = new javax.swing.JComboBox<>();
@@ -274,6 +276,8 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        costModelLabel.setText("Precio:");
+
         javax.swing.GroupLayout modelPanelLayout = new javax.swing.GroupLayout(modelPanel);
         modelPanel.setLayout(modelPanelLayout);
         modelPanelLayout.setHorizontalGroup(
@@ -284,11 +288,13 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
                     .addGroup(modelPanelLayout.createSequentialGroup()
                         .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(nameModelLabel)
-                            .addComponent(idModelLabel))
+                            .addComponent(idModelLabel)
+                            .addComponent(costModelLabel))
                         .addGap(30, 30, 30)
                         .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(idModelText)
-                            .addComponent(nameModelText)))
+                            .addComponent(nameModelText)
+                            .addComponent(costModelText)))
                     .addGroup(modelPanelLayout.createSequentialGroup()
                         .addComponent(createModelButton)
                         .addGap(15, 15, 15)
@@ -302,21 +308,25 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         modelPanelLayout.setVerticalGroup(
             modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(modelPanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(15, 15, 15)
                 .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idModelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idModelLabel))
-                .addGap(20, 20, 20)
+                .addGap(15, 15, 15)
                 .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameModelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameModelLabel))
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(costModelLabel)
+                    .addComponent(costModelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createModelButton)
                     .addComponent(findModelButton)
                     .addComponent(editModelButton)
                     .addComponent(deleteModelButton))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         listPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
@@ -567,9 +577,11 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
             
             Model model = new Model();
             model.setModName(this.nameModelText.getText());
+            model.setModCost(Double.parseDouble(this.costModelText.getText()));
 
             if (this.conModel.createModel(connection, model, 
                     Integer.parseInt(this.idBrandText.getText()))){
+                
                 JOptionPane.showMessageDialog(null, 
                         "Modelo " + model.getModName()+ " creado.", 
                         "Confirmación", JOptionPane.INFORMATION_MESSAGE);
@@ -629,6 +641,8 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel brandPanel;
     private javax.swing.JPanel buttonsPanel;
+    private javax.swing.JLabel costModelLabel;
+    private javax.swing.JTextField costModelText;
     private javax.swing.JButton createBrandButton;
     private javax.swing.JButton createModelButton;
     private javax.swing.JButton deleteBrandButton;
