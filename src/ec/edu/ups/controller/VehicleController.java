@@ -29,6 +29,9 @@ public class VehicleController {
     
     private PreparedStatement pstat;
     private ResultSet rstat;
+    
+    private VehCategory vehCategory;
+    private Model model;
 
     public VehicleController() {
         conOffice = new OfficeController();
@@ -100,11 +103,9 @@ public class VehicleController {
         VehCategory vehCategory;
         Model model;
         
-        String query = "SELECT veh_id, veh_plate, veh_color, veh_status, veh_kilometrage,"
-                + "veh_insurance_number, veh_insurrance_date, veh_insurrance_expires,"
-                + "veh_origin, cat_id"
-                + "FROM vrs_vehicle"
-                + "WHERE veh_id = ?";
+        String query = "SELECT * "
+                + "FROM VRS.vrs_vehicles "
+                + "WHERE veh_id = ? ";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
@@ -150,20 +151,17 @@ public class VehicleController {
     public boolean readVehicle(ConnectionJava connection, Vehicle vehicle, 
             String plate){
         
-        VehCategory vehCategory;
-        Model model;
-        
-        String query = "SELECT veh_id, veh_plate, veh_color, veh_status, veh_kilometrage,"
-                + "veh_insurance_number, veh_insurrance_date, veh_insurrance_expires,"
-                + "veh_origin, cat_id"
-                + "FROM vrs_vehicle"
-                + "WHERE veh_id = ?";
+        String query = "SELECT * "
+                + "FROM VRS.VRS_VEHICLES v "
+                + "WHERE v.veh_plate LIKE ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
             pstat.setString(1, plate);
             
             rstat = pstat.executeQuery();
+            
+            
             
             /*offId, modId, catId, proId*/
             while(rstat.next()){
@@ -178,11 +176,11 @@ public class VehicleController {
                 vehicle.setVehInsurranceExpires(rstat.getDate(8));
                 vehicle.setVehOrigin(rstat.getString(9).charAt(0));
                 
-                model = new Model();
+                this.model = new Model();
                 
                 this.conModel.readModel(connection, model, rstat.getInt(11));
                 
-                vehCategory = new VehCategory();
+                this.vehCategory = new VehCategory();
                 
                 
                 this.vehCategoryController.readVehCategory(connection, 
@@ -195,7 +193,8 @@ public class VehicleController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.toString());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     

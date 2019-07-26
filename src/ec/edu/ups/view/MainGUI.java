@@ -457,7 +457,7 @@ public class MainGUI extends javax.swing.JFrame {
         
         try{
             if (vehicleGUI == null) 
-                vehicleGUI = new VehicleGUI();
+                vehicleGUI = new VehicleGUI(this.connection);
             if (vehicleGUI.isVisible()){
                 vehicleGUI.setSelected(true);
             }else{

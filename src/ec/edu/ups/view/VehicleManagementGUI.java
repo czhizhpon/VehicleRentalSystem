@@ -546,6 +546,7 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
                         "Marca " + brand.getBraName() + " creada.", 
                         "Confirmación", JOptionPane.INFORMATION_MESSAGE);
                 
+                
                 this.nameBrandText.setText("");
                 listBrands();
                 

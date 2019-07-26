@@ -5,17 +5,72 @@
  */
 package ec.edu.ups.view;
 
+import ec.edu.ups.conectionDB.ConnectionJava;
+import ec.edu.ups.controller.BrandController;
+import ec.edu.ups.controller.CityController;
+import ec.edu.ups.controller.ModelController;
+import ec.edu.ups.controller.OfficeController;
+import ec.edu.ups.controller.ProvinceController;
+import ec.edu.ups.controller.VehCategoryController;
+import ec.edu.ups.controller.VehicleController;
+import ec.edu.ups.model.Brand;
+import ec.edu.ups.model.City;
+import ec.edu.ups.model.Model;
+import ec.edu.ups.model.Office;
+import ec.edu.ups.model.Province;
+import ec.edu.ups.model.VehCategory;
+import ec.edu.ups.model.Vehicle;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author edd
  */
 public class VehicleGUI extends javax.swing.JInternalFrame {
+    
+    private BrandController conBrand;
+    private ModelController conModel;
+    private ProvinceController conProvince;
+    private CityController conCity;
+    private VehCategoryController conCategory;
+    private OfficeController conOffice;
+    private VehicleController conVehicle;
+    
+    private List<Brand> brands;
+    private List<Model> models;
+    private List<Province> provinces;
+    private List<Office> offices;
+    private List<City> cities;
+    private List<VehCategory> vehCategories;
+    
+    private Vehicle vehicle;
+    
+    
+    private ConnectionJava connection;
 
     /**
      * Creates new form VehicleGUI
      */
-    public VehicleGUI() {
+    public VehicleGUI(ConnectionJava connection) {
         initComponents();
+        this.conBrand = new BrandController();
+        this.conModel = new ModelController();
+        this.conCity = new CityController();
+        this.conCategory = new VehCategoryController();
+        this.conProvince = new ProvinceController();
+        this.conOffice = new OfficeController();
+        this.conVehicle = new VehicleController();
+        this.connection = connection;
+        
+        loadComboBox(connection);
+        
     }
 
     /**
@@ -48,13 +103,7 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
         insuranceNumberLB = new javax.swing.JLabel();
         categoryCBox = new javax.swing.JComboBox<>();
         insuranceDateLB = new javax.swing.JLabel();
-        originLB = new javax.swing.JLabel();
-        dayCB = new javax.swing.JComboBox<>();
-        slashLB1 = new javax.swing.JLabel();
-        monthCB = new javax.swing.JComboBox<>();
-        slashLB2 = new javax.swing.JLabel();
-        yearCB = new javax.swing.JComboBox<>();
-        originCBox = new javax.swing.JComboBox<>();
+        dateText = new javax.swing.JTextField();
         locationPanel = new javax.swing.JPanel();
         brandCBox = new javax.swing.JComboBox<>();
         modelCBox = new javax.swing.JComboBox<>();
@@ -136,36 +185,6 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
         insuranceDateLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         insuranceDateLB.setText("Fecha Seguro:");
 
-        originLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        originLB.setText("Origen Vehículo:");
-
-        dayCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Día" }));
-        dayCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dayCBActionPerformed(evt);
-            }
-        });
-
-        slashLB1.setText("/");
-
-        monthCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes" }));
-        monthCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                monthCBActionPerformed(evt);
-            }
-        });
-
-        slashLB2.setText("/");
-
-        yearCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
-        yearCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                yearCBActionPerformed(evt);
-            }
-        });
-
-        originCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nacional", "Extranjero" }));
-
         javax.swing.GroupLayout detailVehiclePanelLayout = new javax.swing.GroupLayout(detailVehiclePanel);
         detailVehiclePanel.setLayout(detailVehiclePanelLayout);
         detailVehiclePanelLayout.setHorizontalGroup(
@@ -179,7 +198,7 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
                                 .addGroup(detailVehiclePanelLayout.createSequentialGroup()
                                     .addComponent(categoryLB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(categoryCBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(categoryCBox, 0, 175, Short.MAX_VALUE))
                                 .addGroup(detailVehiclePanelLayout.createSequentialGroup()
                                     .addComponent(plateLB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
@@ -203,22 +222,9 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
                             .addComponent(insuranceNumberTxt))
                         .addGroup(detailVehiclePanelLayout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(originLB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(originCBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(detailVehiclePanelLayout.createSequentialGroup()
-                            .addContainerGap()
                             .addComponent(insuranceDateLB, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(dayCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(slashLB1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(monthCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(slashLB2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(yearCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(dateText)))
                     .addGroup(detailVehiclePanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(createVehicleBtn)
@@ -228,8 +234,8 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
                         .addComponent(editVehicleBtn)
                         .addGap(18, 18, 18)
                         .addComponent(deleteVehicleBtn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                 .addContainerGap())
         );
         detailVehiclePanelLayout.setVerticalGroup(
@@ -272,16 +278,8 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(insuranceDateLB)
-                            .addComponent(dayCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(slashLB1)
-                            .addComponent(monthCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(slashLB2)
-                            .addComponent(yearCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(originLB)
-                            .addComponent(originCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(58, 58, 58)
                         .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(createVehicleBtn)
                             .addGroup(detailVehiclePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -304,8 +302,18 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
         modelCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Modelo" }));
 
         provinceCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Provincia" }));
+        provinceCBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                provinceCBoxActionPerformed(evt);
+            }
+        });
 
         cityCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciudad" }));
+        cityCBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityCBoxActionPerformed(evt);
+            }
+        });
 
         oficeCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Oficina" }));
 
@@ -374,48 +382,136 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dayCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayCBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dayCBActionPerformed
-
-    private void monthCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthCBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_monthCBActionPerformed
-
-    private void yearCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearCBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_yearCBActionPerformed
-
     private void brandCBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brandCBoxActionPerformed
-        // TODO add your handling code here:
+        int index = this.brandCBox.getSelectedIndex();
+        
+        this.models = new ArrayList<>();
+        
+        this.conModel.getModels(connection, models, this.brands.get(index - 1));
+        
+        System.out.println(this.brands.get(index).getBraName());
+        
+        for (Model m:models) {
+            this.modelCBox.addItem(m.getModName());
+        }
+        
     }//GEN-LAST:event_brandCBoxActionPerformed
 
     private void createVehicleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createVehicleBtnActionPerformed
         // TODO add your handling code here:
         
         //CREAR
-                
+        Vehicle vehicle = new Vehicle();
+        
+        vehicle.setVehPlate(this.plateTxt.getText());
+        vehicle.setVehColor(this.colourTxt.getText());
+        vehicle.setVehStatus(this.statusTxt.getText().charAt(0));
+        vehicle.setVehKilometraje(Double.parseDouble(this.KilometrageTxt.getText()));
+        vehicle.setVehInsurranceNumber(this.insuranceNumberTxt.getText());
+        
+        String pattern = "dd-MM-yyyy";
+        SimpleDateFormat dateF = new SimpleDateFormat(pattern);
+        Date dateI = null;
+        
+        String date = this.dateText.getText();
+        
+        try {
+            dateI = dateF.parse(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(VehicleGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        vehicle.setVehInsurranceDate(dateI);
+        vehicle.setVehInsurranceExpires(dateI);
+        
+        vehicle.setVehOrigin('N');
+        
+        // Fin
+        this.conVehicle.createVehicle(connection, vehicle, 
+                this.oficeCBox.getSelectedIndex(), 
+                this.modelCBox.getSelectedIndex(), 
+                this.categoryCBox.getSelectedIndex(), 
+                this.provinceCBox.getSelectedIndex());
+        
     }//GEN-LAST:event_createVehicleBtnActionPerformed
 
     private void searchVehicleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchVehicleBtnActionPerformed
         // TODO add your handling code here:
         
         // BUSCAR
+        
+        this.vehicle = new Vehicle();
+        
+        this.vehicle.setVehPlate(this.plateTxt.getText());
+        
+        
+        this.conVehicle.readVehicle(connection, vehicle, vehicle.getVehPlate());
+        
+        this.plateTxt.setText(vehicle.getVehPlate());
+        this.colourTxt.setText(vehicle.getVehColor());
+        this.statusTxt.setText(""+vehicle.getVehStatus());
+        this.KilometrageTxt.setText(""+vehicle.getVehKilometraje());
+        this.insuranceNumberTxt.setText(vehicle.getVehInsurranceNumber());
+        
+        
+        
     }//GEN-LAST:event_searchVehicleBtnActionPerformed
 
     private void editVehicleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editVehicleBtnActionPerformed
         // TODO add your handling code here:
         
         //EDITAR
+        Vehicle vehicle = new Vehicle();
         
+        vehicle.setVehPlate(this.plateTxt.getText());
+        vehicle.setVehColor(this.colourTxt.getText());
+        vehicle.setVehStatus(this.statusTxt.getText().charAt(0));
+        vehicle.setVehKilometraje(Double.parseDouble(this.KilometrageTxt.getText()));
+        vehicle.setVehInsurranceNumber(this.insuranceNumberTxt.getText());
+        
+        
+        //
+        this.conVehicle.updateVehicle(connection, vehicle, 
+                this.oficeCBox.getSelectedIndex());
     }//GEN-LAST:event_editVehicleBtnActionPerformed
 
     private void deleteVehicleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteVehicleBtnActionPerformed
         // TODO add your handling code here:
         
         //ELIMINAR
+        this.conVehicle.deleteVehicle(connection, this.plateTxt.getText());
         
     }//GEN-LAST:event_deleteVehicleBtnActionPerformed
+
+    private void provinceCBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provinceCBoxActionPerformed
+        // TODO add your handling code here:
+        int index = this.provinceCBox.getSelectedIndex();
+        
+        this.cities = new ArrayList<>();
+        
+        this.conCity.getCities(connection, cities, this.provinces.get(index - 1));
+        
+        //System.out.println(this.brands.get(index).getBraName());
+        
+        for (City c:cities) {
+            this.cityCBox.addItem(c.getCitName());
+        }
+    }//GEN-LAST:event_provinceCBoxActionPerformed
+
+    private void cityCBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityCBoxActionPerformed
+        // TODO add your handling code here:
+        int index = this.cityCBox.getSelectedIndex();
+        
+        this.offices = new ArrayList<>();
+        
+        this.conOffice.getOffices(connection, offices, index);
+        
+        //System.out.println(this.brands.get(index).getBraName());
+        
+        for (Office o:offices) {
+            this.oficeCBox.addItem(o.getOffMainSt()+" "+o.getOffSideSt());
+        }
+    }//GEN-LAST:event_cityCBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField KilometrageTxt;
@@ -426,7 +522,7 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
     private javax.swing.JLabel colourLB;
     private javax.swing.JTextField colourTxt;
     private javax.swing.JButton createVehicleBtn;
-    private javax.swing.JComboBox<String> dayCB;
+    private javax.swing.JTextField dateText;
     private javax.swing.JButton deleteVehicleBtn;
     private javax.swing.JPanel detailVehiclePanel;
     private javax.swing.JButton editVehicleBtn;
@@ -437,20 +533,40 @@ public class VehicleGUI extends javax.swing.JInternalFrame {
     private javax.swing.JLabel kilometrageLB;
     private javax.swing.JPanel locationPanel;
     private javax.swing.JComboBox<String> modelCBox;
-    private javax.swing.JComboBox<String> monthCB;
     private javax.swing.JComboBox<String> oficeCBox;
-    private javax.swing.JComboBox<String> originCBox;
-    private javax.swing.JLabel originLB;
     private javax.swing.JLabel plateLB;
     private javax.swing.JTextField plateTxt;
     private javax.swing.JComboBox<String> provinceCBox;
     private javax.swing.JButton searchVehicleBtn;
-    private javax.swing.JLabel slashLB1;
-    private javax.swing.JLabel slashLB2;
     private javax.swing.JLabel statusLB;
     private javax.swing.JTextField statusTxt;
     private javax.swing.JPanel vehiclePanel;
     private javax.swing.JTable vehicleTable;
-    private javax.swing.JComboBox<String> yearCB;
     // End of variables declaration//GEN-END:variables
+
+    public void loadComboBox(ConnectionJava connection){
+        
+        this.brands = new ArrayList<>();
+        this.conBrand.getBrands(connection, brands);
+        
+        for (int i = 0; i < brands.size(); i++) {
+            this.brandCBox.addItem(brands.get(i).getBraName());
+        }
+        
+        this.provinces = new ArrayList<>();
+        this.conProvince.getProvinces(connection, provinces);
+        
+        
+        for (int i = 0; i < provinces.size(); i++) {
+            this.provinceCBox.addItem(provinces.get(i).getProName());
+        }
+        
+    }
+    
+    public void listVehicles(){
+        
+        
+        
+        
+    }
 }
