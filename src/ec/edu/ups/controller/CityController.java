@@ -82,8 +82,8 @@ public class CityController {
     }
     
     public boolean updateCity(ConnectionJava connection, City city){
-        String query = "UPDATE VRS.VRS_CITIES SET"
-                + "cit_name = ?"
+        String query = "UPDATE VRS.VRS_CITIES SET "
+                + "cit_name = ? "
                 + "pro_name = ?";
         
         try{
@@ -103,7 +103,7 @@ public class CityController {
     }
     
     public boolean deleteCity(ConnectionJava connection, int citId){
-        String query = "DELETE VRS.VRS_CITIES"
+        String query = "DELETE VRS.VRS_CITIES "
                 + "WHERE cit_id = ?";
         
         try{

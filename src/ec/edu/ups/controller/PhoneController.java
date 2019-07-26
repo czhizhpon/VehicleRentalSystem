@@ -27,7 +27,7 @@ public class PhoneController {
     public boolean createUserPhone(ConnectionJava connection, Phone phone, 
             int useID){
         String query = "INSERT INTO VRS.VRS_PHONES(\n"
-                + "pho_id_seq.NEXTVAL, ?, ?, ?, null";
+                + "pho_id_seq.NEXTVAL, ?, ?, ?, null)";
         
         try{
             
@@ -49,7 +49,7 @@ public class PhoneController {
     public boolean createOfficePhone(ConnectionJava connection, Phone phone, 
             int offID){
         String query = "INSERT INTO VRS.VRS_PHONES(\n"
-                + "pho_id_seq.NEXTVAL, ?, ?, null, ?";
+                + "pho_id_seq.NEXTVAL, ?, ?, null, ?)";
         
         try{
             
@@ -69,8 +69,8 @@ public class PhoneController {
     }
     
     public boolean readPhone(ConnectionJava connection, Phone phone, int phoId){
-        String query = "SELECT *"
-                + "FROM VRS.VRS_PHONES"
+        String query = "SELECT * "
+                + "FROM VRS.VRS_PHONES "
                 + "WHERE pho_id = ?";
         
         try{
@@ -97,9 +97,9 @@ public class PhoneController {
     }
     
     public boolean updatePhone(ConnectionJava connection, Phone phone){
-        String query = "UPDATE VRS.VRS_PHONES SET"
-                + "pho_number = ?"
-                + "pho_type = ?"
+        String query = "UPDATE VRS.VRS_PHONES SET "
+                + "pho_number = ? "
+                + "pho_type = ? "
                 + "WHERE pho_id = ?";
         
         try{
@@ -120,7 +120,7 @@ public class PhoneController {
     }
     
     public boolean deletePhone(ConnectionJava connection, int phoId){
-        String query = "DELETE VRS.VRS_PHONES"
+        String query = "DELETE VRS.VRS_PHONES "
                 + "WHERE pho_id = ?";
         
         try{
@@ -142,8 +142,8 @@ public class PhoneController {
             int useId){
         
         Phone phone;
-        String query = "SELECT *"
-                + "FROM VRS.VRS_PHONES"
+        String query = "SELECT * "
+                + "FROM VRS.VRS_PHONES "
                 + "WHERE use_id = ?";
         
         try{
@@ -177,8 +177,8 @@ public class PhoneController {
             int offID){
         
         Phone phone;
-        String query = "SELECT *"
-                + "FROM VRS.VRS_PHONES"
+        String query = "SELECT * "
+                + "FROM VRS.VRS_PHONES "
                 + "WHERE off_id = ?";
         
         try{
