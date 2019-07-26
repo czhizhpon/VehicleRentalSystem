@@ -6,6 +6,7 @@
 package ec.edu.ups.view;
 
 import ec.edu.ups.conectionDB.ConnectionJava;
+import ec.edu.ups.controller.CustomerController;
 import ec.edu.ups.controller.RentalController;
 import ec.edu.ups.controller.UserController;
 import ec.edu.ups.controller.VehicleController;
@@ -22,7 +23,7 @@ public class RentalGUI extends javax.swing.JInternalFrame {
     
     private Services services;
     
-    private UserController conUser;
+    private CustomerController conUser;
     private RentalController conRental;
     private VehicleController conVehicle;
     
@@ -36,12 +37,14 @@ public class RentalGUI extends javax.swing.JInternalFrame {
     /**
      * Creates new form RentalGUI
      */
-    public RentalGUI(User user) {
-        this.user = user;
+    public RentalGUI() {
+        
         initComponents();
         
         connection = new ConnectionJava();
         services = new Services();
+        
+        conUser = new CustomerController();
     }
 
     /**
@@ -322,9 +325,9 @@ public class RentalGUI extends javax.swing.JInternalFrame {
         try {
             
             
-            conUser = new UserController();
             
-            conUser.readUser(connection, user, user.getUseUsername());
+            
+            //conUser.readUser(connection, user, user.getUseUsername());
             
             conVehicle = new VehicleController();
             
