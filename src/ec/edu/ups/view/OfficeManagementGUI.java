@@ -10,9 +10,14 @@ package ec.edu.ups.view;
 import ec.edu.ups.conectionDB.ConnectionJava;
 import ec.edu.ups.controller.OfficeController;
 import ec.edu.ups.model.City;
+import ec.edu.ups.model.Office;
+import ec.edu.ups.model.Phone;
 import ec.edu.ups.model.Province;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
@@ -25,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class OfficeManagementGUI extends javax.swing.JInternalFrame {
 
+   private List<Phone> phones; 
     
     private OfficeController conOffice;
     private ConnectionJava connection;
@@ -34,6 +40,7 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
      */
     public OfficeManagementGUI(ConnectionJava connection, MainGUI mainGUI) {
         initComponents();
+        actionCombobox();
         
         this.conOffice = new OfficeController();
         this.connection = connection;
@@ -72,6 +79,14 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         
         listProvinces();
         
+    }
+
+    public List<Phone> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(List<Phone> phones) {
+        this.phones = phones;
     }
 
     /**
@@ -154,8 +169,18 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         });
 
         editProvinceButton.setText("Editar");
+        editProvinceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editProvinceButtonActionPerformed(evt);
+            }
+        });
 
         deleteProvinceButton.setText("Eliminar");
+        deleteProvinceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteProvinceButtonActionPerformed(evt);
+            }
+        });
 
         idProvinceLabel.setText("Id:");
 
@@ -251,8 +276,18 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         });
 
         editPhoneButton.setText("Editar");
+        editPhoneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editPhoneButtonActionPerformed(evt);
+            }
+        });
 
         deletePhoneButton.setText("Eliminar");
+        deletePhoneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletePhoneButtonActionPerformed(evt);
+            }
+        });
 
         phonesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -388,7 +423,7 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
 
         listPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Listas"));
 
-        listComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Provincias", "Ciudades" }));
+        listComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Provincias" }));
 
         loadListButton.setText("Cargar");
         loadListButton.addActionListener(new java.awt.event.ActionListener() {
@@ -470,6 +505,11 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         cityPanel.setPreferredSize(new java.awt.Dimension(412, 154));
 
         createCityButton.setText("Crear");
+        createCityButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createCityButtonActionPerformed(evt);
+            }
+        });
 
         findCityButton.setText("Buscar");
         findCityButton.addActionListener(new java.awt.event.ActionListener() {
@@ -479,6 +519,11 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         });
 
         editCityButton.setText("Editar");
+        editCityButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editCityButtonActionPerformed(evt);
+            }
+        });
 
         deleteCityButton.setText("Eliminar");
         deleteCityButton.addActionListener(new java.awt.event.ActionListener() {
@@ -568,15 +613,93 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void findCityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findCityButtonActionPerformed
-        // TODO add your handling code here:
+        
+        try{
+            City city = new City();
+            
+            if (this.conOffice.getOffCity().readCity(connection, city, this.nameCityText.getText())){
+                this.idCityText.setText("" + city.getCitId());
+                this.nameCityText.setText(city.getCitName());
+                
+                listOffices();
+                listComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(
+                        new String[] { "Provincias", "Ciudades", "Oficinas"}));
+                
+            }else {
+                throw new NullPointerException();
+            }
+            
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, 
+                        "Error en la búsqueda." + ex.toString(), 
+                        "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_findCityButtonActionPerformed
 
     private void deleteCityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCityButtonActionPerformed
-        // TODO add your handling code here:
+        
+        try{
+            
+            
+            if (this.conOffice.getOffCity().deleteCity(connection, 
+                    this.nameCityText.getText())){
+                
+                JOptionPane.showMessageDialog(null, 
+                        "Se eliminó la ciudad: " + this.nameCityText.getText(), 
+                        "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                this.nameCityText.setText("");
+                this.idCityText.setText("");
+                listCities();
+            }else {
+                throw new NullPointerException();
+            }
+            
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, 
+                        "Error de eliminación", 
+                        "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_deleteCityButtonActionPerformed
 
     private void createOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createOfficeButtonActionPerformed
-        // TODO add your handling code here:
+        
+        try{
+            
+            if (this.phones == null) {
+                JOptionPane.showMessageDialog(null, 
+                        "Tiene que agregar almenos 1 teléfono.", 
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                throw new NullPointerException();
+            }
+            
+            Office office = new Office();
+            
+            office.setOffMainSt(this.mainStreetText.getText());
+            office.setOffSideSt(this.secStreetText.getText());
+            office.setOffNumber(this.numberOfficeText.getText());
+            office.setOffCodPostal(this.postalCodeText.getText());
+            
+            office.setOffPhones(phones);
+            
+            if (this.conOffice.createOffice(connection, office, 
+                    Integer.parseInt(this.idCityText.getText()))){
+                
+                JOptionPane.showMessageDialog(null, 
+                        "Se creó la Oficina", 
+                        "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                this.nameProvinceText.setText("");
+                this.idProvinceText.setText("");
+                listOffices();
+            }
+            
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, 
+                        "Error de creación " + ex.toString(), 
+                        "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_createOfficeButtonActionPerformed
 
     private void phoneNumberTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNumberTextActionPerformed
@@ -584,11 +707,35 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_phoneNumberTextActionPerformed
 
     private void createPhoneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPhoneButtonActionPerformed
-        // TODO add your handling code here:
+        if (this.phones == null) {
+            this.phones = new ArrayList<>();
+        }
+        
+        Phone phone = new Phone();
+        phone.setPhoNumber(this.phoneNumberText.getText());
+        
+        switch(this.phonesComboBox.getSelectedItem().toString()){
+            case "Móvil":
+                phone.setPhoType("M");
+                break;
+            case "Convencional":
+                phone.setPhoType("C");
+                break;
+        }
+        
+        
+        this.phones.add(phone);
+        listPhones();
     }//GEN-LAST:event_createPhoneButtonActionPerformed
 
     private void loadListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadListButtonActionPerformed
-        // TODO add your handling code here:
+        
+        //System.out.println(this.listComboBox.getSelectedItem().toString());
+        
+        
+        
+        JOptionPane.showConfirmDialog(null, this.listTable.getSelectedRow());
+        
     }//GEN-LAST:event_loadListButtonActionPerformed
 
     private void createProvinceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProvinceButtonActionPerformed
@@ -603,6 +750,8 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, 
                         "Se creó la provincia: " + province.getProName(), 
                         "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                this.nameProvinceText.setText("");
+                this.idProvinceText.setText("");
                 listProvinces();
             }else {
                 throw new NullPointerException();
@@ -611,7 +760,7 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         }catch (Exception ex) {
             JOptionPane.showMessageDialog(null, 
                         "Error de creación", 
-                        "Confirmación", JOptionPane.ERROR_MESSAGE);
+                        "Error", JOptionPane.ERROR_MESSAGE);
         }
         
         
@@ -625,7 +774,11 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
             if (this.conOffice.getOffProvince().readProvince(connection, province, 
                     this.nameProvinceText.getText())){
                 this.idProvinceText.setText("" + province.getProId());
-                this.nameCityText.setText(province.getProName());
+                this.nameProvinceText.setText(province.getProName());
+                
+                listCities();
+                listComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Provincias", "Ciudades" }));
+                
             }else {
                 throw new NullPointerException();
             }
@@ -633,10 +786,206 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         }catch (Exception ex) {
             JOptionPane.showMessageDialog(null, 
                         "Error en la búsqueda.", 
-                        "Confirmación", JOptionPane.ERROR_MESSAGE);
+                        "Error", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_findProvinceButtonActionPerformed
+
+    private void editProvinceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProvinceButtonActionPerformed
+        
+        try{
+            Province province = new Province();
+            
+            province.setProId(Integer.parseInt(this.idProvinceText.getText()));
+            province.setProName(this.nameProvinceText.getText());
+            
+            if (this.conOffice.getOffProvince().updateProvince(connection, province)){
+                
+                JOptionPane.showMessageDialog(null, 
+                        "Se editó la provincia: " + province.getProName(), 
+                        "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                listProvinces();
+            }else {
+                throw new NullPointerException();
+            }
+            
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, 
+                        "Error de creación", 
+                        "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_editProvinceButtonActionPerformed
+
+    private void deleteProvinceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteProvinceButtonActionPerformed
+        
+        try{
+            
+            
+            if (this.conOffice.getOffProvince().deleteProvince(connection, 
+                    this.nameProvinceText.getText())){
+                
+                JOptionPane.showMessageDialog(null, 
+                        "Se eliminó la provincia: " + this.nameProvinceText.getText(), 
+                        "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                this.nameProvinceText.setText("");
+                this.idProvinceText.setText("");
+                listProvinces();
+            }else {
+                throw new NullPointerException();
+            }
+            
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, 
+                        "Error de eliminación", 
+                        "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_deleteProvinceButtonActionPerformed
+
+    private void createCityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCityButtonActionPerformed
+        
+        try{
+            City city = new City();
+//            
+//            this.conOffice.getOffProvince().readProvince(connection, province, 
+//                    this.nameProvinceText.getText());
+            
+            
+            city.setCitName(this.nameCityText.getText());
+            if (this.conOffice.getOffCity().createCity(connection, city, 
+                    Integer.parseInt(this.idProvinceText.getText()))){
+                
+                JOptionPane.showMessageDialog(null, 
+                        "Se creó la ciudad: " + city.getCitName(), 
+                        "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                this.nameCityText.setText("");
+                this.idCityText.setText("");
+                listCities();
+            }else {
+                throw new NullPointerException();
+            }
+            
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, 
+                        "Error de creación", 
+                        "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_createCityButtonActionPerformed
+
+    private void editCityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCityButtonActionPerformed
+        
+         try{
+            Province province = new Province();
+            City city = new City();
+            
+            city.setCitId(Integer.parseInt(this.idCityText.getText()));
+            city.setCitName(this.nameCityText.getText());
+            
+            this.conOffice.getOffProvince().readProvince(connection, province, 
+                    this.nameProvinceText.getText());
+            
+            city.setCitProvince(province);
+            
+            this.idProvinceText.setText("" + province.getProId());
+            this.nameProvinceText.setText(province.getProName());
+            
+            
+            if (this.conOffice.getOffCity().updateCity(connection, city)){
+                
+                JOptionPane.showMessageDialog(null, 
+                        "Se editó la provincia: " + province.getProName(), 
+                        "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                
+                listCities();
+            }else {
+                throw new NullPointerException();
+            }
+            
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, 
+                        "Error de edición." + ex.toString(), 
+                        "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+    }//GEN-LAST:event_editCityButtonActionPerformed
+
+    private void editPhoneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPhoneButtonActionPerformed
+        try{
+            
+            Phone phone;
+            int index = this.phonesTable.getSelectedRow();
+            
+            switch(evt.getActionCommand()){
+                case "Editar":
+                    
+
+                    if (index < 0) {
+                        JOptionPane.showMessageDialog(null, "Seleccione un teléfono.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                        throw new NullPointerException();
+                    }
+
+                    phone = this.phones.get(index);
+
+                    this.phoneNumberText.setText(phone.getPhoNumber());
+
+                    if (phone.getPhoType().equals("M")) {
+
+                        this.phonesComboBox.setSelectedItem("Móvil");
+                    }else{
+                        this.phonesComboBox.setSelectedItem("Convencional");
+                    }
+
+                    this.editPhoneButton.setActionCommand("Aceptar");
+                    this.editPhoneButton.setText("Aceptar");
+                    break;
+                case "Aceptar":
+                    phone = new Phone();
+                    phone.setPhoNumber(this.phoneNumberText.getText());
+
+                    switch(this.phonesComboBox.getSelectedItem().toString()){
+                        case "Móvil":
+                            phone.setPhoType("M");
+                            break;
+                        case "Convencional":
+                            phone.setPhoType("C");
+                            break;
+                    }
+                    
+                    this.phones.set(index, phone);
+                    this.editPhoneButton.setActionCommand("Editar");
+                    this.editPhoneButton.setText("Editar");
+                    
+                    listPhones();
+                    
+                    break;
+            }
+        }catch (Exception e){
+            
+        }
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_editPhoneButtonActionPerformed
+
+    private void deletePhoneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePhoneButtonActionPerformed
+        
+        
+        int index = this.phonesTable.getSelectedRow();
+        
+        if (index < 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione un teléfono.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            throw new NullPointerException();
+        }
+        
+        this.phones.remove(index);
+        listPhones();
+        
+    }//GEN-LAST:event_deletePhoneButtonActionPerformed
 
     
 
@@ -709,6 +1058,8 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         }
         
         tableModel.setDataVector(rows, colums);
+        
+        
         this.listTable.setModel(tableModel);
         } catch(Exception e){
             System.out.println(e.toString());
@@ -729,10 +1080,13 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         String [] colums = {"Id", "Nombre"}; 
         String [][] rows;
         
+        
         try{
             this.conOffice.getOffCity().getCities(connection, cities, province);
             int n = cities.size();
 
+            System.out.println("n " + n);
+            
             rows = new String[n][2];
 
             for (int i = 0; i < n; i++) {
@@ -741,7 +1095,11 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
             }
 
             tableModel.setDataVector(rows, colums);
-        this.listTable.setModel(tableModel);
+        
+
+            this.listTable.setModel(tableModel);
+            
+            
         } catch(Exception e){
             System.out.println(e.toString());
         }
@@ -750,6 +1108,85 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
     
     private void listOffices(){
         
+        DefaultTableModel tableModel = new DefaultTableModel();
+        List<Office> offices = new ArrayList<>();
+        
+        City city = new City();
+        city.setCitId(Integer.parseInt(this.idCityText.getText()));
+        city.setCitName(this.nameCityText.getText());
+        
+        
+        String [] colums = {"Calle P.", "Calle S.", "Número", "Cod. Postal"}; 
+        String [][] rows;
+        
+        try{
+            this.conOffice.getOffices(connection, offices, city);
+            int n = offices.size();
+
+            rows = new String[n][4];
+
+            for (int i = 0; i < n; i++) {
+                rows[i][0] = offices.get(i).getOffMainSt();
+                rows[i][1] = offices.get(i).getOffSideSt();
+                rows[i][2] = offices.get(i).getOffNumber();
+                rows[i][3] = offices.get(i).getOffCodPostal();
+            }
+            
+
+            tableModel.setDataVector(rows, colums);
+            
+            
+        this.listTable.setModel(tableModel);
+        } catch(Exception e){
+            System.out.println(e.toString());
+        }
+        
+    }
+    
+    private void listPhones(){
+     
+        DefaultTableModel tableModel = new DefaultTableModel();
+        
+        String [] colums = {"Tipo", "Número"}; 
+        String [][] rows;
+        
+        int n = this.phones.size();
+        
+        rows = new String[n][2];
+        
+        for (int i = 0; i < n; i++) {
+            rows[i][0] = this.phones.get(i).getPhoType();
+            rows[i][1] = this.phones.get(i).getPhoNumber();
+        }
+        
+        tableModel.setDataVector(rows, colums);
+        this.phonesTable.setModel(tableModel);
+    }
+    
+    private void actionCombobox(){
+        
+        this.listComboBox.removeAllItems();
+        this.listComboBox.addItem("Provincias");
+        
+        this.listComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                switch(listComboBox.getSelectedItem().toString()){
+                    case "Provincias":
+                        listProvinces();
+                        break;
+                    case "Ciudades":
+                        listCities();
+                        break;
+                    case "Oficinas":
+                        listOffices();
+                        break;
+
+                }
+                
+            }
+        });
     }
 
 }

@@ -55,7 +55,7 @@ public class ProvinceController {
     public boolean updateProvince(ConnectionJava connection, Province province){
         String query = "UPDATE VRS.VRS_PROVINCES SET "
                 + "pro_name = ? "
-                + "WHERE bra_id = ?";
+                + "WHERE pro_id = ?";
         
         try{
             
@@ -127,13 +127,14 @@ public class ProvinceController {
         return true;
     }
     
-    public boolean deleteProvince(ConnectionJava connection, Province province){
+    public boolean deleteProvince(ConnectionJava connection, String proName){
         String query = "DELETE VRS.VRS_PROVINCES "
-                + "WHERE pro_id = ?";
+                + "WHERE pro_name = ?";
         
         try{
             
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, proName);
             
             pstat.executeUpdate();
             

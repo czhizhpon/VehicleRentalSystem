@@ -62,24 +62,38 @@ public class OfficeController {
         this.offPhone = offPhone;
     }
     
-    public boolean createOffice(ConnectionJava connection, Office office){
+    public boolean createOffice(ConnectionJava connection, Office office, int citId){
         
-        String query = "INSERT INTO vrs_offices VALUES("
-                + "secuencia,"
-                + "?,"
-                + "?,"
-                + "?,"
-                + "?,"
-                + "?"
-                + ");";
+        
         try {
+            String query = "SELECT off_id_seq.NEXTVAL "
+                    + "FROM dual";
             
             pstat = connection.getConnection().prepareStatement(query);
-            pstat.setString(1, office.getOffMainSt());
-            pstat.setString(2, office.getOffSideSt());
-            pstat.setString(3, office.getOffNumber());
-            pstat.setString(4, office.getOffCodPostal());
-            pstat.setInt(5, office.getOffCity().getCitId());
+            
+            
+            rstat = pstat.executeQuery();
+            
+            rstat.next();
+            
+            int offId = rstat.getInt(1);
+            
+            query = "INSERT INTO vrs_offices VALUES("
+                + "?,"
+                + "?, "
+                + "?, "
+                + "?, "
+                + "?, "
+                + "? "
+                + ")";
+            
+            pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, offId);
+            pstat.setString(2, office.getOffMainSt());
+            pstat.setString(3, office.getOffSideSt());
+            pstat.setString(4, office.getOffNumber());
+            pstat.setString(5, office.getOffCodPostal());
+            pstat.setInt(6, citId);
             
             pstat.executeUpdate();
             
@@ -89,7 +103,7 @@ public class OfficeController {
             
             
         } catch (SQLException ex) {
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
        // connection.closeConnection();
        return true;

@@ -63,7 +63,7 @@ public class CityController {
         Province province;
         String query = "SELECT cit_id, cit_name\n" +        
                         "FROM VRS.VRS_CITIES \n" +
-                        "WHERE it_id = ? ";
+                        "WHERE cit_id = ? ";
         
         try {
             
@@ -94,9 +94,46 @@ public class CityController {
         return true;
     }
     
+    public boolean readCity(ConnectionJava connection, City city, 
+            String citName){
+        
+        Province province;
+        String query = "SELECT *\n" +        
+                        "FROM VRS.VRS_CITIES \n" +
+                        "WHERE cit_name LIKE ? ";
+        
+        try {
+            
+            pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, citName);
+            
+            rstat = pstat.executeQuery();
+            
+            while (rstat.next()) {
+                
+                city.setCitId(rstat.getInt(1));
+                city.setCitName(rstat.getString(2));
+                
+                province = new Province();
+                
+                this.conProvince.readProvince(connection, province, 
+                        rstat.getInt(3));
+                
+                city.setCitProvince(province);
+                
+            }
+            
+        } catch (SQLException ex) {
+            throw new NullPointerException(ex.toString());
+        }
+        
+        //connection.closeConnection();
+        return true;
+    }
+    
     public boolean updateCity(ConnectionJava connection, City city){
         String query = "UPDATE VRS.VRS_CITIES SET "
-                + "cit_name = ? "
+                + "cit_name = ?, "
                 + "pro_id = ? "
                 + "WHERE cit_id = ?";
         
@@ -110,21 +147,21 @@ public class CityController {
             pstat.executeUpdate();
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         
         //connection.closeConnection();
         return true;
     }
     
-    public boolean deleteCity(ConnectionJava connection, int citId){
+    public boolean deleteCity(ConnectionJava connection, String citName){
         String query = "DELETE VRS.VRS_CITIES "
-                + "WHERE cit_id = ?";
+                + "WHERE cit_name LIKE ? ";
         
         try{
             
             pstat = connection.getConnection().prepareStatement(query);
-            pstat.setInt(1, citId);
+            pstat.setString(1, citName);
             
             pstat.executeUpdate();
             
