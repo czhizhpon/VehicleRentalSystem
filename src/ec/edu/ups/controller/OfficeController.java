@@ -41,7 +41,7 @@ public class OfficeController {
         offPhone = new PhoneController();
     }
     
-    public void createOffice(ConnectionJava connection, int citId, Office office){
+    public boolean createOffice(ConnectionJava connection, int citId, Office office){
         
         String query = "INSERT INTO vrs_offices VALUES("
                 + "secuencia,"
@@ -65,7 +65,8 @@ public class OfficeController {
         } catch (SQLException ex) {
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+       // connection.closeConnection();
+       return true;
     }
     
     public boolean readOffice(ConnectionJava connection, Office office, 
@@ -110,7 +111,7 @@ public class OfficeController {
         } catch (SQLException ex) {
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -125,7 +126,7 @@ public class OfficeController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -140,7 +141,7 @@ public class OfficeController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -168,7 +169,7 @@ public class OfficeController {
         } catch (SQLException ex) {
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
         
     }
