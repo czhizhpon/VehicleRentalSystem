@@ -11,12 +11,9 @@ import ec.edu.ups.conectionDB.ConnectionJava;
 import ec.edu.ups.model.City;
 import ec.edu.ups.model.Office;
 import ec.edu.ups.model.Phone;
-import ec.edu.ups.model.Province;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -40,8 +37,32 @@ public class OfficeController {
         offProvince = new ProvinceController();
         offPhone = new PhoneController();
     }
+
+    public CityController getOffCity() {
+        return offCity;
+    }
+
+    public void setOffCity(CityController offCity) {
+        this.offCity = offCity;
+    }
+
+    public ProvinceController getOffProvince() {
+        return offProvince;
+    }
+
+    public void setOffProvince(ProvinceController offProvince) {
+        this.offProvince = offProvince;
+    }
+
+    public PhoneController getOffPhone() {
+        return offPhone;
+    }
+
+    public void setOffPhone(PhoneController offPhone) {
+        this.offPhone = offPhone;
+    }
     
-    public boolean createOffice(ConnectionJava connection, int citId, Office office){
+    public boolean createOffice(ConnectionJava connection, Office office){
         
         String query = "INSERT INTO vrs_offices VALUES("
                 + "secuencia,"
@@ -58,9 +79,14 @@ public class OfficeController {
             pstat.setString(2, office.getOffSideSt());
             pstat.setString(3, office.getOffNumber());
             pstat.setString(4, office.getOffCodPostal());
-            pstat.setInt(5, citId);
+            pstat.setInt(5, office.getOffCity().getCitId());
             
             pstat.executeUpdate();
+            
+            for(Phone p:office.getOffPhones()){
+                this.offPhone.createOfficePhone(connection, p, office.getOffId());
+            }
+            
             
         } catch (SQLException ex) {
             throw new NullPointerException(ex.getSQLState());
@@ -70,32 +96,25 @@ public class OfficeController {
     }
     
     public boolean readOffice(ConnectionJava connection, Office office, 
-            Province province, City city){
+            int offId){
         
-        List<Phone> phones;
+        List<Phone> phones = new ArrayList<>();
+        City city;
         
-        String query = "SELECT o.off_id, \n" 
-                    + "o.off_main_st, o.off_side_st, o.off_number, o.off_cod_postal\n" 
-                    + "FROM vrs_cities c, vrs_offices o \n" 
-                    + "WHERE c.cit_id = ?\n"
-                    + "AND o.off_id = ? ;";
+        String query = "SELECT * "
+                + "FROM vrs.vrs_offices "
+                + "WHERE off_id = ? ";
         
         try {
             
             pstat = connection.getConnection().prepareStatement(query);
-            pstat.setInt(1, city.getCitId());
-            pstat.setInt(2, office.getOffId());
+            pstat.setInt(1, offId);
             
             rstat = pstat.executeQuery();
             
             while(rstat.next()){
                 
-//                Province province = new Province(rstat.getInt(1), rstat.getString(2));
-//                City city = new City(rstat.getInt(3), rstat.getString(4));
-//                office = new Office(rstat.getInt(5), rstat.getString(6), 
-//                rstat.getString(7), rstat.getString(8), rstat.getString(9));
-                
-                phones = new ArrayList<>();
+                city = new City();
                 
                 office.setOffId(rstat.getInt(1));
                 office.setOffMainSt(rstat.getString(2));
@@ -103,8 +122,11 @@ public class OfficeController {
                 office.setOffNumber(rstat.getString(4));
                 office.setOffCodPostal(rstat.getString(5));
                 
-                city.setCitProvince(province);
+                this.offCity.readCity(connection, city, rstat.getInt(6));
+                
                 office.setOffCity(city);
+                
+                this.offPhone.getOfficePhones(connection, phones, office.getOffId());
                 office.setOffPhones(phones);
                 
             }
@@ -116,10 +138,23 @@ public class OfficeController {
     }
     
     public boolean updateOffice(ConnectionJava connection, Office office){
-        String query = "";
+        String query = "UPDATE vrs.vrs_offices SET "
+                + "off_main_st = ? "
+                + "off_side_st = ? "
+                + "off_number = ? "
+                + "off_cod_postal = ? "
+                + "cit_id = ? "
+                + "WHERE off_id = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, office.getOffMainSt());
+            pstat.setString(2, office.getOffSideSt());
+            pstat.setString(3, office.getOffNumber());
+            pstat.setString(4, office.getOffCodPostal());
+            pstat.setInt(5, office.getOffCity().getCitId());
+            pstat.setInt(6, office.getOffId());
+            
             
             pstat.executeUpdate();
             
@@ -131,10 +166,12 @@ public class OfficeController {
     }
     
     public boolean deleteOffice(ConnectionJava connection, int offId){
-        String query = "";
+        String query = "DELETE vrs.vrs_offices "
+                + "WHERE off_id = ? ";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, offId);
             
             pstat.executeUpdate();
             
@@ -146,24 +183,35 @@ public class OfficeController {
     }
     
     public boolean getOffices(ConnectionJava connection, List<Office> offices, 
-            int citId){
-        
-        String query = "SELECT o.off_id, o.off_main_st, o.off_side_st, "
-                + "o.off_number, o.off_cod_postal\n" 
-                +"FROM vrs_offices o\n" 
-                + "WHERE o.cit_id = ?;";
+            City city){
+        Office office;
+        List<Phone> phones = new ArrayList<>();
+        String query = "SELECT * "
+                + "FROM vrs.vrs_offices "
+                + "WHERE cit_id = ?";
         
         try {
             pstat = connection.getConnection().prepareStatement(query);
-            pstat.setInt(1, citId);
+            pstat.setInt(1, city.getCitId());
             
             rstat = pstat.executeQuery();
             
             while (rstat.next()) { 
                 
-                Office office = new Office(rstat.getInt(1), rstat.getString(2), 
-                        rstat.getString(3), rstat.getString(4), rstat.getString(5));
+                office = new Office();
                 
+                office.setOffId(rstat.getInt(1));
+                office.setOffMainSt(rstat.getString(2));
+                office.setOffSideSt(rstat.getString(3));
+                office.setOffNumber(rstat.getString(4));
+                office.setOffCodPostal(rstat.getString(5));
+                
+                this.offCity.readCity(connection, city, rstat.getInt(6));
+                
+                office.setOffCity(city);
+                
+                this.offPhone.getOfficePhones(connection, phones, office.getOffId());
+                office.setOffPhones(phones);
                 offices.add(office);
             }
         } catch (SQLException ex) {

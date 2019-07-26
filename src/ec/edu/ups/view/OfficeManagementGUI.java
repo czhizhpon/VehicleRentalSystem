@@ -7,6 +7,16 @@
  */
 package ec.edu.ups.view;
 
+import ec.edu.ups.conectionDB.ConnectionJava;
+import ec.edu.ups.controller.OfficeController;
+import ec.edu.ups.model.Province;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.InternalFrameListener;
+import javax.swing.table.DefaultTableModel;
+
 /**
  * @since   22-Jul-2019
  * @version 0.1.0
@@ -14,11 +24,53 @@ package ec.edu.ups.view;
  */
 public class OfficeManagementGUI extends javax.swing.JInternalFrame {
 
+    
+    private OfficeController conOffice;
+    private ConnectionJava connection;
+    
     /**
      * Creates new form OfficeManagementGUI
      */
-    public OfficeManagementGUI() {
+    public OfficeManagementGUI(ConnectionJava connection, MainGUI mainGUI) {
         initComponents();
+        
+        this.conOffice = new OfficeController();
+        this.connection = connection;
+        
+        addInternalFrameListener(new InternalFrameListener() {
+            @Override
+            public void internalFrameOpened(InternalFrameEvent e) {
+            }
+
+            @Override
+            public void internalFrameClosing(InternalFrameEvent e) {
+                mainGUI.setOfficeManagementGUI(null);
+            }
+
+            @Override
+            public void internalFrameClosed(InternalFrameEvent e) {
+            }
+
+            @Override
+            public void internalFrameIconified(InternalFrameEvent e) {
+                
+            }
+
+            @Override
+            public void internalFrameDeiconified(InternalFrameEvent e) {
+            }
+
+            @Override
+            public void internalFrameActivated(InternalFrameEvent e) {
+            }
+
+            @Override
+            public void internalFrameDeactivated(InternalFrameEvent e) {
+            }
+        });
+        
+        listProvinces();
+        
     }
 
     /**
@@ -84,7 +136,14 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
 
         provincePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Provincias", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
+        idProvinceText.setEditable(false);
+
         createProvinceButton.setText("Crear");
+        createProvinceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createProvinceButtonActionPerformed(evt);
+            }
+        });
 
         findProvinceButton.setText("Buscar");
 
@@ -152,6 +211,8 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         numberOfficeLabel.setText("Número:");
 
         postalCodeLabel.setText("Código Postal:");
+
+        idOfficeText.setEditable(false);
 
         createOfficeButton.setText("Crear");
         createOfficeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -420,6 +481,8 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        idCityText.setEditable(false);
+
         idCityLabel.setText("Id:");
 
         nameCityLabel.setText("Nombre:");
@@ -522,6 +585,32 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_loadListButtonActionPerformed
 
+    private void createProvinceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProvinceButtonActionPerformed
+        
+        try{
+            Province province = new Province();
+            
+            province.setProName(this.nameProvinceText.getText());
+            
+            if (this.conOffice.getOffProvince().createProvince(connection, province)){
+                
+                JOptionPane.showMessageDialog(null, 
+                        "Se creó la provincia " + province.getProName(), 
+                        "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                listProvinces();
+            }else {
+                throw new NullPointerException();
+            }
+            
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, 
+                        "Error de creación", 
+                        "Confirmación", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+    }//GEN-LAST:event_createProvinceButtonActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -572,4 +661,40 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
     private javax.swing.JLabel secStreetLabel;
     private javax.swing.JTextField secStreetText;
     // End of variables declaration//GEN-END:variables
+
+    private void listProvinces(){
+        
+        DefaultTableModel tableModel = new DefaultTableModel();
+        List<Province> provinces = new ArrayList<>();
+        
+        
+        String [] colums = {"Id", "Nombre"}; 
+        String [][] rows;
+        try{
+        this.conOffice.getOffProvince().getProvinces(connection, provinces);
+        int n = provinces.size();
+        
+        rows = new String[n][2];
+        
+        for (int i = 0; i < n; i++) {
+            rows[i][0] = "" + provinces.get(i).getProId();
+            rows[i][1] = provinces.get(i).getProName();
+        }
+        
+        tableModel.setDataVector(rows, colums);
+        this.listTable.setModel(tableModel);
+        } catch(Exception e){
+            System.out.println(e.toString());
+        }
+        
+    }
+    
+    private void listCities(){
+        
+    }
+    
+    private void listOffices(){
+        
+    }
+
 }

@@ -343,7 +343,7 @@ public class MainGUI extends javax.swing.JFrame {
         
         try{
             if (officeManagementGUI== null) 
-                officeManagementGUI = new OfficeManagementGUI();
+                officeManagementGUI = new OfficeManagementGUI(this.connection, this);
             if (officeManagementGUI.isVisible()){
                 officeManagementGUI.setSelected(true);
             }else{

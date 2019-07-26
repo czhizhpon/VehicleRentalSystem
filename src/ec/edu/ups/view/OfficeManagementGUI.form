@@ -126,6 +126,9 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="idProvinceText">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="nameProvinceText">
         </Component>
@@ -133,6 +136,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Crear"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createProvinceButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="findProvinceButton">
           <Properties>
@@ -275,6 +281,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="idOfficeText">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="mainStreetText">
         </Component>
@@ -640,6 +649,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="idCityText">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="nameCityText">
         </Component>
