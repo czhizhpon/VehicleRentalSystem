@@ -6,6 +6,11 @@
 package ec.edu.ups.view;
 
 import ec.edu.ups.conectionDB.ConnectionJava;
+import ec.edu.ups.controller.CustomerController;
+import ec.edu.ups.controller.EmployeeController;
+import ec.edu.ups.controller.UserController;
+import ec.edu.ups.model.Customer;
+import ec.edu.ups.model.Employee;
 import ec.edu.ups.model.User;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -25,6 +30,9 @@ import javax.swing.JOptionPane;
 public class MainGUI extends javax.swing.JFrame {
 
     private ConnectionJava connection;
+    private CustomerController conCustomer;
+    private EmployeeController conEmployee;
+    private UserController conUser;
     
     
     /**
@@ -71,6 +79,10 @@ public class MainGUI extends javax.swing.JFrame {
         
         this.user = user;
         this.connection = connection;
+        this.conCustomer = new CustomerController();
+        this.conEmployee = new EmployeeController();
+        this.conUser = new UserController();
+        
         loadMenus();
     }
 
@@ -360,8 +372,28 @@ public class MainGUI extends javax.swing.JFrame {
     private void myDataJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myDataJMIActionPerformed
         // TODO add your handling code here:
         try {
-            if (myDataGUI == null)
-                myDataGUI = new MyDataGUI(getWidth(), getHeight());
+            if (myDataGUI == null){
+                
+                if (this.user.getUseType()== 'A' || this.user.getUseType()== 'E') {
+                    
+                    Employee employee = new Employee();
+                    
+                    this.conEmployee.readEmployee(connection, employee, 
+                            this.user.getUseId());
+                    
+                    myDataGUI = new MyDataGUI(connection, getWidth(), getHeight(), employee);
+                    
+                } else {
+                    //this.user.getUseType() == 'C';
+                    
+                    Customer customer = new Customer();
+                    
+                    this.conCustomer.readCustomer(connection, customer, 
+                            this.user.getUseId());
+                    
+                    myDataGUI = new MyDataGUI(connection, getWidth(), getHeight(), customer);
+                }
+            }
             
             if (myDataGUI.isVisible()){
 

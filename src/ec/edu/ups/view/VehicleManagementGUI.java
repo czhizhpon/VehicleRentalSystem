@@ -552,7 +552,7 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
             }
             
         } catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Error al crear la marca", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al crear la marca" + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_createBrandButtonActionPerformed
@@ -591,6 +591,7 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
                         "Confirmación", JOptionPane.INFORMATION_MESSAGE);
                 
                 this.nameModelText.setText("");
+                this.costModelText.setText("");
                 
                 //OJO ACABAR EL LIST MODELS
                 listModels();

@@ -49,7 +49,7 @@ public class PrivilegeController {
             int priId){
         
         String query = "SELECT * "
-                + "FROM vrs_privileges "
+                + "FROM vrs.vrs_privileges "
                 + "WHERE pri_id = ? ";
         
         try{
@@ -71,6 +71,7 @@ public class PrivilegeController {
         //connection.closeConnection();
         return true;
     }
+    
     
     public boolean updatePrivilege(ConnectionJava connection, Privilege privilege){
         
