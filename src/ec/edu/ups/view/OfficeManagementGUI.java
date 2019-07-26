@@ -9,6 +9,7 @@ package ec.edu.ups.view;
 
 import ec.edu.ups.conectionDB.ConnectionJava;
 import ec.edu.ups.controller.OfficeController;
+import ec.edu.ups.model.City;
 import ec.edu.ups.model.Province;
 import java.util.ArrayList;
 import java.util.List;
@@ -146,6 +147,11 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         });
 
         findProvinceButton.setText("Buscar");
+        findProvinceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findProvinceButtonActionPerformed(evt);
+            }
+        });
 
         editProvinceButton.setText("Editar");
 
@@ -595,7 +601,7 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
             if (this.conOffice.getOffProvince().createProvince(connection, province)){
                 
                 JOptionPane.showMessageDialog(null, 
-                        "Se creó la provincia " + province.getProName(), 
+                        "Se creó la provincia: " + province.getProName(), 
                         "Confirmación", JOptionPane.INFORMATION_MESSAGE);
                 listProvinces();
             }else {
@@ -610,6 +616,27 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         
         
     }//GEN-LAST:event_createProvinceButtonActionPerformed
+
+    private void findProvinceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findProvinceButtonActionPerformed
+        
+        try{
+            Province province = new Province();
+            
+            if (this.conOffice.getOffProvince().readProvince(connection, province, 
+                    this.nameProvinceText.getText())){
+                this.idProvinceText.setText("" + province.getProId());
+                this.nameCityText.setText(province.getProName());
+            }else {
+                throw new NullPointerException();
+            }
+            
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, 
+                        "Error en la búsqueda.", 
+                        "Confirmación", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_findProvinceButtonActionPerformed
 
     
 
@@ -690,6 +717,34 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
     }
     
     private void listCities(){
+        
+        DefaultTableModel tableModel = new DefaultTableModel();
+        List<City> cities = new ArrayList<>();
+        
+        Province province = new Province();
+        province.setProId(Integer.parseInt(this.idProvinceText.getText()));
+        province.setProName(this.nameProvinceText.getText());
+        
+        
+        String [] colums = {"Id", "Nombre"}; 
+        String [][] rows;
+        
+        try{
+            this.conOffice.getOffCity().getCities(connection, cities, province);
+            int n = cities.size();
+
+            rows = new String[n][2];
+
+            for (int i = 0; i < n; i++) {
+                rows[i][0] = "" + cities.get(i).getCitId();
+                rows[i][1] = cities.get(i).getCitName();
+            }
+
+            tableModel.setDataVector(rows, colums);
+        this.listTable.setModel(tableModel);
+        } catch(Exception e){
+            System.out.println(e.toString());
+        }
         
     }
     

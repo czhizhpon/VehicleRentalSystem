@@ -86,7 +86,39 @@ public class ProvinceController {
             pstat.setInt(1, proId);
             
             rstat = pstat.executeQuery();
-                    
+            
+            while(rstat.next()){
+                province.setProId(rstat.getInt(1));
+                province.setProName(rstat.getString(2));
+            }
+            
+        } catch (SQLException ex){
+            throw new NullPointerException(ex.getSQLState());
+        }
+        
+        //connection.closeConnection();
+        return true;
+    }
+    
+    public boolean readProvince(ConnectionJava connection, Province province, 
+            String proName){
+        
+        String query =  "SELECT *\n" +
+                        "FROM VRS.VRS_PROVINCES \n" + 
+                        "WHERE pro_name = ?";
+        
+        try{
+            
+            pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, proName);
+            
+            rstat = pstat.executeQuery();
+            while(rstat.next()){
+                province.setProId(rstat.getInt(1));
+                province.setProName(rstat.getString(2));
+            }
+            
+            
         } catch (SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
