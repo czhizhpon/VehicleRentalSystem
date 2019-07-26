@@ -621,6 +621,9 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
             
             this.conModel.updateModel(connection, model);
             
+            this.idBrandText.setText(""+model.getModBrand().getBraId());
+            this.nameBrandText.setText(model.getModBrand().getBraName());
+            
             //OJO HACER EL OTRO
             listModels();
             

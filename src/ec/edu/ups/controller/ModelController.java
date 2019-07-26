@@ -131,8 +131,8 @@ public class ModelController {
     public boolean updateModel(ConnectionJava connection, Model model){
         
         String query = "UPDATE vrs.vrs_models SET "
-                + "mod_name = ? "
-                + "mod_price = ? "
+                + "mod_name = ?, "
+                + "mod_price = ?, "
                 + "bra_id = ? "
                 + "WHERE mod_id = ?";
         
