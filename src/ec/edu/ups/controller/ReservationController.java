@@ -39,7 +39,8 @@ public class ReservationController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     
@@ -64,7 +65,8 @@ public class ReservationController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     
@@ -81,7 +83,8 @@ public class ReservationController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     
@@ -96,7 +99,8 @@ public class ReservationController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
     }
     
@@ -129,7 +133,8 @@ public class ReservationController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        
+        //connection.closeConnection();
         return true;
         
     }
