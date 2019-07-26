@@ -29,15 +29,30 @@ public class CustomerController {
     
     private PreparedStatement pstat;
     private ResultSet rstat;
+
+    public CustomerController() {
+        conPrivilge = new PrivilegeController();
+        conPhone = new PhoneController();
+    }
     
     public boolean createCustomer(ConnectionJava connection, Customer customer){
         
-        /*sequence, username, password, dni, name, lastname, email, birthDay, 
-        address, work_addres, type*/
-        String query = "INSERT INTO VRS.VRS_USERS VALUES(\n"
-                + "use_id_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?";
+        
+        String query = "SELECT use_id_seq.NEXTVAL"
+                + "FROM dual";
+        
+        
         
         try{
+            pstat = connection.getConnection().prepareStatement(query);
+            
+            rstat = pstat.executeQuery();
+            int cusId = rstat.getInt(1);
+            
+            /*sequence, username, password, dni, name, lastname, email, birthDay, 
+            address, work_addres, type*/
+            query = "INSERT INTO VRS.VRS_USERS VALUES(\n"
+                    + "use_id_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?";
             
             pstat = connection.getConnection().prepareStatement(query);
             pstat.setString(1, customer.getUseUsername());
@@ -53,6 +68,11 @@ public class CustomerController {
             pstat.setInt(10, 1);
             
             pstat.executeUpdate();
+            
+            
+            for(Phone p:customer.getUsePhones()){
+                this.conPhone.createUserPhone(connection, p, cusId);
+            }
             
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());

@@ -9,9 +9,11 @@ package ec.edu.ups.controller;
 
 import ec.edu.ups.conectionDB.ConnectionJava;
 import ec.edu.ups.model.Employee;
+import ec.edu.ups.model.Phone;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,28 +23,44 @@ import java.util.List;
  */
 public class EmployeeController {
  
+    private PhoneController conPhone;
+    
     private PreparedStatement pstat;
     private ResultSet rstat;
     
     public boolean createEmployee(ConnectionJava connection, Employee employee){
         
-        String query = "INSERT INTO VRS.VRS_USERS VALUES(\n"
-                + "use_id_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, null, ?, null)";
+        String query = "SELECT use_id_seq.NEXTVAL"
+                + "FROM dual";
         
         try{
             
             pstat = connection.getConnection().prepareStatement(query);
-            pstat.setString(1, employee.getUseUsername());
-            pstat.setString(2, employee.getUsePassword());
-            pstat.setString(3, employee.getUseDNI());
-            pstat.setString(4, employee.getUseName());
-            pstat.setString(5, employee.getUseLastNamel());
-            pstat.setString(6, employee.getUseEmail());
-            pstat.setDate(7, new java.sql.Date(employee.getUseBirthDay().getTime()));
-            pstat.setString(8, employee.getUseAddress());
-            pstat.setString(9, ""+employee.getUseType());
+            
+            rstat = pstat.executeQuery();
+            int empId = rstat.getInt(1);
+            
+            query = "INSERT INTO VRS.VRS_USERS VALUES(\n"
+                    + "?, ?, ?, ?, ?, ?, ?, ?, ?, null, ?, null)";
+            
+            pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, empId);
+            pstat.setString(2, employee.getUseUsername());
+            pstat.setString(3, employee.getUsePassword());
+            pstat.setString(4, employee.getUseDNI());
+            pstat.setString(5, employee.getUseName());
+            pstat.setString(6, employee.getUseLastNamel());
+            pstat.setString(7, employee.getUseEmail());
+            pstat.setDate(8, new java.sql.Date(employee.getUseBirthDay().getTime()));
+            pstat.setString(9, employee.getUseAddress());
+            pstat.setString(10, ""+employee.getUseType());
             
             pstat.executeUpdate();
+            
+            for(Phone p:employee.getUsePhones()){
+                this.conPhone.createUserPhone(connection, p, empId);
+            }
+            
             
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
@@ -55,6 +73,7 @@ public class EmployeeController {
     public boolean readEmployee(ConnectionJava connection, Employee employee, 
             int empId){
         
+        List<Phone> phones;
         String query = "SELECT * "
                 + "FROM VRS.VRS_USERS "
                 + "WHERE use_id = ?";
@@ -80,6 +99,14 @@ public class EmployeeController {
                 employee.setUseType(rstat.getString(11).charAt(0));
                 
             }
+            /*Telefonos*/
+                phones = new ArrayList<>();
+                this.conPhone.getUserPhones(connection, phones, 
+                        employee.getUseId());
+                
+                employee.setUsePhones(phones);
+            
+            
             
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
@@ -115,6 +142,8 @@ public class EmployeeController {
             
             
             pstat.executeUpdate();
+            
+            
             
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
