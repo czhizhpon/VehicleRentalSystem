@@ -7,18 +7,73 @@
  */
 package ec.edu.ups.view;
 
+import ec.edu.ups.conectionDB.ConnectionJava;
+import ec.edu.ups.controller.CityController;
+import ec.edu.ups.controller.OfficeController;
+import ec.edu.ups.controller.ProvinceController;
+import ec.edu.ups.controller.ReservationController;
+import ec.edu.ups.controller.VehicleController;
+import ec.edu.ups.model.Brand;
+import ec.edu.ups.model.City;
+import ec.edu.ups.model.Model;
+import ec.edu.ups.model.Office;
+import ec.edu.ups.model.Province;
+import ec.edu.ups.model.Reservation;
+import ec.edu.ups.model.Vehicle;
+import ec.edu.ups.services.Services;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  * @since   22-Jul-2019
  * @version 0.1.0
  * @author  Sarmiento Bryan, Serpa Roberto, Zhizhpon Eduardo
  */
 public class ReservateGUI extends javax.swing.JInternalFrame {
+    
+    private Services services;
+    private ConnectionJava connection;
 
+//    private ProvinceController conProvince;
+//    
+//    private CityController conCity;
+    
+    private OfficeController conOffiece;
+    private VehicleController conVehicle;
+    private ReservationController  conReservation;
+    
+    
+    List<Province> provinces;
+    List<City> cities;
+    List<Office> offices;
+    List<Brand> brands;
+    List<Model> models;
+    List<Vehicle> vehicles;
+    
     /**
      * Creates new form ReservateGUI
      */
     public ReservateGUI() {
+        
         initComponents();
+        ProvinceController conProvince = new ProvinceController();
+        
+        provinces = new ArrayList<>();
+            
+            conProvince.getProvinces(connection, provinces);
+            
+            int n = provinces.size();
+            
+            for (int i = 0; i < n; i++) {
+                provinceComboBox.addItem(provinces.get(i).getProName());
+            }
+        
     }
 
     /**
@@ -40,26 +95,17 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
         modelLabel = new javax.swing.JLabel();
         reservateLabel = new javax.swing.JLabel();
         endDateLabel = new javax.swing.JLabel();
-        provinceComboBox = new javax.swing.JComboBox<>();
-        cityComboBox = new javax.swing.JComboBox<>();
-        officeComboBox = new javax.swing.JComboBox<>();
-        brandComboBox = new javax.swing.JComboBox<>();
-        modelComboBox = new javax.swing.JComboBox<>();
-        resDayCB = new javax.swing.JComboBox<>();
-        endDateCB = new javax.swing.JComboBox<>();
-        resMonthCB = new javax.swing.JComboBox<>();
-        resYearCB = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        endMonthCB = new javax.swing.JComboBox<>();
-        endYearCB = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        provinceComboBox = new javax.swing.JComboBox<String>();
+        cityComboBox = new javax.swing.JComboBox<String>();
+        officeComboBox = new javax.swing.JComboBox<String>();
+        brandComboBox = new javax.swing.JComboBox<String>();
+        modelComboBox = new javax.swing.JComboBox<String>();
         reservateButton = new javax.swing.JButton();
+        dateReservateTxt = new javax.swing.JTextField();
+        dateEndTxt = new javax.swing.JTextField();
         vehiclesPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        asdas = new javax.swing.JTable();
-        confirmButton = new javax.swing.JButton();
+        VehiclesTable = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,6 +141,18 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
 
         endDateLabel.setText("Fecha Final:");
 
+        provinceComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                provinceComboBoxActionPerformed(evt);
+            }
+        });
+
+        cityComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityComboBoxActionPerformed(evt);
+            }
+        });
+
         officeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 officeComboBoxActionPerformed(evt);
@@ -113,40 +171,22 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
             }
         });
 
-        resDayCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Día", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        resDayCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resDayCBActionPerformed(evt);
-            }
-        });
-
-        endDateCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Día", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-
-        resMonthCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-
-        resYearCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año", "2019", "2018", "2017", "2016", "2015" }));
-        resYearCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resYearCBActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setText("/");
-
-        jLabel9.setText("/");
-
-        endMonthCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-
-        endYearCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año", "2019", "2018", "2017", "2016", "2015" }));
-
-        jLabel10.setText("/");
-
-        jLabel11.setText("/");
-
         reservateButton.setText("Reservar");
         reservateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reservateButtonActionPerformed(evt);
+            }
+        });
+
+        dateReservateTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateReservateTxtActionPerformed(evt);
+            }
+        });
+
+        dateEndTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateEndTxtActionPerformed(evt);
             }
         });
 
@@ -165,38 +205,15 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
                     .addComponent(cityLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(provinceLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
-                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(reservateButton)
-                    .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(provinceComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cityComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(officeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(brandComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(modelComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(dataPanelLayout.createSequentialGroup()
-                            .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(dataPanelLayout.createSequentialGroup()
-                                    .addComponent(resDayCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(7, 7, 7)
-                                    .addComponent(jLabel8)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(resMonthCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(dataPanelLayout.createSequentialGroup()
-                                    .addComponent(endDateCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(7, 7, 7)
-                                    .addComponent(jLabel9)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(endMonthCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(7, 7, 7)
-                            .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(dataPanelLayout.createSequentialGroup()
-                                    .addComponent(jLabel10)
-                                    .addGap(7, 7, 7)
-                                    .addComponent(resYearCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(dataPanelLayout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(endYearCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addComponent(provinceComboBox, 0, 285, Short.MAX_VALUE)
+                    .addComponent(cityComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(officeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(brandComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(modelComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateReservateTxt)
+                    .addComponent(dateEndTxt))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         dataPanelLayout.setVerticalGroup(
@@ -225,20 +242,11 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(reservateLabel)
-                    .addComponent(resDayCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resMonthCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resYearCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel10))
+                    .addComponent(dateReservateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(endDateLabel)
-                        .addComponent(endDateCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel9)
-                        .addComponent(endMonthCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(endYearCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel11))
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(endDateLabel)
+                    .addComponent(dateEndTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(reservateButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -246,7 +254,7 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
 
         vehiclesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Vehículos Disponibles"));
 
-        asdas.setModel(new javax.swing.table.DefaultTableModel(
+        VehiclesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -277,9 +285,7 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(asdas);
-
-        confirmButton.setText("Aceptar");
+        jScrollPane2.setViewportView(VehiclesTable);
 
         javax.swing.GroupLayout vehiclesPanelLayout = new javax.swing.GroupLayout(vehiclesPanel);
         vehiclesPanel.setLayout(vehiclesPanelLayout);
@@ -289,17 +295,11 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
                 .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
-            .addGroup(vehiclesPanelLayout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addComponent(confirmButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         vehiclesPanelLayout.setVerticalGroup(
             vehiclesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vehiclesPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(confirmButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -322,53 +322,171 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(dataPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(vehiclesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void officeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_officeComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_officeComboBoxActionPerformed
-
-    private void brandComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brandComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_brandComboBoxActionPerformed
-
-    private void resDayCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resDayCBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_resDayCBActionPerformed
-
     private void reservateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservateButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+            // ver de la tabla seleccionar vehiculo
+            int index = VehiclesTable.getSelectedRow();
+            
+            Date dateIni = new SimpleDateFormat("dd/MM/yyyy").parse(dateReservateTxt.getText());
+            Date dateEnd = new SimpleDateFormat("dd/MM/yyyy").parse(dateEndTxt.getText());
+            
+            Reservation reservation = new Reservation();
+            reservation.setResCustomer(null);
+            reservation.setResDateFin(dateEnd);
+            reservation.setResDateIni(dateIni);
+            reservation.setResVehicle(vehicles.get(index));
+            
+            conReservation.createReservation(connection, reservation);
+            
+        } catch (ParseException ex) {
+            System.out.println(ex.toString());
+        }
+        
     }//GEN-LAST:event_reservateButtonActionPerformed
 
-    private void resYearCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resYearCBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_resYearCBActionPerformed
-
     private void modelComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelComboBoxActionPerformed
-        // TODO add your handling code here:
+
+        DefaultTableModel tableModel = new DefaultTableModel();
+        int indice = this.modelComboBox.getItemCount();
+
+        vehicles = new ArrayList<>();
+        
+        String [] colums = {"Color", "Marca", "Modelo", "Precio" }; 
+        String [][] rows;
+        
+        try{
+            this.conVehicle.getVehicles(connection, vehicles, models.get(indice));
+            int n = vehicles.size();
+        
+            rows = new String[n][4];
+
+            for (int i = 0; i < n; i++) {
+                rows[i][0] = vehicles.get(i).getVehColor();
+                rows[i][1] = vehicles.get(i).getVehModel().getModBrand().getBraName();
+                rows[i][2] = vehicles.get(i).getVehModel().getModName();
+                rows[i][3] = "" + vehicles.get(i).getVehCategory().getCatDayCost();
+            }
+
+            tableModel.setDataVector(rows, colums);
+
+
+            this.VehiclesTable.setModel(tableModel);
+        } catch(Exception e){
+            System.out.println(e.toString());
+        }
+
     }//GEN-LAST:event_modelComboBoxActionPerformed
+
+    private void brandComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brandComboBoxActionPerformed
+
+        try {
+
+            int indice = this.brandComboBox.getItemCount();
+            models = new ArrayList<>();
+
+            conVehicle.getConModel().getModels(connection, models,
+                this.brands.get(indice));
+
+            int n = models.size();
+
+            for (int i = 0; i < n; i++) {
+                modelComboBox.addItem(models.get(i).getModName());
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+    }//GEN-LAST:event_brandComboBoxActionPerformed
+
+    private void officeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_officeComboBoxActionPerformed
+
+        try {
+
+            //int indice = this.provinceComboBox.getItemCount();
+            brands = new ArrayList<>();
+
+            conVehicle.getConModel().getConBrand().getBrands(connection, brands);
+
+            int n = brands.size();
+
+            for (int i = 0; i < n; i++) {
+                brandComboBox.addItem(brands.get(i).getBraName());
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+    }//GEN-LAST:event_officeComboBoxActionPerformed
+
+    private void cityComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityComboBoxActionPerformed
+
+        try {
+
+            int indice = this.cityComboBox.getItemCount();
+            offices = new ArrayList<>();
+
+            conOffiece.getOffices(connection, offices, cities.get(indice).getCitId());
+
+            int n = offices.size();
+
+            for (int i = 0; i < n; i++) {
+                officeComboBox.addItem(offices.get(i).getOffNumber());
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }//GEN-LAST:event_cityComboBoxActionPerformed
+
+    private void provinceComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provinceComboBoxActionPerformed
+
+        try {
+
+            int indice = this.provinceComboBox.getItemCount();
+            cities = new ArrayList<>();
+
+            conOffiece.getOffCity().getCities(connection, cities,
+                this.provinces.get(indice));
+
+            int n = cities.size();
+
+            for (int i = 0; i < n; i++) {
+                cityComboBox.addItem(cities.get(i).getCitName());
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+    }//GEN-LAST:event_provinceComboBoxActionPerformed
+
+    private void dateReservateTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateReservateTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateReservateTxtActionPerformed
+
+    private void dateEndTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateEndTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateEndTxtActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable asdas;
+    private javax.swing.JTable VehiclesTable;
     private javax.swing.JComboBox<String> brandComboBox;
     private javax.swing.JLabel brandLabel;
     private javax.swing.JComboBox<String> cityComboBox;
     private javax.swing.JLabel cityLabel;
-    private javax.swing.JButton confirmButton;
     private javax.swing.JPanel dataPanel;
-    private javax.swing.JComboBox<String> endDateCB;
+    private javax.swing.JTextField dateEndTxt;
+    private javax.swing.JTextField dateReservateTxt;
     private javax.swing.JLabel endDateLabel;
-    private javax.swing.JComboBox<String> endMonthCB;
-    private javax.swing.JComboBox<String> endYearCB;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
@@ -378,9 +496,6 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
     private javax.swing.JLabel officeLabel;
     private javax.swing.JComboBox<String> provinceComboBox;
     private javax.swing.JLabel provinceLabel;
-    private javax.swing.JComboBox<String> resDayCB;
-    private javax.swing.JComboBox<String> resMonthCB;
-    private javax.swing.JComboBox<String> resYearCB;
     private javax.swing.JButton reservateButton;
     private javax.swing.JLabel reservateLabel;
     private javax.swing.JPanel vehiclesPanel;
