@@ -121,7 +121,7 @@ public class BillController {
                 
                 customer = new Customer();
                 payMeth = new PaymentMethod();
-                this.conCustomer.readUserCustomer(connection, customer, rstat.getInt(8));
+                this.conCustomer.readCustomer(connection, customer, rstat.getInt(7));
                 this.conPayMeth.readPaymentMethod(connection, payMeth, rstat.getInt(9));
                 
                 billHead.setCustomer(customer);

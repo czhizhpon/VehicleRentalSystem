@@ -198,6 +198,60 @@ public class CustomerController {
         return true;
     }
     
+    public boolean readCustomer(ConnectionJava connection, Customer customer, 
+            int cusId){
+        
+        Privilege privilege;
+        List<Phone> phones;
+        
+        String query = "SELECT * "
+                + "FROM vrs.vrs_users "
+                + "WHERE use_id = ?";
+        
+        try{
+            
+            pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, cusId);
+            
+            rstat = pstat.executeQuery();
+            
+            while(rstat.next()){
+                customer.setUseId(rstat.getInt(1));
+                customer.setUseUsername(rstat.getString(2));
+                customer.setUsePassword(rstat.getString(3));
+                customer.setUseDNI(rstat.getString(4));
+                customer.setUseName(rstat.getString(5));
+                customer.setUseLastNamel(rstat.getString(6));
+                customer.setUseEmail(rstat.getString(7));
+                customer.setUseBirthDay(rstat.getDate(8));
+                customer.setUseAddress(rstat.getString(9));
+                customer.setUseWorkAdd(rstat.getString(10));
+                customer.setUseType(rstat.getString(11).charAt(0));
+                
+                privilege = new Privilege();
+                this.conPrivilge.readPrivilege(connection, privilege, 
+                        rstat.getInt(12));
+                
+                customer.setUsePrivilege(privilege);
+                
+                /*Telefonos*/
+                phones = new ArrayList<>();
+                this.conPhone.getUserPhones(connection, phones, 
+                        customer.getUseId());
+                
+                customer.setUsePhones(phones);
+                
+            }
+            
+        }catch(SQLException ex){
+            throw new NullPointerException(ex.getSQLState());
+        }
+        
+        connection.closeConnection();
+        
+        return true;
+    }
+    
     public boolean updateCustomer(ConnectionJava connection, Customer customer){
         
         String query = "UPDATE VRS.VRS_USERS SET "
