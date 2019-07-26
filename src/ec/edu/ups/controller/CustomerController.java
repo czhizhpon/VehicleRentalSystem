@@ -275,13 +275,13 @@ public class CustomerController {
     public boolean updateCustomer(ConnectionJava connection, Customer customer){
         
         String query = "UPDATE VRS.VRS_USERS SET "
-                + "use_password = ? "
-                + "use_name = ? "
-                + "use_last_name = ? "
-                + "use_email = ? "
-                + "use_birth_day = ? "
-                + "use_address = ? "
-                + "use_work_add = ? "
+                + "use_password = ?, "
+                + "use_name = ?, "
+                + "use_last_name = ?, "
+                + "use_email = ?, "
+                + "use_birth_day = ?, "
+                + "use_address = ?, "
+                + "use_work_add = ?, "
                 + "pri_id = ? "
                 + "WHERE use_id = ?";
         

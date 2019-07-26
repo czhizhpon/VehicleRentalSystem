@@ -27,6 +27,12 @@ public class EmployeeController {
     
     private PreparedStatement pstat;
     private ResultSet rstat;
+
+    public EmployeeController() {
+        this.conPhone = new PhoneController();
+    }
+    
+    
     
     public boolean createEmployee(ConnectionJava connection, Employee employee){
         
@@ -98,15 +104,17 @@ public class EmployeeController {
                 employee.setUseAddress(rstat.getString(9));
                 employee.setUseType(rstat.getString(11).charAt(0));
                 
-            }
-            /*Telefonos*/
+                
+                System.out.println("LLEGA"+employee.getUseId());
+                
+                /*Telefonos*/
                 phones = new ArrayList<>();
                 this.conPhone.getUserPhones(connection, phones, 
                         employee.getUseId());
                 
                 employee.setUsePhones(phones);
-            
-            
+                
+            }
             
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
@@ -119,12 +127,12 @@ public class EmployeeController {
     public boolean updateEmployee(ConnectionJava connection, Employee employee){
         
         String query = "UPDATE VRS.VRS_USERS SET "
-                + "use_password = ? "
-                + "use_name = ? "
-                + "use_last_name = ? "
-                + "use_email = ? "
-                + "use_birth_day = ? "
-                + "use_address = ? "
+                + "use_password = ?, "
+                + "use_name = ?, "
+                + "use_last_name = ?, "
+                + "use_email = ?, "
+                + "use_birth_day = ?, "
+                + "use_address = ?, "
                 + "use_type = ? "
                 + "WHERE use_id = ?";
         

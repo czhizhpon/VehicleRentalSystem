@@ -30,7 +30,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class OfficeManagementGUI extends javax.swing.JInternalFrame {
 
-   private List<Phone> phones; 
+   private List<Phone> phones;
+   private List<Office> offices;
     
     private OfficeController conOffice;
     private ConnectionJava connection;
@@ -253,8 +254,18 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         });
 
         editOfficeButton.setText("Editar");
+        editOfficeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editOfficeButtonActionPerformed(evt);
+            }
+        });
 
         deleteOfficeButton.setText("Eliminar");
+        deleteOfficeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteOfficeButtonActionPerformed(evt);
+            }
+        });
 
         phonesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Teléfonos"));
 
@@ -266,7 +277,7 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
 
         numbersLabel.setText("Número:");
 
-        phonesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Móvil", "Convencional" }));
+        phonesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Móvil", "Fijo" }));
 
         createPhoneButton.setText("Crear");
         createPhoneButton.addActionListener(new java.awt.event.ActionListener() {
@@ -689,10 +700,17 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, 
                         "Se creó la Oficina", 
                         "Confirmación", JOptionPane.INFORMATION_MESSAGE);
-                this.nameProvinceText.setText("");
-                this.idProvinceText.setText("");
                 listOffices();
+                this.phones = new ArrayList<>();
+                listPhones();
             }
+            
+                this.idOfficeText.setText("");
+                this.mainStreetText.setText("");
+                this.secStreetText.setText("");
+                this.numberOfficeText.setText("");
+                this.postalCodeText.setText("");
+            
             
         }catch (Exception ex) {
             JOptionPane.showMessageDialog(null, 
@@ -707,25 +725,34 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_phoneNumberTextActionPerformed
 
     private void createPhoneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPhoneButtonActionPerformed
-        if (this.phones == null) {
-            this.phones = new ArrayList<>();
-        }
         
         Phone phone = new Phone();
-        phone.setPhoNumber(this.phoneNumberText.getText());
+            phone.setPhoNumber(this.phoneNumberText.getText());
+
+            switch(this.phonesComboBox.getSelectedItem().toString()){
+                case "Móvil":
+                    phone.setPhoType("M");
+                    break;
+                case "Fijo":
+                    phone.setPhoType("F");
+                    break;
+            }
         
-        switch(this.phonesComboBox.getSelectedItem().toString()){
-            case "Móvil":
-                phone.setPhoType("M");
-                break;
-            case "Convencional":
-                phone.setPhoType("C");
-                break;
+        if (this.idOfficeText.getText().equals("")) {
+            if (this.phones == null) {
+                this.phones = new ArrayList<>();
+            }
+
+            this.phones.add(phone);
+            listPhones();
+        }else{
+            
+            this.conOffice.getOffPhone().createOfficePhone(connection, phone, 
+                    Integer.parseInt(this.idOfficeText.getText()));
+            this.phones.add(phone);
+            listPhones();
         }
         
-        
-        this.phones.add(phone);
-        listPhones();
     }//GEN-LAST:event_createPhoneButtonActionPerformed
 
     private void loadListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadListButtonActionPerformed
@@ -915,8 +942,10 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
     private void editPhoneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPhoneButtonActionPerformed
         try{
             
-            Phone phone;
+            
             int index = this.phonesTable.getSelectedRow();
+            
+            Phone phone;
             
             switch(evt.getActionCommand()){
                 case "Editar":
@@ -935,7 +964,7 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
 
                         this.phonesComboBox.setSelectedItem("Móvil");
                     }else{
-                        this.phonesComboBox.setSelectedItem("Convencional");
+                        this.phonesComboBox.setSelectedItem("Fijo");
                     }
 
                     this.editPhoneButton.setActionCommand("Aceptar");
@@ -949,21 +978,30 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
                         case "Móvil":
                             phone.setPhoType("M");
                             break;
-                        case "Convencional":
-                            phone.setPhoType("C");
+                        case "Fijo":
+                            phone.setPhoType("F");
                             break;
                     }
                     
+                    phone.setPhoId(this.phones.get(index).getPhoId());
+                    
                     this.phones.set(index, phone);
-                    this.editPhoneButton.setActionCommand("Editar");
-                    this.editPhoneButton.setText("Editar");
+                    
+                    
+                    if (!this.idOfficeText.getText().equals("")) {
+                        this.conOffice.getOffPhone().updatePhone(connection, phone);
+                    }
                     
                     listPhones();
                     
+                    this.editPhoneButton.setActionCommand("Editar");
+                    this.editPhoneButton.setText("Editar");
                     break;
             }
-        }catch (Exception e){
             
+            
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.toString());
         }
         
         
@@ -983,9 +1021,97 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
         }
         
         this.phones.remove(index);
+        
+        if (!this.idOfficeText.getText().equals("")) {
+            this.conOffice.getOffPhone().deletePhone(connection, 
+                    this.phones.get(index).getPhoId());
+        }
+        
+        
         listPhones();
         
     }//GEN-LAST:event_deletePhoneButtonActionPerformed
+
+    private void editOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editOfficeButtonActionPerformed
+        try{
+        Office office = new Office();
+        
+        switch(evt.getActionCommand()){
+            case "Editar":
+                
+        
+                int index = this.listTable.getSelectedRow();
+
+                office = this.offices.get(index);
+
+
+                this.idOfficeText.setText( "" + office.getOffId());
+                this.mainStreetText.setText(office.getOffMainSt());
+                this.secStreetText.setText(office.getOffSideSt());
+                this.numberOfficeText.setText(office.getOffNumber());
+                this.postalCodeText.setText(office.getOffCodPostal());
+
+                this.phones = office.getOffPhones();
+
+                
+                
+                this.editOfficeButton.setText("Aceptar");
+                this.editOfficeButton.setActionCommand("Aceptar");
+                listPhones();
+                break;
+                
+            case "Aceptar":
+                
+                City city = new City();
+                
+                office.setOffId(Integer.parseInt(this.idOfficeText.getText()));
+                office.setOffMainSt(this.mainStreetText.getText());
+                office.setOffSideSt(this.secStreetText.getText());
+                office.setOffNumber(this.numberOfficeText.getText());
+                office.setOffCodPostal(this.postalCodeText.getText());
+                
+                this.conOffice.getOffCity().readCity(connection, city, 
+                        this.nameCityText.getText());
+                
+                office.setOffCity(city);
+                
+                this.conOffice.updateOffice(connection, office);
+                
+                JOptionPane.showMessageDialog(null, "Oficina editada correctamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                listPhones();
+                this.editOfficeButton.setText("Editar");
+                this.editOfficeButton.setActionCommand("Editar");
+                
+                this.phones = new ArrayList<>();
+                
+                listOffices();
+                
+                
+                break;
+        }
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error en la edición" + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+        
+    }//GEN-LAST:event_editOfficeButtonActionPerformed
+
+    private void deleteOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteOfficeButtonActionPerformed
+        
+        try{
+        int index = this.listTable.getSelectedRow();
+        
+        
+        this.conOffice.deleteOffice(connection, this.offices.get(index).getOffId());
+                        JOptionPane.showMessageDialog(null, "Oficina eliminada correctamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+
+        
+        listOffices();
+        } catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "Error en la eliminación." + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_deleteOfficeButtonActionPerformed
 
     
 
@@ -1109,27 +1235,24 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
     private void listOffices(){
         
         DefaultTableModel tableModel = new DefaultTableModel();
-        List<Office> offices = new ArrayList<>();
-        
-        City city = new City();
-        city.setCitId(Integer.parseInt(this.idCityText.getText()));
-        city.setCitName(this.nameCityText.getText());
+        offices = new ArrayList<>();
         
         
-        String [] colums = {"Calle P.", "Calle S.", "Número", "Cod. Postal"}; 
+        String [] colums = {"Id","Calle P.", "Calle S.", "Número", "Cod. Postal"}; 
         String [][] rows;
         
         try{
-            this.conOffice.getOffices(connection, offices, city);
+            this.conOffice.getOffices(connection, offices, Integer.parseInt(this.idCityText.getText()));
             int n = offices.size();
 
-            rows = new String[n][4];
+            rows = new String[n][5];
 
             for (int i = 0; i < n; i++) {
-                rows[i][0] = offices.get(i).getOffMainSt();
-                rows[i][1] = offices.get(i).getOffSideSt();
-                rows[i][2] = offices.get(i).getOffNumber();
-                rows[i][3] = offices.get(i).getOffCodPostal();
+                rows[i][0] = "" + offices.get(i).getOffId();
+                rows[i][1] = offices.get(i).getOffMainSt();
+                rows[i][2] = offices.get(i).getOffSideSt();
+                rows[i][3] = offices.get(i).getOffNumber();
+                rows[i][4] = offices.get(i).getOffCodPostal();
             }
             
 
@@ -1138,7 +1261,7 @@ public class OfficeManagementGUI extends javax.swing.JInternalFrame {
             
         this.listTable.setModel(tableModel);
         } catch(Exception e){
-            System.out.println(e.toString());
+            System.out.println( e.toString());
         }
         
     }

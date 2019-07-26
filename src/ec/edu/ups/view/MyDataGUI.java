@@ -9,11 +9,18 @@ import ec.edu.ups.conectionDB.ConnectionJava;
 import ec.edu.ups.controller.CustomerController;
 import ec.edu.ups.controller.EmployeeController;
 import ec.edu.ups.controller.PhoneController;
+import ec.edu.ups.controller.UserController;
 import ec.edu.ups.model.Customer;
 import ec.edu.ups.model.Employee;
 import ec.edu.ups.model.Phone;
+import ec.edu.ups.model.User;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,6 +33,8 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
     private EmployeeController conEmployee;
     private CustomerController conCustomer;
     private PhoneController conPhone;
+    private UserController conUser;
+    private List<Phone> phones;
     
 
     /**
@@ -41,6 +50,7 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
         this.connection = connection;
         this.conEmployee = new EmployeeController();
         this.conPhone = new PhoneController();
+        this.conUser = new UserController();
         
         setEmployee(employee);
     }
@@ -75,6 +85,7 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
         passConfirmLb = new javax.swing.JLabel();
         acceptButton = new javax.swing.JButton();
         passConfirmText = new javax.swing.JTextField();
+        idText = new javax.swing.JTextField();
         dataPanel = new javax.swing.JPanel();
         lastNameText = new javax.swing.JTextField();
         lastnameLb = new javax.swing.JLabel();
@@ -85,9 +96,6 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
         workAddresLb = new javax.swing.JLabel();
         workAddressText = new javax.swing.JTextField();
         workAddresLb1 = new javax.swing.JLabel();
-        dayCmbBox = new javax.swing.JComboBox();
-        monthCmbBox = new javax.swing.JComboBox();
-        yearCmbBox = new javax.swing.JComboBox();
         phonePanel = new javax.swing.JPanel();
         phoneLb = new javax.swing.JLabel();
         phoneText = new javax.swing.JTextField();
@@ -97,8 +105,7 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
         createPhoneButton = new javax.swing.JButton();
         deletePhoneButton = new javax.swing.JButton();
         updatePhoneButton = new javax.swing.JButton();
-        slashLB1 = new javax.swing.JLabel();
-        slashLB2 = new javax.swing.JLabel();
+        dateText = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -158,6 +165,13 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        idText.setEditable(false);
+        idText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idTextActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout impDataPanelLayout = new javax.swing.GroupLayout(impDataPanel);
         impDataPanel.setLayout(impDataPanelLayout);
         impDataPanelLayout.setHorizontalGroup(
@@ -176,15 +190,19 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
                 .addGap(66, 66, 66)
                 .addGroup(impDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(impDataPanelLayout.createSequentialGroup()
-                        .addComponent(passLb, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(impDataPanelLayout.createSequentialGroup()
                         .addComponent(passConfirmLb)
                         .addGap(18, 18, 18)
                         .addComponent(passConfirmText, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56)
-                        .addComponent(acceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(acceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(48, Short.MAX_VALUE))
+                    .addGroup(impDataPanelLayout.createSequentialGroup()
+                        .addComponent(passLb, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(idText, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(107, 107, 107))))
         );
         impDataPanelLayout.setVerticalGroup(
             impDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,7 +212,8 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
                     .addComponent(userLb)
                     .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passLb)
-                    .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(impDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dniLb)
@@ -246,18 +265,7 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
         });
 
         workAddresLb1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        workAddresLb1.setText("Fecha de Nacimiento:");
-
-        dayCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Día" }));
-        dayCmbBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dayCmbBoxActionPerformed(evt);
-            }
-        });
-
-        monthCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mes" }));
-
-        yearCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Año" }));
+        workAddresLb1.setText("Nacimiento:");
 
         phonePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Teléfonos"));
 
@@ -353,9 +361,7 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        slashLB1.setText("/");
-
-        slashLB2.setText("/");
+        dateText.setEditable(false);
 
         javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);
         dataPanel.setLayout(dataPanelLayout);
@@ -377,21 +383,13 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
                         .addGap(16, 16, 16)
                         .addComponent(addressText, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(dataPanelLayout.createSequentialGroup()
-                        .addComponent(workAddresLb, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(workAddresLb1)
+                            .addComponent(workAddresLb, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12)
-                        .addComponent(workAddressText, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dataPanelLayout.createSequentialGroup()
-                        .addComponent(workAddresLb1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dayCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(slashLB1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(monthCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(slashLB2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(yearCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(workAddressText, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                            .addComponent(dateText))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(phonePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -417,14 +415,10 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(workAddresLb)
                     .addComponent(workAddressText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addGap(20, 20, 20)
                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(workAddresLb1)
-                    .addComponent(dayCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(monthCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(yearCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(slashLB1)
-                    .addComponent(slashLB2)))
+                    .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         getContentPane().add(dataPanel, java.awt.BorderLayout.CENTER);
@@ -444,33 +438,50 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passTextActionPerformed
 
-    private void phoneTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneTextActionPerformed
-
-    private void lastNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameTextActionPerformed
-
-    private void nameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextActionPerformed
-
-    private void addressTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addressTextActionPerformed
-
-    private void workAddressTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workAddressTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_workAddressTextActionPerformed
-
-    private void dayCmbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayCmbBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dayCmbBoxActionPerformed
-
     private void passConfirmTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passConfirmTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passConfirmTextActionPerformed
+
+    private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
+        
+        
+        // PARA LA VALIDACION - OJO
+        String pass1 = this.passText.getText();
+        String pass2 = this.passConfirmText.getText();
+        
+        //DATOS
+        
+        User user = new User();
+        conUser.readUser(connection, user, this.userText.getText());
+        
+        if (user.getUseType() == 'C') {
+            Customer customer = new Customer();
+            this.conCustomer.readUserCustomer(connection, customer, 
+                    this.userText.getText());
+            
+            customer.setUseName(this.nameText.getText());
+            customer.setUseLastNamel(this.lastNameText.getText());
+            customer.setUseAddress(this.addressText.getText());
+            customer.setUseWorkAdd(this.workAddressText.getText());
+            
+            this.conCustomer.updateCustomer(connection, customer);
+            
+            
+        } else {
+            
+            Employee employee = new Employee();
+            this.conEmployee.readEmployee(connection, employee, 
+                    Integer.parseInt(this.idText.getText()));
+            
+            employee.setUseName(this.nameText.getText());
+            employee.setUseLastNamel(this.lastNameText.getText());
+            employee.setUseAddress(this.addressText.getText());
+            
+            this.conEmployee.updateEmployee(connection, employee);
+            
+        }
+        
+    }//GEN-LAST:event_acceptButtonActionPerformed
 
     private void updatePhoneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePhoneButtonActionPerformed
         // TODO add your handling code here:
@@ -480,11 +491,29 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_deletePhoneButtonActionPerformed
 
-    private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
-        
-        
-        
-    }//GEN-LAST:event_acceptButtonActionPerformed
+    private void phoneTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phoneTextActionPerformed
+
+    private void workAddressTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workAddressTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_workAddressTextActionPerformed
+
+    private void addressTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addressTextActionPerformed
+
+    private void nameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameTextActionPerformed
+
+    private void lastNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lastNameTextActionPerformed
+
+    private void idTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idTextActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -493,16 +522,16 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
     private javax.swing.JTextField addressText;
     private javax.swing.JButton createPhoneButton;
     private javax.swing.JPanel dataPanel;
-    private javax.swing.JComboBox dayCmbBox;
+    private javax.swing.JTextField dateText;
     private javax.swing.JButton deletePhoneButton;
     private javax.swing.JLabel dniLb;
     private javax.swing.JTextField dniText;
+    private javax.swing.JTextField idText;
     private javax.swing.JPanel impDataPanel;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField lastNameText;
     private javax.swing.JLabel lastnameLb;
-    private javax.swing.JComboBox monthCmbBox;
     private javax.swing.JTextField nameText;
     private javax.swing.JLabel passConfirmLb;
     private javax.swing.JTextField passConfirmText;
@@ -512,8 +541,6 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
     private javax.swing.JPanel phonePanel;
     private javax.swing.JTextField phoneText;
     private javax.swing.JTable phonesTable;
-    private javax.swing.JLabel slashLB1;
-    private javax.swing.JLabel slashLB2;
     private javax.swing.JComboBox typePhoneCmbBoc;
     private javax.swing.JButton updatePhoneButton;
     private javax.swing.JLabel userLb;
@@ -521,28 +548,52 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
     private javax.swing.JLabel workAddresLb;
     private javax.swing.JLabel workAddresLb1;
     private javax.swing.JTextField workAddressText;
-    private javax.swing.JComboBox yearCmbBox;
     // End of variables declaration//GEN-END:variables
 
     private void setEmployee(Employee employee){
+        this.idText.setText(""+employee.getUseId());
         this.dniText.setText(employee.getUseDNI());
         this.userText.setText(employee.getUseUsername());
         this.nameText.setText(employee.getUseName());
         this.lastNameText.setText(employee.getUseLastNamel());
         this.addressText.setText(employee.getUseAddress());
         
-        employee.getUseBirthDay();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(employee.getUseBirthDay());
         
+        int day = calendar.get(Calendar.DATE);
+        int month = calendar.get(Calendar.MONTH+1);
+        int year = calendar.get(Calendar.YEAR);
+        
+        String mesActual = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, 
+                Locale.getDefault());
+        
+        this.dateText.setText(day + " / " + mesActual + " / " + year);
+        
+        listPhones(employee.getUseId());
         
     }
     
     private void setCustomer(Customer customer){
+        this.idText.setText(""+customer.getUseId());
         this.dniText.setText(customer.getUseDNI());
         this.userText.setText(customer.getUseUsername());
         this.nameText.setText(customer.getUseName());
         this.lastNameText.setText(customer.getUseLastNamel());
         this.addressText.setText(customer.getUseAddress());
         this.workAddressText.setText(customer.getUseWorkAdd());
+        
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(customer.getUseBirthDay());
+        
+        int day = calendar.get(Calendar.DATE);
+        int month = calendar.get(Calendar.MONTH+1);
+        int year = calendar.get(Calendar.YEAR);
+        
+        String mesActual = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, 
+                Locale.getDefault());
+        
+        this.dateText.setText(day + " / " + mesActual + " / " + year);
         
         
         listPhones(customer.getUseId());
