@@ -569,7 +569,7 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
             model.setModName(this.nameModelText.getText());
 
             if (this.conModel.createModel(connection, model, 
-                    Integer.parseInt(this.idBrandLabel.getText()))){
+                    Integer.parseInt(this.idBrandText.getText()))){
                 JOptionPane.showMessageDialog(null, 
                         "Modelo " + model.getModName()+ " creado.", 
                         "Confirmación", JOptionPane.INFORMATION_MESSAGE);
@@ -690,7 +690,7 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         List<Model> models = new ArrayList<>();
         
         Brand brand = new Brand(Integer.parseInt(this.idBrandText.getText()), 
-                this.nameBrandLabel.getText());
+                this.nameBrandText.getText());
         
         
         String [] colums = {"Id", "Nombre"}; 
