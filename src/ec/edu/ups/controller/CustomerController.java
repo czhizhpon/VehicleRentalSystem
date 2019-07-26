@@ -1,5 +1,5 @@
 /**
- * @(#)CustomerController.java	0.0.1, 22-Jul-2019 
+ * @(#)CustomerController.java	0.0.5, 22-Jul-2019 
  * 
  * Universidad Politécnica Salesiana
  * Carrera de Computación
@@ -9,20 +9,23 @@ package ec.edu.ups.controller;
 
 import ec.edu.ups.conectionDB.ConnectionJava;
 import ec.edu.ups.model.Customer;
+import ec.edu.ups.model.Phone;
 import ec.edu.ups.model.Privilege;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @since 22-Jul-2019
- * @version 0.0.1
- * @author Sarmiento Bryan, Serpa Roberto, Zhizhpon Eduardo
+ * @since   22-Jul-2019
+ * @version 0.0.5
+ * @author  Sarmiento Bryan, Serpa Roberto, Zhizhpon Eduardo
  */
 public class CustomerController {
     
     private PrivilegeController conPrivilge;
+    private PhoneController conPhone;
     
     private PreparedStatement pstat;
     private ResultSet rstat;
@@ -31,22 +34,30 @@ public class CustomerController {
         
         /*sequence, username, password, dni, name, lastname, email, birthDay, 
         address, work_addres, type*/
-        String query = "INSERT INTO VRS_USERS VALUES(\n" +
-        "use_id_seq.NEXTVAL, 'karens', 'ba952731f97fb058035aa399b1cb3d5c', '0102040145',\n" +
-        "'Karen', 'Lopez', 'karn@mail.com', TO_DATE('1993-01-22', 'YYYY-MM-DD'),\n" +
-        "'Tadeo Torres, L. Cordero', 'Av. Hurtado de Mendoza, Illimani',\n" +
-        "'C', 1, 2\n" +
-        ");";
+        String query = "INSERT INTO VRS.VRS_USERS VALUES(\n"
+                + "use_id_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?";
         
         try{
-            pstat = connection.getConnection().prepareStatement(query);
             
+            pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, customer.getUseUsername());
+            pstat.setString(2, customer.getUsePassword());
+            pstat.setString(3, customer.getUseDNI());
+            pstat.setString(4, customer.getUseName());
+            pstat.setString(5, customer.getUseLastNamel());
+            pstat.setString(6, customer.getUseEmail());
+            pstat.setDate(7, new java.sql.Date(customer.getUseBirthDay().getTime()));
+            pstat.setString(8, customer.getUseAddress());
+            pstat.setString(8, customer.getUseWorkAdd());
+            pstat.setString(9, ""+customer.getUseType());
+            pstat.setInt(10, 1);
             
             pstat.executeUpdate();
             
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
+        
         connection.closeConnection();
         return true;
     }
@@ -54,11 +65,20 @@ public class CustomerController {
     public boolean readDniCustomer(ConnectionJava connection, Customer customer, 
             String cusDni){
         
-        String query = "SELECT *"
-                + "FROM vrs_users u, vrs_privileges p"
+        /*
+        Privilege privilege;
+        List<Phone> phones;
+        */
+        
+        String query = "SELECT * "
+                + "FROM VRS.VRS_USER u, VRS.VRS_PRIVILEGES p "
                 + "WHERE u.use_dni LIKE ?";
         
+        readCustomer(connection, customer, query, cusDni);
+        
+        /*
         try{
+            
             pstat = connection.getConnection().prepareStatement(query);
             pstat.setString(1, cusDni);
             
@@ -77,27 +97,40 @@ public class CustomerController {
                 customer.setUseWorkAdd(rstat.getString(10));
                 customer.setUseType(rstat.getString(11).charAt(0));
                 
-                Privilege privilege = new Privilege();
+                privilege = new Privilege();
                 this.conPrivilge.readPrivilege(connection, privilege, 
                         rstat.getInt(12));
-                customer.setUsePrivilege(privilege);
                 
-                /*Telefonos*/
+                customer.setUsePrivilege(privilege);
+        
+                phones = new ArrayList<>();
+                this.conPhone.getUserPhones(connection, phones, 
+                        customer.getUseId());
+                
+                customer.setUsePhones(phones);
+                
             }
             
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
+        
         connection.closeConnection();
+        */
+        
         return true;
     }
     
     public boolean readUserCustomer(ConnectionJava connection, Customer customer, 
             String username){
+        
         String query = "SELECT *"
                 + "FROM vrs_users"
                 + "WHERE use_username LIKE ?";
         
+        readCustomer(connection, customer, query, username);
+        
+        /*
         try{
             pstat = connection.getConnection().prepareStatement(query);
             pstat.setString(1, username);
@@ -112,14 +145,104 @@ public class CustomerController {
             throw new NullPointerException(ex.getSQLState());
         }
         connection.closeConnection();
+        */
+        return true;
+    }
+    
+    public boolean readCustomer(ConnectionJava connection, Customer customer, 
+            String query, String identifier){
+        
+        Privilege privilege;
+        List<Phone> phones;
+        
+        try{
+            
+            pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, identifier);
+            
+            rstat = pstat.executeQuery();
+            
+            while(rstat.next()){
+                customer.setUseId(rstat.getInt(1));
+                customer.setUseUsername(rstat.getString(2));
+                customer.setUsePassword(rstat.getString(3));
+                customer.setUseDNI(rstat.getString(4));
+                customer.setUseName(rstat.getString(5));
+                customer.setUseLastNamel(rstat.getString(6));
+                customer.setUseEmail(rstat.getString(7));
+                customer.setUseBirthDay(rstat.getDate(8));
+                customer.setUseAddress(rstat.getString(9));
+                customer.setUseWorkAdd(rstat.getString(10));
+                customer.setUseType(rstat.getString(11).charAt(0));
+                
+                privilege = new Privilege();
+                this.conPrivilge.readPrivilege(connection, privilege, 
+                        rstat.getInt(12));
+                
+                customer.setUsePrivilege(privilege);
+                
+                /*Telefonos*/
+                phones = new ArrayList<>();
+                this.conPhone.getUserPhones(connection, phones, 
+                        customer.getUseId());
+                
+                customer.setUsePhones(phones);
+                
+            }
+            
+        }catch(SQLException ex){
+            throw new NullPointerException(ex.getSQLState());
+        }
+        
+        connection.closeConnection();
         return true;
     }
     
     public boolean updateCustomer(ConnectionJava connection, Customer customer){
-        String query = "";
+        
+        String query = "UPDATE VRS.VRS_USERS SET "
+                + "use_password = ? "
+                + "use_name = ? "
+                + "use_last_name = ? "
+                + "use_email = ? "
+                + "use_birth_day = ? "
+                + "use_address = ? "
+                + "use_work_add = ? "
+                + "pri_id = ? "
+                + "WHERE use_id = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, customer.getUsePassword());
+            pstat.setString(2, customer.getUseName());
+            pstat.setString(3, customer.getUseLastNamel());
+            pstat.setString(4, customer.getUseEmail());
+            pstat.setDate(5, new java.sql.Date(customer.getUseBirthDay().getTime()));
+            pstat.setString(6, customer.getUseAddress());
+            pstat.setString(7, customer.getUseWorkAdd());
+            pstat.setInt(8, customer.getUsePrivilege().getPriId());
+            pstat.setInt(9, customer.getUseId());
+            
+            pstat.executeUpdate();
+            
+        }catch(SQLException ex){
+            throw new NullPointerException(ex.getSQLState());
+        }
+        
+        connection.closeConnection();
+        return true;
+    }
+    
+    public boolean deleteCustomer(ConnectionJava connection, Customer customer, 
+            int cusID){
+        
+        String query = "DELETE VRS.VRS_USERS "
+                + "WHERE use_id = ? ";
+        
+        try{
+            
+            pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, cusID);
             
             pstat.executeUpdate();
             
@@ -130,21 +253,8 @@ public class CustomerController {
         return true;
     }
     
-    public boolean deleteCustomer(ConnectionJava connection, Customer customer){
-        String query = "";
-        
-        try{
-            pstat = connection.getConnection().prepareStatement(query);
-            
-            pstat.executeUpdate();
-            
-        }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
-        }
-        connection.closeConnection();
-        return true;
-    }
     
+    // OJO
     public boolean getCustomers(ConnectionJava connection, List<Customer> customers){
         
         Customer customer;

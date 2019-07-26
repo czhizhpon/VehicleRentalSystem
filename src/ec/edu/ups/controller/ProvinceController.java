@@ -1,5 +1,5 @@
 /**
- * @(#)ProvinceController.java	0.0.1, 19-Jul-2019 
+ * @(#)ProvinceController.java	0.0.5, 19-Jul-2019 
  * 
  * Universidad Politécnica Salesiana
  * Carrera de Computación
@@ -20,42 +20,55 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @since 19-Jul-2019
- * @version 0.0.1
- * @author Sarmiento Bryan, Serpa Roberto, Zhizhpon Eduardo
+ * @since   19-Jul-2019
+ * @version 0.0.5
+ * @author  Sarmiento Bryan, Serpa Roberto, Zhizhpon Eduardo
  */
 public class ProvinceController {
     
     private PreparedStatement pstat;
     private ResultSet rstat;
-    
+
+    public ProvinceController() {
+        
+    }
     
     public boolean createProvince(ConnectionJava connection, Province province){
-        String query = "";
+        String query = "INSERT INTO VRS.VRS_PROVINCES VALUES(\n"
+                + "pro_id_seq.NEXTVAL, ?)";
         
         try{
+            
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, province.getProName());
             
             pstat.executeUpdate();
             
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
+        
         connection.closeConnection();
         return true;
     }
     
     public boolean updateProvince(ConnectionJava connection, Province province){
-        String query = "";
+        String query = "UPDATE VRS.VRS_PROVINCES SET "
+                + "pro_name = ? "
+                + "WHERE bra_id = ?";
         
         try{
+            
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, province.getProName());
+            pstat.setInt(2, province.getProId());
             
             pstat.executeUpdate();
             
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
+        
         connection.closeConnection();
         return true;
     }
@@ -63,27 +76,31 @@ public class ProvinceController {
     public boolean readProvince(ConnectionJava connection, Province province, 
             int proId){
         
-        String query = "SELECT *\n" +
-                        "FROM vrs_provinces \n;" + 
+        String query =  "SELECT *\n" +
+                        "FROM VRS.VRS_PROVINCES \n" + 
                         "WHERE pro_id = ?";
         
         try{
+            
             pstat = connection.getConnection().prepareStatement(query);
             pstat.setInt(1, proId);
             
             rstat = pstat.executeQuery();
                     
         } catch (SQLException ex){
-            
+            throw new NullPointerException(ex.getSQLState());
         }
         
+        connection.closeConnection();
         return true;
     }
     
     public boolean deleteProvince(ConnectionJava connection, Province province){
-        String query = "";
+        String query = "DELETE VRS.VRS_PROVINCES "
+                + "WHERE pro_id = ?";
         
         try{
+            
             pstat = connection.getConnection().prepareStatement(query);
             
             pstat.executeUpdate();
@@ -91,6 +108,7 @@ public class ProvinceController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
+        
         connection.closeConnection();
         return true;
     }
@@ -99,23 +117,31 @@ public class ProvinceController {
     public boolean getProvinces(ConnectionJava connection, 
             List<Province> provinces){
         
+        Province province;
         String query = "SELECT *\n" +
-                        "FROM vrs_provinces;";
+                       "FROM VRS.VRS_PROVINCES";
         
         try {
+            
             pstat = connection.getConnection().prepareStatement(query);
             rstat = pstat.executeQuery();
             
             while(rstat.next()){
-                Province province = new Province(rstat.getInt(1), 
-                        rstat.getString(2));
+                
+                province = new Province();
+                
+                province.setProId(rstat.getInt(1));
+                province.setProName(rstat.getString(2));
+                
                 provinces.add(province);
+                
             }
-            connection.closeConnection();
+            
         } catch (SQLException ex) {
             throw new NullPointerException(ex.getSQLState());
         }
         
+        connection.closeConnection();
         return true;
     }
 }

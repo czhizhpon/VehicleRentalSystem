@@ -1,5 +1,5 @@
 /**
- * @(#)CityController.java	0.0.1, 22-Jul-2019 
+ * @(#)CityController.java	0.0.5, 22-Jul-2019 
  * 
  * Universidad Politécnica Salesiana
  * Carrera de Computación
@@ -21,9 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @since 22-Jul-2019
- * @version 0.0.1
- * @author Sarmiento Bryan, Serpa Roberto, Zhizhpon Eduardo
+ * @since   22-Jul-2019
+ * @version 0.0.5
+ * @author  Sarmiento Bryan, Serpa Roberto, Zhizhpon Eduardo
  */
 
 public class CityController {
@@ -31,10 +31,11 @@ public class CityController {
     private ResultSet rstat;
     
     public boolean createCity(ConnectionJava connection, City city, int proId){
-        String query = "INSERT INTO VRS_CITIES VALUES(\n" 
+        String query = "INSERT INTO VRS.VRS_CITIES VALUES(\n" 
                 + "cit_id_seq.NEXTVAL, ?, ?)";
         
         try{
+            
             pstat = connection.getConnection().prepareStatement(query);
             pstat.setString(1, city.getCitName());
             pstat.setInt(2, proId);
@@ -44,6 +45,7 @@ public class CityController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
+        
         connection.closeConnection();
         return true;
     }
@@ -52,11 +54,12 @@ public class CityController {
             int citId){
         
         String query = "SELECT cit_id, cit_name\n" +        
-                        "FROM vrs_cities \n" +
+                        "FROM VRS.VRS_CITIES \n" +
                         "WHERE pro_id =  ?\n" +
-                        "AND cit_id = ?;";
+                        "AND cit_id = ?";
         
         try {
+            
             pstat = connection.getConnection().prepareStatement(query);
             pstat.setInt(1, province.getProId());
             pstat.setInt(2, citId);
@@ -70,21 +73,21 @@ public class CityController {
                 
             }
             
-            connection.closeConnection();
-            
         } catch (SQLException ex) {
             throw new NullPointerException(ex.getSQLState());
         }
-        return true;
         
+        connection.closeConnection();
+        return true;
     }
     
     public boolean updateCity(ConnectionJava connection, City city){
-        String query = "UPDATE vrs_cities SET"
-                + "cit_name = ?"
+        String query = "UPDATE VRS.VRS_CITIES SET "
+                + "cit_name = ? "
                 + "pro_name = ?";
         
         try{
+            
             pstat = connection.getConnection().prepareStatement(query);
             pstat.setString(1, city.getCitName());
             pstat.setInt(2, city.getCitProvince().getProId());
@@ -94,15 +97,17 @@ public class CityController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
+        
         connection.closeConnection();
         return true;
     }
     
     public boolean deleteCity(ConnectionJava connection, int citId){
-        String query = "DELETE vrs_cities "
+        String query = "DELETE VRS.VRS_CITIES "
                 + "WHERE cit_id = ?";
         
         try{
+            
             pstat = connection.getConnection().prepareStatement(query);
             pstat.setInt(1, citId);
             
@@ -111,31 +116,37 @@ public class CityController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
+        
         connection.closeConnection();
         return true;
     }
     
     public boolean getCities(ConnectionJava connection, List<City> cities, 
             int proId){
+        
         City city;
-        String query = "SELECT cit_id, cit_name\n" +        
-                        "FROM vrs_cities \n" +
-                        "WHERE pro_id = ?;";
+        String query =  "SELECT cit_id, cit_name\n" +        
+                        "FROM VRS.VRS_CITIES\n" +
+                        "WHERE pro_id = ?";
         
         try {
+            
             pstat = connection.getConnection().prepareStatement(query);
             pstat.setInt(1, proId);
             rstat = pstat.executeQuery();
-            while (rstat.next()) {                
+            
+            while (rstat.next()) {
+                
                 city = new City(rstat.getInt(1), rstat.getString(2));
                 cities.add(city);
+                
             }
-            connection.closeConnection();
             
         } catch (SQLException ex) {
-            System.out.println(ex);
-            return false;
+            throw new NullPointerException(ex.getSQLState());
         }
+        
+        connection.closeConnection();
         return true;
     }
     
