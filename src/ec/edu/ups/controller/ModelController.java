@@ -22,10 +22,23 @@ import java.util.List;
  */
 public class ModelController {
  
-    private BrandController modBrand;
+    private BrandController conBrand;
     
     private PreparedStatement pstat;
     private ResultSet rstat;
+    
+
+    public ModelController() {
+        conBrand = new BrandController();
+    }
+
+    public BrandController getConBrand() {
+        return conBrand;
+    }
+
+    public void setConBrand(BrandController conBrand) {
+        this.conBrand = conBrand;
+    }
     
     public boolean createModel(ConnectionJava connection, Model model, 
             int braId){
@@ -48,9 +61,8 @@ public class ModelController {
         return true;
     }
     
-    public boolean readModel(ConnectionJava connection, Model model, int modId, 
-            Brand brand){
-        
+    public boolean readModel(ConnectionJava connection, Model model, int modId){
+        Brand brand;
         
         String query = "SELECT * "
                 + "FROM vrs.vrs_models "
@@ -58,6 +70,7 @@ public class ModelController {
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setInt(1, modId);
             
             rstat = pstat.executeQuery();
             
@@ -65,6 +78,11 @@ public class ModelController {
                 model.setModId(rstat.getInt(1));
                 model.setModName(rstat.getString(2));
                 model.setModCost(rstat.getDouble(3));
+                
+                brand = new Brand();
+                
+                this.conBrand.readBrand(connection, brand, rstat.getInt(4));
+                
                 model.setModBrand(brand);
                 
             }
@@ -81,13 +99,15 @@ public class ModelController {
         String query = "UPDATE vrs.vrs_models SET "
                 + "mod_name = ? "
                 + "mod_price = ? "
+                + "bra_id = ? "
                 + "WHERE mod_id = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
             pstat.setString(1, model.getModName());
             pstat.setDouble(2, model.getModCost());
-            pstat.setInt(3, model.getModId());
+            pstat.setInt(3, model.getModBrand().getBraId());
+            pstat.setInt(4, model.getModId());
             
             pstat.executeUpdate();
             
@@ -121,7 +141,7 @@ public class ModelController {
         
         Model model;
         String query = "SELECT * "
-                + "FROM vrs_models "
+                + "FROM vrs.vrs_models "
                 + "WHERE bra_id = ?";
         
         
@@ -140,7 +160,7 @@ public class ModelController {
                 model.setModName(rstat.getString(2));
                 model.setModCost(rstat.getDouble(3));
                 
-                this.modBrand.readBrand(connection, brand, rstat.getInt(4));
+                this.conBrand.readBrand(connection, brand, rstat.getInt(4));
                 
                 model.setModBrand(brand);
                 

@@ -25,6 +25,7 @@ public class Vehicle {
     private Date vehInsurranceDate;
     private Date vehInsurranceExpires;
     private char vehOrigin;
+    private Model vehModel;
     private VehCategory vehCategory;
 
     public Vehicle() {
@@ -83,6 +84,14 @@ public class Vehicle {
 
     public void setVehKilometraje(double vehKilometraje) {
         this.vehKilometraje = vehKilometraje;
+    }
+
+    public Model getVehModel() {
+        return vehModel;
+    }
+
+    public void setVehModel(Model vehModel) {
+        this.vehModel = vehModel;
     }
 
     public VehCategory getVehCategory() {
