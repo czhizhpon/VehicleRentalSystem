@@ -65,7 +65,7 @@ public class CustomerController {
             pstat.setString(8, customer.getUseAddress());
             pstat.setString(8, customer.getUseWorkAdd());
             pstat.setString(9, ""+customer.getUseType());
-            pstat.setInt(10, 1);
+            pstat.setInt(10, customer.getUsePrivilege().getPriId());
             
             pstat.executeUpdate();
             

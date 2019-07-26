@@ -338,7 +338,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void creUserJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creUserJMIActionPerformed
         try{
             if ( userManagementGUI == null) 
-                userManagementGUI = new UserManagementGUI();
+                userManagementGUI = new UserManagementGUI(connection);
             if (userManagementGUI.isVisible()){
                 userManagementGUI.setSelected(true);
             }else{

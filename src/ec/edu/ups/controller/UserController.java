@@ -112,16 +112,19 @@ public class UserController {
         return true;
     }
     
-    public boolean delete(ConnectionJava connection){
-        String query = "";
+    public boolean delete(ConnectionJava connection, String useDni){
+        String query = "UPDATE vrs.vrs_users SET "
+                + "use_status = 'I' "
+                + "WHERE use_username LIKE ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, useDni);
             
             pstat.executeUpdate();
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         connection.closeConnection();
         return true;

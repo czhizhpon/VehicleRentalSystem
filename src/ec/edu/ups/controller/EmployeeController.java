@@ -36,7 +36,7 @@ public class EmployeeController {
     
     public boolean createEmployee(ConnectionJava connection, Employee employee){
         
-        String query = "SELECT use_id_seq.NEXTVAL"
+        String query = "SELECT vrs.use_id_seq.NEXTVAL "
                 + "FROM dual";
         
         try{
@@ -44,6 +44,8 @@ public class EmployeeController {
             pstat = connection.getConnection().prepareStatement(query);
             
             rstat = pstat.executeQuery();
+            
+            rstat.next();
             int empId = rstat.getInt(1);
             
             query = "INSERT INTO VRS.VRS_USERS VALUES(\n"
@@ -69,7 +71,7 @@ public class EmployeeController {
             
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            System.out.println(ex.toString());
         }
         
         //connection.closeConnection();

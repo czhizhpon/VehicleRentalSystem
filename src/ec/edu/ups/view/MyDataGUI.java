@@ -66,8 +66,6 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
         this.conCustomer = new CustomerController();
         this.conPhone = new PhoneController();
         
-        
-        
         setCustomer(customer);
     }
 
@@ -633,7 +631,6 @@ public class MyDataGUI extends javax.swing.JInternalFrame {
             this.phones.add(phone);
             listPhones(Integer.parseInt(this.idText.getText()));
         }else{
-            System.out.println(""+ phone.getPhoNumber() + phone.getPhoType());
             this.conPhone.createUserPhone(connection, phone, 
                     Integer.parseInt(this.idText.getText()));
             this.phones.add(phone);
