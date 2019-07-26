@@ -7,6 +7,13 @@
  */
 package ec.edu.ups.view;
 
+import ec.edu.ups.conectionDB.ConnectionJava;
+import ec.edu.ups.controller.ModelController;
+import ec.edu.ups.model.Brand;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  * @since   22-Jul-2019
  * @version 0.1.0
@@ -14,11 +21,18 @@ package ec.edu.ups.view;
  */
 public class VehicleManagementGUI extends javax.swing.JInternalFrame {
 
+    private ModelController conModel;
+    private ConnectionJava connection;
+    
     /**
      * Creates new form VehicleManagementGUI
      */
-    public VehicleManagementGUI() {
+    public VehicleManagementGUI(ConnectionJava connection) {
         initComponents();
+        conModel = new ModelController();
+        this.connection = connection;
+        
+        listBrands();
     }
 
     /**
@@ -398,7 +412,9 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_findBrandButtonActionPerformed
 
     private void createBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBrandButtonActionPerformed
-        // TODO add your handling code here:
+        
+        //this.conModel.createModel(connection, model, ERROR)
+        
     }//GEN-LAST:event_createBrandButtonActionPerformed
 
     private void selectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectComboBoxActionPerformed
@@ -437,4 +453,32 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> selectComboBox;
     private javax.swing.JPanel tablePanel;
     // End of variables declaration//GEN-END:variables
+
+    private void listBrands(){
+        
+        DefaultTableModel tableModel = new DefaultTableModel();
+        List<Brand> brands = new ArrayList<>();
+        
+        
+        String [] colums = {"Id", "Nombre"}; 
+        String [][] rows;
+        try{
+        this.conModel.getConBrand().getBrands(connection, brands);
+        int n = brands.size();
+        
+        rows = new String[n][2];
+        
+        for (int i = 0; i < n; i++) {
+            rows[1][i] = "" + brands.get(i).getBraId();
+            i++;
+            rows[2][i] = brands.get(i).getBraName();
+        }
+        
+        tableModel.setDataVector(rows, colums);
+        this.listJTable.setModel(tableModel);
+        } catch(Exception e){
+            System.out.println(e.toString());
+        }
+    }
+    
 }

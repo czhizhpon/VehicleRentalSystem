@@ -7,6 +7,8 @@ package ec.edu.ups.view;
 
 import ec.edu.ups.conectionDB.ConnectionJava;
 import ec.edu.ups.model.User;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.beans.PropertyVetoException;
 import java.util.List;
 import java.util.logging.Level;
@@ -34,6 +36,37 @@ public class MainGUI extends javax.swing.JFrame {
         setSize(1100,900);
         setLocationRelativeTo(null);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        this.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                connection.closeConnection();
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
         
         this.user = user;
         this.connection = connection;
@@ -285,7 +318,7 @@ public class MainGUI extends javax.swing.JFrame {
         
         try{
             if (vehicleManagementGUI == null) 
-                //vehicleManagementGUI = new VehicleManagementGUI(this.connection);
+                vehicleManagementGUI = new VehicleManagementGUI(this.connection);
             if (vehicleManagementGUI.isVisible()){
                 vehicleManagementGUI.setSelected(true);
             }else{

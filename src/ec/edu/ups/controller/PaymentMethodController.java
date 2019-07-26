@@ -40,7 +40,7 @@ public class PaymentMethodController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -65,7 +65,7 @@ public class PaymentMethodController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -85,7 +85,7 @@ public class PaymentMethodController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -103,7 +103,7 @@ public class PaymentMethodController {
             throw new NullPointerException(ex.getSQLState());
         }
         
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
     }
     
@@ -132,7 +132,7 @@ public class PaymentMethodController {
         }catch(SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
-        connection.closeConnection();
+        //connection.closeConnection();
         return true;
         
     }
