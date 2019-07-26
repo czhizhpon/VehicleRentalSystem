@@ -15,10 +15,12 @@ import ec.edu.ups.controller.ReservationController;
 import ec.edu.ups.controller.VehicleController;
 import ec.edu.ups.model.Brand;
 import ec.edu.ups.model.City;
+import ec.edu.ups.model.Customer;
 import ec.edu.ups.model.Model;
 import ec.edu.ups.model.Office;
 import ec.edu.ups.model.Province;
 import ec.edu.ups.model.Reservation;
+import ec.edu.ups.model.User;
 import ec.edu.ups.model.Vehicle;
 import ec.edu.ups.services.Services;
 import java.text.ParseException;
@@ -42,8 +44,9 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
 
 //    private ProvinceController conProvince;
 //    
-//    private CityController conCity;
-    
+    private CityController conCity;
+    private User user;
+    private Customer customer;
     private OfficeController conOffiece;
     private VehicleController conVehicle;
     private ReservationController  conReservation;
@@ -59,12 +62,14 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
     /**
      * Creates new form ReservateGUI
      */
-    public ReservateGUI() {
-        
+    public ReservateGUI(ConnectionJava connection, User customer) {
+        this.connection=connection;
+        this.user=customer;
+        conOffiece=new OfficeController();
         initComponents();
         ProvinceController conProvince = new ProvinceController();
-        
-        provinces = new ArrayList<>();
+        try {
+            provinces = new ArrayList<>();
             
             conProvince.getProvinces(connection, provinces);
             
@@ -73,6 +78,10 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
             for (int i = 0; i < n; i++) {
                 provinceComboBox.addItem(provinces.get(i).getProName());
             }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        
         
     }
 
@@ -337,7 +346,7 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
             Date dateEnd = new SimpleDateFormat("dd/MM/yyyy").parse(dateEndTxt.getText());
             
             Reservation reservation = new Reservation();
-            reservation.setResCustomer(null);
+            reservation.setResCustomer((Customer) user);
             reservation.setResDateFin(dateEnd);
             reservation.setResDateIni(dateIni);
             reservation.setResVehicle(vehicles.get(index));
@@ -389,7 +398,8 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
 
             int indice = this.brandComboBox.getItemCount();
             models = new ArrayList<>();
-
+            
+            
             conVehicle.getConModel().getModels(connection, models,
                 this.brands.get(indice));
 
@@ -429,7 +439,7 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
     private void cityComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityComboBoxActionPerformed
 
         try {
-
+            
             int indice = this.cityComboBox.getItemCount();
             offices = new ArrayList<>();
 
@@ -438,7 +448,7 @@ public class ReservateGUI extends javax.swing.JInternalFrame {
             int n = offices.size();
 
             for (int i = 0; i < n; i++) {
-                officeComboBox.addItem(offices.get(i).getOffNumber());
+                officeComboBox.addItem(""+offices.get(i).getOffId());
             }
 
         } catch (Exception e) {

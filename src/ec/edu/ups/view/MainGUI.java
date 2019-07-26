@@ -530,7 +530,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void reservationJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservationJMIActionPerformed
         try{
             if (reservateGUI == null) 
-                reservateGUI = new ReservateGUI();
+                reservateGUI = new ReservateGUI(connection, user);
             if (reservateGUI.isVisible()){
                 reservateGUI.setSelected(true);
             }else{
