@@ -26,8 +26,8 @@ public class PhoneController {
     
     public boolean createUserPhone(ConnectionJava connection, Phone phone, 
             int useID){
-        String query = "INSERT INTO VRS.VRS_PHONES(\n"
-                + "pho_id_seq.NEXTVAL, ?, ?, ?, null)";
+        String query = "INSERT INTO VRS.VRS_PHONES VALUES(\n"
+                + "pho_id_seq.NEXTVAL, ?, ?, ?, ?)";
         
         try{
             
@@ -35,6 +35,7 @@ public class PhoneController {
             pstat.setString(1, phone.getPhoNumber());
             pstat.setString(2, phone.getPhoType());
             pstat.setInt(3, useID);
+            pstat.setNull(4, java.sql.Types.INTEGER);
             
             pstat.executeUpdate();
             
@@ -48,20 +49,27 @@ public class PhoneController {
     
     public boolean createOfficePhone(ConnectionJava connection, Phone phone, 
             int offID){
-        String query = "INSERT INTO VRS.VRS_PHONES(\n"
+        String query = "INSERT INTO VRS.VRS_PHONES VALUES(\n"
                 + "pho_id_seq.NEXTVAL, ?, ?, null, ?)";
         
         try{
             
+            
             pstat = connection.getConnection().prepareStatement(query);
+            
+            
+            
             pstat.setString(1, phone.getPhoNumber());
             pstat.setString(2, phone.getPhoType());
+//            pstat.setNull(3, java.sql.Types.INTEGER);
             pstat.setInt(3, offID);
+            
+            
             
             pstat.executeUpdate();
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException( ex.toString());
         }
         
         //connection.closeConnection();
@@ -98,7 +106,7 @@ public class PhoneController {
     
     public boolean updatePhone(ConnectionJava connection, Phone phone){
         String query = "UPDATE VRS.VRS_PHONES SET "
-                + "pho_number = ? "
+                + "pho_number = ? ,"
                 + "pho_type = ? "
                 + "WHERE pho_id = ?";
         
@@ -201,7 +209,7 @@ public class PhoneController {
             }
             
         }catch(SQLException ex){
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         
         //connection.closeConnection();

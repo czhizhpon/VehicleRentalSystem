@@ -61,7 +61,7 @@ public class CityController {
             int citId){
         
         Province province;
-        String query = "SELECT cit_id, cit_name\n" +        
+        String query = "SELECT *\n" +        
                         "FROM VRS.VRS_CITIES \n" +
                         "WHERE cit_id = ? ";
         
@@ -87,7 +87,7 @@ public class CityController {
             }
             
         } catch (SQLException ex) {
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException(ex.toString());
         }
         
         //connection.closeConnection();

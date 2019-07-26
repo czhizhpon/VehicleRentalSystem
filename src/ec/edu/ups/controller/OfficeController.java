@@ -66,7 +66,8 @@ public class OfficeController {
         
         
         try {
-            String query = "SELECT off_id_seq.NEXTVAL "
+            int offId = 0;
+            String query = "SELECT vrs.off_id_seq.NEXTVAL "
                     + "FROM dual";
             
             pstat = connection.getConnection().prepareStatement(query);
@@ -74,36 +75,37 @@ public class OfficeController {
             
             rstat = pstat.executeQuery();
             
-            rstat.next();
+            while (rstat.next()){
+                offId = rstat.getInt(1);
             
-            int offId = rstat.getInt(1);
-            
-            query = "INSERT INTO vrs_offices VALUES("
-                + "?,"
-                + "?, "
-                + "?, "
-                + "?, "
-                + "?, "
-                + "? "
-                + ")";
-            
-            pstat = connection.getConnection().prepareStatement(query);
-            pstat.setInt(1, offId);
-            pstat.setString(2, office.getOffMainSt());
-            pstat.setString(3, office.getOffSideSt());
-            pstat.setString(4, office.getOffNumber());
-            pstat.setString(5, office.getOffCodPostal());
-            pstat.setInt(6, citId);
-            
-            pstat.executeUpdate();
+
+                query = "INSERT INTO vrs_offices VALUES("
+                    + "?,"
+                    + "?, "
+                    + "?, "
+                    + "?, "
+                    + "?, "
+                    + "? "
+                    + ")";
+
+                pstat = connection.getConnection().prepareStatement(query);
+                pstat.setInt(1, offId);
+                pstat.setString(2, office.getOffMainSt());
+                pstat.setString(3, office.getOffSideSt());
+                pstat.setString(4, office.getOffNumber());
+                pstat.setString(5, office.getOffCodPostal());
+                pstat.setInt(6, citId);
+
+                pstat.executeUpdate();
+            }
             
             for(Phone p:office.getOffPhones()){
-                this.offPhone.createOfficePhone(connection, p, office.getOffId());
+                this.offPhone.createOfficePhone(connection, p, offId);
             }
             
             
         } catch (SQLException ex) {
-            throw new NullPointerException(ex.toString());
+            throw new NullPointerException("Error" + ex.toString());
         }
        // connection.closeConnection();
        return true;
@@ -153,10 +155,10 @@ public class OfficeController {
     
     public boolean updateOffice(ConnectionJava connection, Office office){
         String query = "UPDATE vrs.vrs_offices SET "
-                + "off_main_st = ? "
-                + "off_side_st = ? "
-                + "off_number = ? "
-                + "off_cod_postal = ? "
+                + "off_main_st = ? ,"
+                + "off_side_st = ? ,"
+                + "off_number = ? ,"
+                + "off_cod_postal = ? ,"
                 + "cit_id = ? "
                 + "WHERE off_id = ?";
         
@@ -197,8 +199,9 @@ public class OfficeController {
     }
     
     public boolean getOffices(ConnectionJava connection, List<Office> offices, 
-            City city){
+            int citId){
         Office office;
+        City city;
         List<Phone> phones = new ArrayList<>();
         String query = "SELECT * "
                 + "FROM vrs.vrs_offices "
@@ -206,13 +209,14 @@ public class OfficeController {
         
         try {
             pstat = connection.getConnection().prepareStatement(query);
-            pstat.setInt(1, city.getCitId());
+            pstat.setInt(1, citId);
             
             rstat = pstat.executeQuery();
             
             while (rstat.next()) { 
                 
                 office = new Office();
+                city = new City();
                 
                 office.setOffId(rstat.getInt(1));
                 office.setOffMainSt(rstat.getString(2));
@@ -229,7 +233,7 @@ public class OfficeController {
                 offices.add(office);
             }
         } catch (SQLException ex) {
-            throw new NullPointerException(ex.getSQLState());
+            throw new NullPointerException( ex.toString());
         }
         //connection.closeConnection();
         return true;
