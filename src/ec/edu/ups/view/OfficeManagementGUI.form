@@ -126,6 +126,9 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="idProvinceText">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="nameProvinceText">
         </Component>
@@ -133,21 +136,33 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Crear"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createProvinceButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="findProvinceButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="findProvinceButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="editProvinceButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Editar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editProvinceButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="deleteProvinceButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteProvinceButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="idProvinceLabel">
           <Properties>
@@ -275,6 +290,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="idOfficeText">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="mainStreetText">
         </Component>
@@ -399,11 +417,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Editar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editPhoneButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="deletePhoneButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deletePhoneButtonActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
               <AuxValues>
@@ -493,9 +517,8 @@
         <Component class="javax.swing.JComboBox" name="listComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
+              <StringArray count="1">
                 <StringItem index="0" value="Provincias"/>
-                <StringItem index="1" value="Ciudades"/>
               </StringArray>
             </Property>
           </Properties>
@@ -617,6 +640,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Crear"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createCityButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="findCityButton">
           <Properties>
@@ -630,6 +656,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Editar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editCityButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="deleteCityButton">
           <Properties>
@@ -640,6 +669,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="idCityText">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="nameCityText">
         </Component>

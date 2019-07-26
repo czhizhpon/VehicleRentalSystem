@@ -55,7 +55,7 @@ public class ProvinceController {
     public boolean updateProvince(ConnectionJava connection, Province province){
         String query = "UPDATE VRS.VRS_PROVINCES SET "
                 + "pro_name = ? "
-                + "WHERE bra_id = ?";
+                + "WHERE pro_id = ?";
         
         try{
             
@@ -86,7 +86,12 @@ public class ProvinceController {
             pstat.setInt(1, proId);
             
             rstat = pstat.executeQuery();
-                    
+            
+            while(rstat.next()){
+                province.setProId(rstat.getInt(1));
+                province.setProName(rstat.getString(2));
+            }
+            
         } catch (SQLException ex){
             throw new NullPointerException(ex.getSQLState());
         }
@@ -95,13 +100,41 @@ public class ProvinceController {
         return true;
     }
     
-    public boolean deleteProvince(ConnectionJava connection, Province province){
-        String query = "DELETE VRS.VRS_PROVINCES "
-                + "WHERE pro_id = ?";
+    public boolean readProvince(ConnectionJava connection, Province province, 
+            String proName){
+        
+        String query =  "SELECT *\n" +
+                        "FROM VRS.VRS_PROVINCES \n" + 
+                        "WHERE pro_name = ?";
         
         try{
             
             pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, proName);
+            
+            rstat = pstat.executeQuery();
+            while(rstat.next()){
+                province.setProId(rstat.getInt(1));
+                province.setProName(rstat.getString(2));
+            }
+            
+            
+        } catch (SQLException ex){
+            throw new NullPointerException(ex.getSQLState());
+        }
+        
+        //connection.closeConnection();
+        return true;
+    }
+    
+    public boolean deleteProvince(ConnectionJava connection, String proName){
+        String query = "DELETE VRS.VRS_PROVINCES "
+                + "WHERE pro_name = ?";
+        
+        try{
+            
+            pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, proName);
             
             pstat.executeUpdate();
             
