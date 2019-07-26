@@ -68,6 +68,7 @@ public class ConnectionDataBase {
             if (this.getConnection() != null && !this.getConnection().isClosed()) {
                 this.getConnection().close();
             }
+            System.out.println("Se cerro la conexion");
         } catch (SQLException e) {
             e.printStackTrace();
         }
