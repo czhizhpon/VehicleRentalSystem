@@ -44,7 +44,7 @@ public class ModelController {
             int braId){
         
         String query = "INSERT INTO VRS.VRS_MODELS VALUES(\n"
-                + "mod_id_seq.NEXTVAL, ?, ?, ?";
+                + "mod_id_seq.NEXTVAL, ?, ?, ?)";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
@@ -94,11 +94,45 @@ public class ModelController {
         return true;
     }
     
+    public boolean readModel(ConnectionJava connection, Model model, 
+            String modName){
+        Brand brand;
+        
+        String query = "SELECT * "
+                + "FROM vrs.vrs_models "
+                + "WHERE mod_name LIKE ?";
+        
+        try{
+            pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, modName);
+            
+            rstat = pstat.executeQuery();
+            
+            while(rstat.next()){
+                model.setModId(rstat.getInt(1));
+                model.setModName(rstat.getString(2));
+                model.setModCost(rstat.getDouble(3));
+                
+                brand = new Brand();
+                
+                this.conBrand.readBrand(connection, brand, rstat.getInt(4));
+                
+                model.setModBrand(brand);
+                
+            }
+            
+        }catch(SQLException ex){
+            throw new NullPointerException(ex.toString());
+        }
+        //connection.closeConnection();
+        return true;
+    }
+    
     public boolean updateModel(ConnectionJava connection, Model model){
         
         String query = "UPDATE vrs.vrs_models SET "
-                + "mod_name = ? "
-                + "mod_price = ? "
+                + "mod_name = ?, "
+                + "mod_price = ?, "
                 + "bra_id = ? "
                 + "WHERE mod_id = ?";
         

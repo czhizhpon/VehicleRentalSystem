@@ -10,6 +10,7 @@ package ec.edu.ups.view;
 import ec.edu.ups.conectionDB.ConnectionJava;
 import ec.edu.ups.controller.ModelController;
 import ec.edu.ups.model.Brand;
+import ec.edu.ups.model.Model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -105,6 +106,8 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         findModelButton = new javax.swing.JButton();
         editModelButton = new javax.swing.JButton();
         deleteModelButton = new javax.swing.JButton();
+        costModelLabel = new javax.swing.JLabel();
+        costModelText = new javax.swing.JTextField();
         listPanel = new javax.swing.JPanel();
         buttonsPanel = new javax.swing.JPanel();
         selectComboBox = new javax.swing.JComboBox<>();
@@ -246,6 +249,11 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         nameModelLabel.setText("Nombre:");
 
         createModelButton.setText("Crear");
+        createModelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createModelButtonActionPerformed(evt);
+            }
+        });
 
         findModelButton.setText("Buscar");
         findModelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -255,8 +263,20 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         });
 
         editModelButton.setText("Editar");
+        editModelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editModelButtonActionPerformed(evt);
+            }
+        });
 
         deleteModelButton.setText("Eliminar");
+        deleteModelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteModelButtonActionPerformed(evt);
+            }
+        });
+
+        costModelLabel.setText("Precio:");
 
         javax.swing.GroupLayout modelPanelLayout = new javax.swing.GroupLayout(modelPanel);
         modelPanel.setLayout(modelPanelLayout);
@@ -268,11 +288,13 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
                     .addGroup(modelPanelLayout.createSequentialGroup()
                         .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(nameModelLabel)
-                            .addComponent(idModelLabel))
+                            .addComponent(idModelLabel)
+                            .addComponent(costModelLabel))
                         .addGap(30, 30, 30)
                         .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(idModelText)
-                            .addComponent(nameModelText)))
+                            .addComponent(nameModelText)
+                            .addComponent(costModelText)))
                     .addGroup(modelPanelLayout.createSequentialGroup()
                         .addComponent(createModelButton)
                         .addGap(15, 15, 15)
@@ -286,21 +308,25 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         modelPanelLayout.setVerticalGroup(
             modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(modelPanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(15, 15, 15)
                 .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idModelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idModelLabel))
-                .addGap(20, 20, 20)
+                .addGap(15, 15, 15)
                 .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameModelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameModelLabel))
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(costModelLabel)
+                    .addComponent(costModelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addGroup(modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createModelButton)
                     .addComponent(findModelButton)
                     .addComponent(editModelButton)
                     .addComponent(deleteModelButton))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         listPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
@@ -443,7 +469,26 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_searchListButtonActionPerformed
 
     private void findModelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findModelButtonActionPerformed
-        // TODO add your handling code here:
+        
+        try{
+            
+            Model model = new Model();
+            this.conModel.readModel(connection, model, 
+                    this.nameModelText.getText());
+            
+            if (model.getModName() == null) {
+                throw new NullPointerException();
+            } else {
+                this.nameModelText.setText(model.getModName());
+                this.idModelText.setText("" + model.getModId());
+                this.costModelText.setText("" + model.getModCost());
+            }
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "No se encontró el modelo ingresado.", 
+                    "Advertencia", JOptionPane.QUESTION_MESSAGE);
+        }
+        
     }//GEN-LAST:event_findModelButtonActionPerformed
 
     private void idBrandTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idBrandTextActionPerformed
@@ -479,17 +524,19 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
             }else{
                 this.nameBrandText.setText(brand.getBraName());
                 this.idBrandText.setText("" + brand.getBraId());
+                
+                listModels();
+                
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "No se encontró la Marca ingresada.", "Advertencia", 
                     JOptionPane.QUESTION_MESSAGE);
         }
-            
-        
         
     }//GEN-LAST:event_findBrandButtonActionPerformed
 
     private void createBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBrandButtonActionPerformed
+        
         try{
             Brand brand = new Brand();
             brand.setBraName(this.nameBrandText.getText());
@@ -504,11 +551,10 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
                 
             }
             
-            
-            
         } catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Error al crear la marca", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al crear la marca" + e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
     }//GEN-LAST:event_createBrandButtonActionPerformed
 
     private void selectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectComboBoxActionPerformed
@@ -518,20 +564,101 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
     private void deleteBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBrandButtonActionPerformed
         
         try{
+            
             this.conModel.getConBrand().deleteBrand(connection, 
                     this.nameBrandText.getText());
             listBrands();
+            
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error al eliminar la marca", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_deleteBrandButtonActionPerformed
 
+    private void createModelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createModelButtonActionPerformed
+        
+        try{
+            
+            Model model = new Model();
+            model.setModName(this.nameModelText.getText());
+            model.setModCost(Double.parseDouble(this.costModelText.getText()));
+
+            if (this.conModel.createModel(connection, model, 
+                    Integer.parseInt(this.idBrandText.getText()))){
+                
+                JOptionPane.showMessageDialog(null, 
+                        "Modelo " + model.getModName()+ " creado.", 
+                        "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                
+                this.nameModelText.setText("");
+                this.costModelText.setText("");
+                
+                //OJO ACABAR EL LIST MODELS
+                listModels();
+                
+            }
+            
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al crear el modelo", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_createModelButtonActionPerformed
+
+    private void editModelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editModelButtonActionPerformed
+        
+        try{
+            
+            Model model = new Model();
+            model.setModId(Integer.parseInt(this.idModelText.getText()));
+            model.setModName(this.nameModelText.getText());
+            model.setModCost(Double.parseDouble(this.costModelText.getText()));
+            
+            Brand brand = new Brand();
+            this.conModel.getConBrand().readBrand(connection, brand, 
+                    this.nameBrandText.getText());
+            
+            model.setModBrand(brand);
+            
+            this.conModel.updateModel(connection, model);
+            
+            this.idBrandText.setText(""+model.getModBrand().getBraId());
+            this.nameBrandText.setText(model.getModBrand().getBraName());
+            
+            //OJO HACER EL OTRO
+            listModels();
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al editar."
+                    + e.toString(), "Error" , JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_editModelButtonActionPerformed
+
+    private void deleteModelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteModelButtonActionPerformed
+        
+        try{
+            
+            this.conModel.deleteModel(connection, 
+                    Integer.parseInt(this.idModelText.getText()));
+            
+            // OJO
+            listModels();
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al eliminar la marca", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_deleteModelButtonActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel brandPanel;
     private javax.swing.JPanel buttonsPanel;
+    private javax.swing.JLabel costModelLabel;
+    private javax.swing.JTextField costModelText;
     private javax.swing.JButton createBrandButton;
     private javax.swing.JButton createModelButton;
     private javax.swing.JButton deleteBrandButton;
@@ -565,25 +692,57 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         DefaultTableModel tableModel = new DefaultTableModel();
         List<Brand> brands = new ArrayList<>();
         
-        
         String [] colums = {"Id", "Nombre"}; 
         String [][] rows;
+        
         try{
-        this.conModel.getConBrand().getBrands(connection, brands);
-        int n = brands.size();
-        
-        rows = new String[n][2];
-        
-        for (int i = 0; i < n; i++) {
-            rows[i][0] = "" + brands.get(i).getBraId();
-            rows[i][1] = brands.get(i).getBraName();
-        }
-        
-        tableModel.setDataVector(rows, colums);
-        this.listJTable.setModel(tableModel);
+            this.conModel.getConBrand().getBrands(connection, brands);
+            int n = brands.size();
+            
+            rows = new String[n][2];
+            
+            for (int i = 0; i < n; i++) {
+                rows[i][0] = "" + brands.get(i).getBraId();
+                rows[i][1] = brands.get(i).getBraName();
+            }
+            
+            tableModel.setDataVector(rows, colums);
+            this.listJTable.setModel(tableModel);
         } catch(Exception e){
             System.out.println(e.toString());
         }
+        
+    }
+    
+    private void listModels(){
+        
+        DefaultTableModel tableModel = new DefaultTableModel();
+        List<Model> models = new ArrayList<>();
+        
+        Brand brand = new Brand(Integer.parseInt(this.idBrandText.getText()), 
+                this.nameBrandText.getText());
+        
+        
+        String [] colums = {"Id", "Nombre"}; 
+        String [][] rows;
+        
+        try{
+            this.conModel.getModels(connection, models, brand);
+            int n = models.size();
+            
+            rows = new String[n][2];
+            
+            for (int i = 0; i < n; i++) {
+                rows[i][0] = "" + models.get(i).getModId();
+                rows[i][1] = models.get(i).getModName();
+            }
+            
+            tableModel.setDataVector(rows, colums);
+            this.listJTable.setModel(tableModel);
+        } catch(Exception e){
+            System.out.println(e.toString());
+        }
+        
     }
     
 }

@@ -21,7 +21,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-10,0,0,4,117"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,32,0,0,4,-123"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -49,12 +49,12 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="userLb" min="-2" pref="54" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="userTxt" min="-2" pref="248" max="-2" attributes="0"/>
+                          <Component id="userText" min="-2" pref="248" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="dniLb" min="-2" pref="55" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="dniTxt" min="-2" pref="248" max="-2" attributes="0"/>
+                          <Component id="dniText" min="-2" pref="248" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
@@ -62,14 +62,14 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="passLb" min="-2" pref="130" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="passTxt" min="-2" pref="248" max="-2" attributes="0"/>
+                          <Component id="passText" min="-2" pref="248" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="passConfirmLb" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="passConfrimTxt1" min="-2" pref="248" max="-2" attributes="0"/>
+                          <Component id="passConfirmText" min="-2" pref="248" max="-2" attributes="0"/>
                           <EmptySpace min="56" pref="56" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="206" max="-2" attributes="0"/>
+                          <Component id="acceptButton" min="-2" pref="206" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -81,17 +81,17 @@
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="userLb" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="userTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="userText" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="passLb" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="passTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="passText" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="dniLb" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dniTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dniText" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="passConfirmLb" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="passConfrimTxt1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="passConfirmText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="acceptButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -106,9 +106,12 @@
             <Property name="autoscrolls" type="boolean" value="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="userTxt">
+        <Component class="javax.swing.JTextField" name="userText">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userTxtActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userTextActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="dniLb">
@@ -118,9 +121,12 @@
             <Property name="autoscrolls" type="boolean" value="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="dniTxt">
+        <Component class="javax.swing.JTextField" name="dniText">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dniTxtActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dniTextActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="passLb">
@@ -130,9 +136,9 @@
             <Property name="autoscrolls" type="boolean" value="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="passTxt">
+        <Component class="javax.swing.JTextField" name="passText">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passTxtActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passTextActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="passConfirmLb">
@@ -142,15 +148,18 @@
             <Property name="autoscrolls" type="boolean" value="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="acceptButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Aceptar Cambios"/>
             <Property name="autoscrolls" type="boolean" value="true"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="passConfrimTxt1">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passConfrimTxt1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="acceptButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="passConfirmText">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passConfirmTextActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -158,8 +167,8 @@
     <Container class="javax.swing.JPanel" name="dataPanel">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-            <EtchetBorder/>
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Mis datos"/>
           </Border>
         </Property>
       </Properties>
@@ -173,27 +182,27 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel7" min="-2" pref="84" max="-2" attributes="0"/>
                           <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
-                          <Component id="jTextField7" min="-2" pref="248" max="-2" attributes="0"/>
+                          <Component id="nameText" min="-2" pref="248" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="lastnameLb" min="-2" pref="85" max="-2" attributes="0"/>
                           <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
-                          <Component id="lastnameTxt" min="-2" pref="248" max="-2" attributes="0"/>
+                          <Component id="lastNameText" min="-2" pref="248" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="addressLb" min="-2" pref="84" max="-2" attributes="0"/>
                           <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
-                          <Component id="addressTxt" min="-2" pref="248" max="-2" attributes="0"/>
+                          <Component id="addressText" min="-2" pref="248" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="workAddresLb" min="-2" pref="88" max="-2" attributes="0"/>
                           <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                          <Component id="workAddressTxt" min="-2" pref="248" max="-2" attributes="0"/>
+                          <Component id="workAddressText" min="-2" pref="248" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="workAddresLb1" min="-2" max="-2" attributes="0"/>
@@ -209,7 +218,7 @@
                           <Component id="yearCmbBox" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="phonePanel" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -218,48 +227,46 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lastnameLb" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lastnameTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="addressLb" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="addressTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="workAddresLb" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="workAddressTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="workAddresLb1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="dayCmbBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="monthCmbBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="yearCmbBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="slashLB1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="slashLB2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Component id="phonePanel" min="-2" max="-2" attributes="0"/>
+                  <Component id="phonePanel" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nameText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lastnameLb" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lastNameText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="addressLb" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="addressText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="workAddresLb" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="workAddressText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="workAddresLb1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dayCmbBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="monthCmbBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="yearCmbBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="slashLB1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="slashLB2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="lastnameTxt">
+        <Component class="javax.swing.JTextField" name="lastNameText">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lastnameTxtActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lastNameTextActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lastnameLb">
@@ -274,9 +281,9 @@
             <Property name="text" type="java.lang.String" value="Nombre:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField7">
+        <Component class="javax.swing.JTextField" name="nameText">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField7ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameTextActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="addressLb">
@@ -285,9 +292,9 @@
             <Property name="text" type="java.lang.String" value="Direcci&#xf3;n:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="addressTxt">
+        <Component class="javax.swing.JTextField" name="addressText">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addressTxtActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addressTextActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="workAddresLb">
@@ -296,9 +303,9 @@
             <Property name="text" type="java.lang.String" value="D. Trabajo:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="workAddressTxt">
+        <Component class="javax.swing.JTextField" name="workAddressText">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="workAddressTxtActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="workAddressTextActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="workAddresLb1">
@@ -340,8 +347,8 @@
         <Container class="javax.swing.JPanel" name="phonePanel">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                <EtchetBorder/>
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="Tel&#xe9;fonos"/>
               </Border>
             </Property>
           </Properties>
@@ -353,11 +360,11 @@
                       <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="createPhoneBtn" min="-2" pref="99" max="-2" attributes="0"/>
+                              <Component id="createPhoneButton" min="-2" pref="99" max="-2" attributes="0"/>
                               <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                              <Component id="updatePhoneBtn" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="updatePhoneButton" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                              <Component id="deletePhoneBtn" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="deletePhoneButton" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
@@ -365,7 +372,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="phoneLb" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                                      <Component id="phoneTxt" min="-2" pref="264" max="-2" attributes="0"/>
+                                      <Component id="phoneText" min="-2" pref="264" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="typePhoneCmbBoc" min="-2" pref="331" max="-2" attributes="0"/>
                               </Group>
@@ -380,28 +387,28 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" pref="324" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
                               <Component id="phoneLb" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="phoneTxt" min="-2" max="-2" attributes="0"/>
+                          <Component id="phoneText" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                       <Component id="typePhoneCmbBoc" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="52" pref="52" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="createPhoneBtn" min="-2" max="-2" attributes="0"/>
-                          <Component id="updatePhoneBtn" min="-2" max="-2" attributes="0"/>
-                          <Component id="deletePhoneBtn" min="-2" max="-2" attributes="0"/>
+                          <Component id="createPhoneButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="updatePhoneButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="deletePhoneButton" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="100" pref="179" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -412,9 +419,9 @@
                 <Property name="text" type="java.lang.String" value="N&#xfa;mero:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="phoneTxt">
+            <Component class="javax.swing.JTextField" name="phoneText">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="phoneTxtActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="phoneTextActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="typePhoneCmbBoc">
@@ -463,25 +470,25 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="createPhoneBtn">
+            <Component class="javax.swing.JButton" name="createPhoneButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Crear"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="deletePhoneBtn">
+            <Component class="javax.swing.JButton" name="deletePhoneButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deletePhoneBtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deletePhoneButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="updatePhoneBtn">
+            <Component class="javax.swing.JButton" name="updatePhoneButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Editar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updatePhoneBtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updatePhoneButtonActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
