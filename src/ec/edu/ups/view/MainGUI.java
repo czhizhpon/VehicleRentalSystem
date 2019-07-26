@@ -26,6 +26,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private ConnectionJava connection;
     
+    
     /**
      * Creates new form MainGUI
      * @param user
@@ -79,6 +80,78 @@ public class MainGUI extends javax.swing.JFrame {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public MyDataGUI getMyDataGUI() {
+        return myDataGUI;
+    }
+
+    public void setMyDataGUI(MyDataGUI myDataGUI) {
+        this.myDataGUI = myDataGUI;
+    }
+
+    public BillGUI getBillGUI() {
+        return billGUI;
+    }
+
+    public void setBillGUI(BillGUI billGUI) {
+        this.billGUI = billGUI;
+    }
+
+    public CompanyGUI getCompanyGUI() {
+        return companyGUI;
+    }
+
+    public void setCompanyGUI(CompanyGUI companyGUI) {
+        this.companyGUI = companyGUI;
+    }
+
+    public MyBillGUI getMyBillGUI() {
+        return myBillGUI;
+    }
+
+    public void setMyBillGUI(MyBillGUI myBillGUI) {
+        this.myBillGUI = myBillGUI;
+    }
+
+    public OfficeManagementGUI getOfficeManagementGUI() {
+        return officeManagementGUI;
+    }
+
+    public void setOfficeManagementGUI(OfficeManagementGUI officeManagementGUI) {
+        this.officeManagementGUI = officeManagementGUI;
+    }
+
+    public RentalGUI getRentalGUI() {
+        return rentalGUI;
+    }
+
+    public void setRentalGUI(RentalGUI rentalGUI) {
+        this.rentalGUI = rentalGUI;
+    }
+
+    public ReservateGUI getReservateGUI() {
+        return reservateGUI;
+    }
+
+    public void setReservateGUI(ReservateGUI reservateGUI) {
+        this.reservateGUI = reservateGUI;
+    }
+
+    public UserManagementGUI getUserManagementGUI() {
+        return userManagementGUI;
+    }
+
+    public void setUserManagementGUI(UserManagementGUI userManagementGUI) {
+        this.userManagementGUI = userManagementGUI;
+    }
+
+    public VehicleManagementGUI getVehicleManagementGUI() {
+        return vehicleManagementGUI;
+    }
+
+    public void setVehicleManagementGUI(VehicleManagementGUI vehicleManagementGUI) {
+        this.vehicleManagementGUI = vehicleManagementGUI;
     }
 
     
@@ -317,8 +390,8 @@ public class MainGUI extends javax.swing.JFrame {
     private void addVehicleJMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVehicleJMIActionPerformed
         
         try{
-            if (vehicleManagementGUI == null) 
-                vehicleManagementGUI = new VehicleManagementGUI(this.connection);
+            if (vehicleManagementGUI == null)
+                vehicleManagementGUI = new VehicleManagementGUI(this.connection, this);
             if (vehicleManagementGUI.isVisible()){
                 vehicleManagementGUI.setSelected(true);
             }else{

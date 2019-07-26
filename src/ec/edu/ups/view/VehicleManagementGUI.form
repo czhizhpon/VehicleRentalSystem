@@ -50,7 +50,6 @@
   </NonVisualComponents>
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="iconifiable" type="boolean" value="true"/>
     <Property name="title" type="java.lang.String" value="Administrar Datos Vehiculo"/>
   </Properties>
@@ -195,6 +194,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="idBrandText">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="idBrandTextActionPerformed"/>
           </Events>
@@ -282,6 +284,9 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="idModelText">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="nameModelText">
         </Component>

@@ -12,6 +12,11 @@ import ec.edu.ups.controller.ModelController;
 import ec.edu.ups.model.Brand;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.InternalFrameListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,9 +31,44 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
     
     /**
      * Creates new form VehicleManagementGUI
+     * @param connection
+     * @param mainGUI
      */
-    public VehicleManagementGUI(ConnectionJava connection) {
+    public VehicleManagementGUI(ConnectionJava connection, MainGUI mainGUI) {
         initComponents();
+        
+        this.addInternalFrameListener(new InternalFrameListener() {
+            @Override
+            public void internalFrameOpened(InternalFrameEvent e) {
+            }
+
+            @Override
+            public void internalFrameClosing(InternalFrameEvent e) {
+                mainGUI.setVehicleManagementGUI(null);
+            }
+
+            @Override
+            public void internalFrameClosed(InternalFrameEvent e) {
+            }
+
+            @Override
+            public void internalFrameIconified(InternalFrameEvent e) {
+            }
+
+            @Override
+            public void internalFrameDeiconified(InternalFrameEvent e) {
+            }
+
+            @Override
+            public void internalFrameActivated(InternalFrameEvent e) {
+            }
+
+            @Override
+            public void internalFrameDeactivated(InternalFrameEvent e) {
+            }
+        });
+        
+        
         conModel = new ModelController();
         this.connection = connection;
         
@@ -107,7 +147,6 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         );
 
         setClosable(true);
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         setTitle("Administrar Datos Vehiculo");
 
@@ -136,6 +175,7 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
 
         deleteBrandButton.setText("Eliminar");
 
+        idBrandText.setEditable(false);
         idBrandText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idBrandTextActionPerformed(evt);
@@ -192,6 +232,8 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         );
 
         modelPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modelos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+
+        idModelText.setEditable(false);
 
         idModelLabel.setText("Id:");
 
@@ -408,13 +450,47 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_editBrandButtonActionPerformed
 
     private void findBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findBrandButtonActionPerformed
-        // TODO add your handling code here:
+        
+        try{
+            Brand brand = new Brand();
+            this.conModel.getConBrand().readBrand(connection, brand, 
+                    this.nameBrandText.getText());
+            
+            if (brand.getBraName() == null) {
+                throw new NullPointerException();
+            }else{
+                this.nameBrandText.setText(brand.getBraName());
+                this.idBrandText.setText("" + brand.getBraId());
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "No se encontró la Marca ingresada.", "Advertencia", 
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+            
+        
+        
     }//GEN-LAST:event_findBrandButtonActionPerformed
 
     private void createBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBrandButtonActionPerformed
-        
-        //this.conModel.createModel(connection, model, ERROR)
-        
+        try{
+            Brand brand = new Brand();
+            brand.setBraName(this.nameBrandText.getText());
+
+            if (this.conModel.getConBrand().createBrand(connection, brand)){
+                JOptionPane.showMessageDialog(null, 
+                        "Marca " + brand.getBraName() + " creada.", 
+                        "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                
+                this.nameBrandText.setText("");
+                listBrands();
+                
+            }
+            
+            
+            
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al crear la marca", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_createBrandButtonActionPerformed
 
     private void selectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectComboBoxActionPerformed
@@ -469,9 +545,8 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         rows = new String[n][2];
         
         for (int i = 0; i < n; i++) {
-            rows[1][i] = "" + brands.get(i).getBraId();
-            i++;
-            rows[2][i] = brands.get(i).getBraName();
+            rows[i][0] = "" + brands.get(i).getBraId();
+            rows[i][1] = brands.get(i).getBraName();
         }
         
         tableModel.setDataVector(rows, colums);

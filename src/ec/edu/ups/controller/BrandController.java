@@ -63,6 +63,30 @@ public class BrandController {
         //connection.closeConnection();
         return true;
     }
+     public boolean readBrand(ConnectionJava connection, Brand brand, 
+             String braName){
+        String query = "SELECT * "
+                + "FROM vrs.vrs_brands "
+                + "WHERE bra_name = ?";
+        
+        try{
+            pstat = connection.getConnection().prepareStatement(query);
+            pstat.setString(1, braName);
+            
+            rstat = pstat.executeQuery();
+            
+            while(rstat.next()){
+                brand.setBraId(rstat.getInt(1));
+                brand.setBraName(rstat.getString(2));
+            }
+            
+        }catch(SQLException ex){
+            throw new NullPointerException(ex.toString());
+        }
+        //connection.closeConnection();
+        return true;
+    }
+    
     
     public boolean updateBrand(ConnectionJava connection, Brand brand){
         String query = "UPDATE vrs.vrs_brans SET "

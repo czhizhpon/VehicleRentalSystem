@@ -20,9 +20,6 @@ import java.sql.Statement;
  */
 public class ConnectionJava {
     private ConnectionDataBase connection;
-    private PreparedStatement pstat;
-    private ResultSet rstat;
-    private Statement stat;
 
     public ConnectionJava() {
         connection = new ConnectionDataBase();
