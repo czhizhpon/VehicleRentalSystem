@@ -174,6 +174,11 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
         });
 
         deleteBrandButton.setText("Eliminar");
+        deleteBrandButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBrandButtonActionPerformed(evt);
+            }
+        });
 
         idBrandText.setEditable(false);
         idBrandText.addActionListener(new java.awt.event.ActionListener() {
@@ -446,7 +451,20 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_idBrandTextActionPerformed
 
     private void editBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBrandButtonActionPerformed
-        // TODO add your handling code here:
+        
+        try{
+            Brand brand = new Brand();
+            brand.setBraId(Integer.parseInt(this.idBrandText.getText()));
+            brand.setBraName(this.nameBrandText.getText());
+            this.conModel.getConBrand().updateBrand(connection, brand);
+            
+            listBrands();
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al editar."
+                    + e.toString(), "Error" , JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_editBrandButtonActionPerformed
 
     private void findBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findBrandButtonActionPerformed
@@ -464,7 +482,7 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "No se encontró la Marca ingresada.", "Advertencia", 
-                    JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.QUESTION_MESSAGE);
         }
             
         
@@ -496,6 +514,18 @@ public class VehicleManagementGUI extends javax.swing.JInternalFrame {
     private void selectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_selectComboBoxActionPerformed
+
+    private void deleteBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBrandButtonActionPerformed
+        
+        try{
+            this.conModel.getConBrand().deleteBrand(connection, 
+                    this.nameBrandText.getText());
+            listBrands();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al eliminar la marca", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_deleteBrandButtonActionPerformed
 
     
 

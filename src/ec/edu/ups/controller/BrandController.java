@@ -89,7 +89,7 @@ public class BrandController {
     
     
     public boolean updateBrand(ConnectionJava connection, Brand brand){
-        String query = "UPDATE vrs.vrs_brans SET "
+        String query = "UPDATE vrs.vrs_brands SET "
                 + "bra_name = ? "
                 + "WHERE bra_id = ?";
         
@@ -107,13 +107,13 @@ public class BrandController {
         return true;
     }
     
-    public boolean deleteBrand(ConnectionJava connection, int braId){
+    public boolean deleteBrand(ConnectionJava connection, String braName){
         String query = "DELETE vrs.vrs_brands "
-                + "WHERE bra_id = ?";
+                + "WHERE bra_name = ?";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
-            pstat.setInt(1, braId);
+            pstat.setString(1, braName);
             
             pstat.executeUpdate();
             
