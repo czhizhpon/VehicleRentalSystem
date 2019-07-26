@@ -44,7 +44,7 @@ public class ModelController {
             int braId){
         
         String query = "INSERT INTO VRS.VRS_MODELS VALUES(\n"
-                + "mod_id_seq.NEXTVAL, ?, ?, ?";
+                + "mod_id_seq.NEXTVAL, ?, ?, ?)";
         
         try{
             pstat = connection.getConnection().prepareStatement(query);
